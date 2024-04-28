@@ -1,5 +1,5 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-// import * as userApi from "@api/userApi";
+import { createSlice } from "@reduxjs/toolkit";
+import * as userApi from "@api/user.api";
 
 type erroryPayload = {
   message: string;
@@ -17,7 +17,7 @@ export interface UserState {
 }
 
 const initialState: UserState = {
-  isAuth: true,
+  isAuth: false,
   user: null,
   accessToken: null,
   refreshToken: null,
@@ -32,7 +32,7 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     logoutUser: (state) => {
-      state.isAuth = true;
+      state.isAuth = false;
       state.user = null;
       state.accessToken = null;
       state.refreshToken = null;
@@ -42,6 +42,25 @@ export const userSlice = createSlice({
       };
     },
   },
+  extraReducers: (builder) => {
+    // Create user
+    builder.addCase(userApi.createUser.pending, (state) => {
+      state.isPending = true;
+    });
+    builder.addCase(userApi.createUser.fulfilled, (state, action) => {
+      state.isPending = false;
+      state.user = action.payload.user;
+      state.accessToken = action.payload.accessToken;
+      state.refreshToken = action.payload.refreshToken;
+      state.isAuth = true;
+    });
+    builder.addCase(userApi.createUser.rejected, (state, action) => {
+      state.isPending = false;
+      state.error = action.payload as erroryPayload || {
+        message: "Something went wrong",
+      };
+    });
+  }
 });
 
 

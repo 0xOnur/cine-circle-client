@@ -14,7 +14,7 @@ export const routeConfig: IRouteConfig[] = [
     private: false,
   },
   {
-    path: "/register",
+    path: "/sign-up",
     component: React.lazy(() => import('@layout/Register.Layout')),
     title: "Register / CineCircle",
     private: false,

@@ -1,8 +1,10 @@
 import axios from "axios";
-import {store} from "@redux/config/store";
-import { updateAccessToken } from "@api/user.api";
+import { updateAccessToken } from "./user.api";
+import { AppDispatch, RootState } from "@redux/config/store";
+import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "@redux/slices/user.slice";
-
+// import { logoutUser } from "@redux/slices/user.slice";
+// import store from "@redux/config/store";
 
 const axiosInstance = axios.create({
   baseURL: process.env.REACT_APP_API_BASE_URL,
@@ -16,12 +18,12 @@ const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
   (config) => {
     // Add accessToken to request header
-    const accessToken = store.getState().user.accessToken;
+    const accessToken = useSelector((state: RootState) => state.accessToken);
     if (accessToken) {
       config.headers["Authorization"] = `Bearer ${accessToken}`;
     }
     // Add refreshToken to request header for updating accessToken
-    const refreshToken = store.getState().user.refreshToken;
+    const refreshToken = useSelector((state: RootState) => state.refreshToken);
     if (refreshToken && config.url === "/user/update-token") {
       config.headers["x-refresh-token"] = refreshToken;
     }
@@ -40,19 +42,19 @@ axiosInstance.interceptors.response.use(
   },
   async (error) => {
     const originalRequest = error.config;
+    const dispatch = useDispatch<AppDispatch>();
 
     if (
       error.response.status === 401 &&
       originalRequest.url === "/user/update-token"
     ) {
-      store.dispatch(logoutUser());
+      dispatch(logoutUser());
       return Promise.reject(error);
     }
 
     if (error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
-      const userId = store.getState().user.user?._id;
-      const response = await store.dispatch(updateAccessToken(userId));
+      const response = await dispatch(updateAccessToken());
       const accessToken = response.payload;
       if (accessToken) {
         originalRequest.headers["Authorization"] = `Bearer ${accessToken}`;

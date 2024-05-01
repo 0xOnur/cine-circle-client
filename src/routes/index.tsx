@@ -4,11 +4,12 @@ import { routeConfig } from "./route.config";
 import LoadingSpinner from '@components/LoadingSpinner';
 import {Helmet} from "react-helmet";
 
-interface AppRoutesProps {
+interface IProps {
   isAuth: boolean;
 }
 
-const AppRoutes = ({ isAuth }: AppRoutesProps) => {
+const AppRoutes = ({ isAuth }: IProps) => {
+
   return (
     <Routes>
       {routeConfig.map((route) => (
@@ -18,7 +19,7 @@ const AppRoutes = ({ isAuth }: AppRoutesProps) => {
           element={
             <Suspense fallback={<LoadingSpinner />}>
               <Helmet><title>{route.title}</title></Helmet>
-              {route.private ? (isAuth ? <route.component /> : <Navigate to="/login" />) : <route.component />}
+              {route.private ? (isAuth ? ( <route.component />) : <Navigate to="/login" />) : <route.component />}
             </Suspense>
           }
         />

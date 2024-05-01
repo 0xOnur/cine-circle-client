@@ -13,9 +13,11 @@ import EmailInput from "../Inputs/Email.Button";
 import { useState } from "react";
 import NameInput from "../Inputs/Name.Input";
 import SubmitButton from "../Inputs/Submit.Input";
+import UsernameInput from "../Inputs/Username.Input";
 
 const SignUpPage = () => {
   const [formData, setFormData] = useState({
+    username: "",
     name: "",
     lastName: "",
     email: "",
@@ -42,9 +44,17 @@ const SignUpPage = () => {
           p={8}
         >
           <Stack spacing={4}>
+            <UsernameInput
+              username={formData.username}
+              onChange={(e) =>
+                setFormData({ ...formData, username: e.target.value })
+              }
+            />
+
             <HStack>
               <Box>
                 <NameInput
+                  labelText="First Name"
                   name={formData.name}
                   onChange={(e) =>
                     setFormData({ ...formData, name: e.target.value })
@@ -53,6 +63,7 @@ const SignUpPage = () => {
               </Box>
               <Box>
                 <NameInput
+                  labelText="Last Name"
                   name={formData.lastName}
                   onChange={(e) =>
                     setFormData({ ...formData, lastName: e.target.value })
@@ -86,7 +97,7 @@ const SignUpPage = () => {
             <Stack pt={6}>
               <Text align={"center"}>
                 Already a user?{" "}
-                <Link href="/login" color={"blue.400"}>
+                <Link href="/login" color={"darkPurple.500"}>
                   Login
                 </Link>
               </Text>

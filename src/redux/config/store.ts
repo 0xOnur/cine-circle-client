@@ -1,37 +1,17 @@
-import {
-  configureStore,
-  ThunkAction,
-  Action,
-  combineReducers,
-} from "@reduxjs/toolkit";
-import { persistReducer, persistStore } from "redux-persist";
+import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
+import { persistStore, persistReducer } from "redux-persist";
 import userReducer from "@redux/slices/user.slice";
 
 const persistConfig = {
   key: "user",
   storage: storage,
-  whitelist: [
-    "isAuth",
-    "user",
-    "accessToken",
-    "refreshToken",
-    "isPending",
-    "error",
-  ],
+  whitelist: ["user", "accessToken", "refreshToken", "isAuth"],
   blacklist: ["error", "isPending"],
 };
 
-const rootReducer = combineReducers({
-  user: persistReducer(persistConfig, userReducer),
-});
-
-export const store = configureStore({
-  reducer: rootReducer,
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: false,
-    }),
+const store = configureStore({
+  reducer: persistReducer(persistConfig, userReducer),
 });
 
 export const persistor = persistStore(store);
@@ -44,3 +24,5 @@ export type AppThunk<ReturnType = void> = ThunkAction<
   unknown,
   Action<string>
 >;
+
+export default store;

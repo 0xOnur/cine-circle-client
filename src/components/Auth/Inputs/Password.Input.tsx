@@ -28,6 +28,8 @@ const PasswordInput = ({ password, onChange }: IProps) => {
             outline: "none",
           }}
           type={showPassword ? "text" : "password"}
+          minLength={6}
+          maxLength={100}
           value={password}
           onChange={onChange}
         />

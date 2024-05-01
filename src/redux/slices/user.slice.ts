@@ -1,9 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import * as userApi from "@api/user.api";
-
-type erroryPayload = {
-  message: string;
-};
+import * as userApi from "../../api/user.api";
 
 export interface UserState {
   isAuth: boolean;
@@ -32,38 +28,66 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     logoutUser: (state) => {
-      state.isAuth = false;
-      state.user = null;
-      state.accessToken = null;
-      state.refreshToken = null;
-      state.isPending = false;
-      state.error = {
-        message: null,
-      };
+      Object.assign(state, initialState);
     },
   },
   extraReducers: (builder) => {
     // Create user
-    builder.addCase(userApi.createUser.pending, (state) => {
-      state.isPending = true;
-    });
-    builder.addCase(userApi.createUser.fulfilled, (state, action) => {
-      state.isPending = false;
-      state.user = action.payload.user;
-      state.accessToken = action.payload.accessToken;
-      state.refreshToken = action.payload.refreshToken;
-      state.isAuth = true;
-    });
-    builder.addCase(userApi.createUser.rejected, (state, action) => {
-      state.isPending = false;
-      state.error = action.payload as erroryPayload || {
-        message: "Something went wrong",
-      };
-    });
-  }
+    builder
+      .addCase(userApi.createUser.pending, (state) => {
+        state.isPending = true;
+      })
+      .addCase(userApi.createUser.fulfilled, (state, action) => {
+        state.isPending = false;
+        state.user = action.payload.user;
+        state.accessToken = action.payload.accessToken;
+        state.refreshToken = action.payload.refreshToken;
+        state.isAuth = true;
+      })
+      .addCase(userApi.createUser.rejected, (state, action) => {
+        state.isPending = false;
+        state.error = {
+          message: action.error?.message || "An unexpected error occurred",
+        };
+      });
+    // Login user
+    builder
+      .addCase(userApi.loginUser.pending, (state) => {
+        state.isPending = true;
+      })
+      .addCase(userApi.loginUser.fulfilled, (state, action) => {
+        state.isPending = false;
+        state.user = action.payload.user;
+        state.accessToken = action.payload.accessToken;
+        state.refreshToken = action.payload.refreshToken;
+        state.isAuth = true;
+      })
+      .addCase(userApi.loginUser.rejected, (state, action) => {
+        state.isPending = false;
+        state.error = {
+          message: action.error?.message || "An unexpected error occurred",
+        };
+      });
+    // Get new accessToken
+    builder
+      .addCase(userApi.updateAccessToken.pending, (state) => {
+        state.isPending = true;
+      })
+      .addCase(userApi.updateAccessToken.fulfilled, (state, action) => {
+        state.isPending = false;
+        state.accessToken = action.payload;
+      })
+      .addCase(userApi.updateAccessToken.rejected, (state, action) => {
+        state.isPending = false;
+        state.error = {
+          message: action.error?.message || "An unexpected error occurred",
+        };
+      });
+  },
 });
 
+const {actions, reducer} = userSlice;
 
-export const { logoutUser } = userSlice.actions;
+export const {logoutUser} = actions;
 
-export default userSlice.reducer;
+export default reducer;

@@ -1,15 +1,14 @@
 import { FormControl, FormLabel, Input } from "@chakra-ui/react";
 
 interface IProps {
-  labelText: string;
-  name: string;
+  username: string;
   onChange: (e: any) => void;
 }
 
-const NameInput = ({ labelText, name, onChange }: IProps) => {
+const UsernameInput = ({ username, onChange }: IProps) => {
   return (
     <FormControl id="firstName" isRequired>
-      <FormLabel>{labelText}</FormLabel>
+      <FormLabel>Username</FormLabel>
       <Input
         _focus={{
           border: "2px solid",
@@ -20,11 +19,11 @@ const NameInput = ({ labelText, name, onChange }: IProps) => {
         type="text"
         minLength={3}
         maxLength={20}
-        value={name}
+        value={username}
         onChange={onChange}
       />
     </FormControl>
   );
 };
 
-export default NameInput;
+export default UsernameInput;

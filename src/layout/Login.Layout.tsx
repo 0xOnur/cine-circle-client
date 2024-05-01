@@ -5,7 +5,7 @@ import LoginPage from "@components/Auth/Login";
 import Navbar from "@components/Navbar";
 
 const LoginLayout = () => {
-  const isAuth = useSelector((state: RootState) => state.user.isAuth);
+  const isAuth = useSelector((state: RootState) => state.isAuth);
   return isAuth ? (
     <Navigate to="/" />
   ) : (

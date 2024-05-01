@@ -34,8 +34,8 @@ const UserMenu = () => {
         <Avatar
           size={"sm"}
           src={
-            reduxUser.user?.avatar
-              ? reduxUser.user?.avatar
+            reduxUser?.avatar
+              ? reduxUser?.avatar
               : "https://bit.ly/broken-link"
           }
         />
@@ -43,7 +43,7 @@ const UserMenu = () => {
 
       <MenuList boxShadow={"xl"} rounded={"xl"} py={0} overflow={"hidden"}>
         <Flex flexDirection={"column"} maxW={"250"}>
-          <Link to={"/profile/" + reduxUser.user?.username}>
+          <Link to={"/profile/" + reduxUser?.username}>
             <MenuItem _hover={menuItemHover} py={2}>
               <Text
                 fontWeight={"bold"}
@@ -52,27 +52,27 @@ const UserMenu = () => {
                 textOverflow={"ellipsis"}
                 width={"100%"}
               >
-                {reduxUser.user?.username || "Username"}
+                {reduxUser?.username || "Username"}
               </Text>
             </MenuItem>
           </Link>
           <MenuDivider />
 
-          <Link to={"/watchlists/" + reduxUser.user?.username}>
+          <Link to={"/watchlists/" + reduxUser?.username}>
             <MenuItem _hover={menuItemHover} py={2}>
               <Text fontWeight={"bold"} fontSize={"md"}>
                 Watchlists
               </Text>
             </MenuItem>
           </Link>
-          <Link to={"/favorites/" + reduxUser.user?.username}>
+          <Link to={"/favorites/" + reduxUser?.username}>
             <MenuItem _hover={menuItemHover} py={2}>
               <Text fontWeight={"bold"} fontSize={"md"}>
                 Favorites
               </Text>
             </MenuItem>
           </Link>
-          <Link to={"/reviews/" + reduxUser.user?.username}>
+          <Link to={"/reviews/" + reduxUser?.username}>
             <MenuItem _hover={menuItemHover} py={2}>
               <Text fontWeight={"bold"} fontSize={"md"}>
                 Reviews

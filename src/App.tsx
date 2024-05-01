@@ -4,14 +4,17 @@ import { useSelector } from "react-redux";
 import { RootState } from "@redux/config/store";
 import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
 import theme from "theme";
+import { useAuth } from "hooks/Auth/useAuth";
 
 function App() {
-  const reduxUser = useSelector((state: RootState) => state.user);
-  const [isAuth, setAuth] = useState(reduxUser.isAuth);
+  const reduxIsAuth = useSelector((state: RootState) => state.isAuth);
+  const [isAuth, setAuth] = useState(reduxIsAuth);
 
   useEffect(() => {
-    setAuth(reduxUser.isAuth);
-  }, [reduxUser]);
+    setAuth(reduxIsAuth);
+  }, [reduxIsAuth]);
+
+  useAuth();
 
   return (
     <ChakraProvider theme={theme}>

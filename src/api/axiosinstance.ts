@@ -1,10 +1,6 @@
 import axios from "axios";
 import { updateAccessToken } from "./user.api";
-import { AppDispatch, RootState } from "@redux/config/store";
-import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "@redux/slices/user.slice";
-// import { logoutUser } from "@redux/slices/user.slice";
-// import store from "@redux/config/store";
 
 const axiosInstance = axios.create({
   baseURL: process.env.REACT_APP_API_BASE_URL,
@@ -16,14 +12,18 @@ const axiosInstance = axios.create({
 
 // Request interceptor
 axiosInstance.interceptors.request.use(
-  (config) => {
+  async (config) => {
+    const store = await import("@redux/config/store").then(
+      (module) => module.default
+    );
+    const state = store.getState();
+    const { accessToken, refreshToken } = state;
+
     // Add accessToken to request header
-    const accessToken = useSelector((state: RootState) => state.accessToken);
     if (accessToken) {
       config.headers["Authorization"] = `Bearer ${accessToken}`;
     }
     // Add refreshToken to request header for updating accessToken
-    const refreshToken = useSelector((state: RootState) => state.refreshToken);
     if (refreshToken && config.url === "/user/update-token") {
       config.headers["x-refresh-token"] = refreshToken;
     }
@@ -41,10 +41,18 @@ axiosInstance.interceptors.response.use(
     return response;
   },
   async (error) => {
+    console.log(error);
+
+    const store = await import("@redux/config/store").then(
+      (module) => module.default
+    );
+    const dispatch = store.dispatch;
+    const isAuth = store.getState().isAuth;
+
     const originalRequest = error.config;
-    const dispatch = useDispatch<AppDispatch>();
 
     if (
+      isAuth &&
       error.response.status === 401 &&
       originalRequest.url === "/user/update-token"
     ) {
@@ -52,7 +60,7 @@ axiosInstance.interceptors.response.use(
       return Promise.reject(error);
     }
 
-    if (error.response.status === 401 && !originalRequest._retry) {
+    if (isAuth && error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
       const response = await dispatch(updateAccessToken());
       const accessToken = response.payload;

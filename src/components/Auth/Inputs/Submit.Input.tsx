@@ -1,27 +1,21 @@
 import { Button } from "@chakra-ui/react";
-import { useToast } from '@chakra-ui/react'
 
 interface IProps {
   isLoading: boolean;
   text: string;
   loadingText: string;
-  onClick: () => void;
 }
 
-const SubmitButton = ({ isLoading, text, loadingText, onClick }: IProps) => {
-  const toast = useToast()
-
-  
-
+const SubmitButton = ({ isLoading, text, loadingText }: IProps) => {
   return (
     <Button
       _loading={{ color: "white" }}
       spinnerPlacement="end"
       colorScheme="darkPurple"
       size="lg"
-      onClick={onClick}
       isLoading={isLoading}
       loadingText={loadingText}
+      type="submit"
     >
       {text}
     </Button>

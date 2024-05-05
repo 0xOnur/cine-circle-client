@@ -17,7 +17,17 @@ function App() {
   useAuth();
 
   return (
-    <ChakraProvider theme={theme}>
+    <ChakraProvider
+      theme={theme}
+      toastOptions={{
+        defaultOptions: {
+          duration: 5000,
+          isClosable: true,
+          position: "bottom",
+					colorScheme: "darkPurple"
+        },
+      }}
+    >
       <ColorModeScript initialColorMode={theme.config.initialColorMode} />
       <AppRoutes isAuth={isAuth} />
     </ChakraProvider>

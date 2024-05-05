@@ -10,8 +10,14 @@ const persistConfig = {
   blacklist: ["error", "isPending"],
 };
 
+const rootReducer = persistReducer(persistConfig, userReducer)
+
 const store = configureStore({
-  reducer: persistReducer(persistConfig, userReducer),
+  reducer: rootReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
 
 export const persistor = persistStore(store);

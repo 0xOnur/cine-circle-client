@@ -7,7 +7,7 @@ interface IProps {
 
 const UsernameInput = ({ username, onChange }: IProps) => {
   return (
-    <FormControl id="firstName" isRequired>
+    <FormControl id="username" isRequired>
       <FormLabel>Username</FormLabel>
       <Input
         _focus={{

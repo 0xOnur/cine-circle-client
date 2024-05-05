@@ -11,15 +11,24 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { RootState } from "@redux/config/store";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { logoutUser } from "@redux/slices/user.slice";
+import { useNavigate } from "react-router-dom";
 
 const UserMenu = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const reduxUser = useSelector((state: RootState) => state.user);
 
   const menuItemHover = {
     bg: useColorModeValue("darkPurple.50", "gray.900"),
     color: useColorModeValue("darkPurple.500", "darkPurple.300"),
+  };
+
+  const handleLogout = () => {
+    dispatch(logoutUser());
+    navigate("/");
   };
 
   return (
@@ -88,7 +97,7 @@ const UserMenu = () => {
             </MenuItem>
           </Link>
           <MenuDivider />
-          <MenuItem _hover={menuItemHover} py={2}>
+          <MenuItem _hover={menuItemHover} py={2} onClick={handleLogout}>
             <Text fontWeight={"bold"} fontSize={"md"}>
               Logout
             </Text>

@@ -1,5 +1,9 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { SerializedError, createSlice } from "@reduxjs/toolkit";
 import * as userApi from "../../api/user.api";
+
+interface errorPayload extends SerializedError {
+  message: string;
+}
 
 export interface UserState {
   isAuth: boolean;
@@ -58,14 +62,14 @@ export const userSlice = createSlice({
       .addCase(userApi.loginUser.fulfilled, (state, action) => {
         state.isPending = false;
         state.user = action.payload.user;
-        state.accessToken = action.payload.accessToken;
-        state.refreshToken = action.payload.refreshToken;
+        state.accessToken = action.payload.tokens.accessToken;
+        state.refreshToken = action.payload.tokens.refreshToken;
         state.isAuth = true;
       })
       .addCase(userApi.loginUser.rejected, (state, action) => {
         state.isPending = false;
         state.error = {
-          message: action.error?.message || "An unexpected error occurred",
+          message: (action.payload as errorPayload)?.message || "Login failed due to server error",
         };
       });
     // Get new accessToken

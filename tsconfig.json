@@ -23,10 +23,10 @@
     "paths": {
       "@/*": ["/*"],
       "@api/*": ["api/*"],
-      "@redux/*": ["redux/*"],
       "@routes/*": ["routes/*"],
       "@layout/*": ["layout/*"],
       "@components/*": ["components/*"],
+      "@redux/*": ["redux/*"],
     }
   },
   "include": ["src", "craco.config.js"]

@@ -12,11 +12,12 @@ export const useAuth = () => {
 
   const accessToken = reduxUser.accessToken;
   const refreshToken = reduxUser.refreshToken;
-  const userId = reduxUser.user?._id;
 
   useEffect(() => {
     if (accessToken && refreshToken) {
       const decoded = jwtDecode<IDecoded>(accessToken);
+      console.log(decoded);
+      
       const currentTime = Math.floor(Date.now() / 1000);
       if (decoded.exp < currentTime) {
         dispatch(updateAccessToken()).then((res) => {
@@ -26,5 +27,5 @@ export const useAuth = () => {
         });
       }
     }
-  }, [dispatch, refreshToken, accessToken, userId]);
+  }, [dispatch, refreshToken, accessToken]);
 };

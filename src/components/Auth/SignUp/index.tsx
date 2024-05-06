@@ -10,10 +10,10 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import PasswordInput from "../Inputs/Password.Input";
-import EmailInput from "../Inputs/Email.Button";
+import EmailInput from "../Inputs/Email.Input";
 import { useState } from "react";
 import NameInput from "../Inputs/Name.Input";
-import SubmitButton from "../Inputs/Submit.Input";
+import SubmitButton from "../Inputs/Submit.Button";
 import UsernameInput from "../Inputs/Username.Input";
 import SurnameInput from "../Inputs/Surname.Input";
 import { AppDispatch, RootState } from "@redux/config/store";

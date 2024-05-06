@@ -8,9 +8,9 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import EmailInput from "../Inputs/Email.Button";
+import EmailInput from "../Inputs/Email.Input";
 import PasswordInput from "../Inputs/Password.Input";
-import SubmitButton from "../Inputs/Submit.Input";
+import SubmitButton from "../Inputs/Submit.Button";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@redux/config/store";
 import { Link } from "react-router-dom";

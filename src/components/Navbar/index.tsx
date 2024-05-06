@@ -27,7 +27,7 @@ const Navbar = ({isAuth}: IProps) => {
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (
-    <Box boxShadow="lg" position="fixed" w="100%" top="0">
+    <Box boxShadow="lg" position="fixed" w="100%" top="0" zIndex="10">
       <Flex
         bg={useColorModeValue("white", "gray.800")}
         color={useColorModeValue("gray.600", "white")}

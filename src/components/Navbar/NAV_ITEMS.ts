@@ -23,13 +23,18 @@ export const NAV_ITEMS: Array<INavItem> = [
       label: 'TV Shows',
       children: [
         {
-          label: 'Job Board',
-          subLabel: 'Find your dream design job',
+          label: 'Top Shows',
+          subLabel: 'Most popular shows',
           href: '#',
         },
         {
-          label: 'Freelance Projects',
-          subLabel: 'An exclusive list for contract work',
+          label: 'Popular Shows',
+          subLabel: 'Trending now',
+          href: '#',
+        },
+        {
+          label: 'Upcoming Shows',
+          subLabel: 'Coming soon',
           href: '#',
         },
       ],

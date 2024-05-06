@@ -11,14 +11,15 @@ import { useState } from "react";
 import EmailInput from "../Inputs/Email.Button";
 import PasswordInput from "../Inputs/Password.Input";
 import SubmitButton from "../Inputs/Submit.Input";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "@redux/config/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@redux/config/store";
 import { Link } from "react-router-dom";
 import { loginUser } from "@api/user.api";
 import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const isPending = useSelector((state: RootState) => state.isPending);
   const navigate = useNavigate();
   const toast = useToast();
 
@@ -30,7 +31,6 @@ const LoginPage = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     dispatch(loginUser(user)).then((response) => {
-
       if (response.meta.requestStatus === "fulfilled") {
         navigate("/");
         toast({
@@ -41,7 +41,8 @@ const LoginPage = () => {
       } else {
         toast({
           title: "Login Failed",
-          description: response.payload.message,
+          description:
+            response?.payload?.message || "An unexpected error occurred",
           status: "error",
         });
       }
@@ -95,7 +96,7 @@ const LoginPage = () => {
                 </Stack>
                 <SubmitButton
                   text="Login"
-                  isLoading={false}
+                  isLoading={isPending}
                   loadingText="Logging in..."
                 />
               </Stack>

@@ -41,7 +41,17 @@ axiosInstance.interceptors.response.use(
     return response;
   },
   async (error) => {
-    console.log(error);
+
+    if (error.message === "Network Error") {
+      const event = new CustomEvent('network-error', {
+        detail: {
+          title: "Network Error",
+          description: "Please check your internet connection",
+          status: "error"
+        }
+      });
+      window.dispatchEvent(event);
+    }
 
     const store = await import("@redux/config/store").then(
       (module) => module.default

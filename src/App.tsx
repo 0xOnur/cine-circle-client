@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
-import AppRoutes from "./routes";
-import { useSelector } from "react-redux";
-import { RootState } from "@redux/config/store";
 import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
-import theme from "theme";
+import { RootState } from "@redux/config/store";
 import { useAuth } from "hooks/Auth/useAuth";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import AppRoutes from "./routes";
+import theme from "theme";
+import useNetworkChecker from "hooks/Auth/useNetworkChecker";
 
 function App() {
   const reduxIsAuth = useSelector((state: RootState) => state.isAuth);
@@ -15,6 +16,7 @@ function App() {
   }, [reduxIsAuth]);
 
   useAuth();
+  useNetworkChecker()
 
   return (
     <ChakraProvider

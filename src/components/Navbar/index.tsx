@@ -39,6 +39,7 @@ const Navbar = ({ isAuth }: IProps) => {
         alignItems="center"
         justifyContent="space-between"
         borderColor={useColorModeValue("gray.200", "gray.900")}
+        bg={useColorModeValue("white", "gray.800")}
       >
         <Flex display={{ base: "flex", md: "none" }}>
           <IconButton

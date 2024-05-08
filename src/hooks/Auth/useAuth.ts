@@ -16,7 +16,6 @@ export const useAuth = () => {
   useEffect(() => {
     if (accessToken && refreshToken) {
       const decoded = jwtDecode<IDecoded>(accessToken);
-      console.log(decoded);
       
       const currentTime = Math.floor(Date.now() / 1000);
       if (decoded.exp < currentTime) {

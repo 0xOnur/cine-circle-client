@@ -28,7 +28,7 @@ const DesktopNav = () => {
             <PopoverTrigger>
               <Box
                 p={2}
-                fontSize={"md"}
+                fontSize={"xl"}
                 cursor={"pointer"}
                 fontWeight={"bold"}
                 color={linkColor}

@@ -2,6 +2,7 @@ import {
   Box,
   Button,
   Collapse,
+  Container,
   Flex,
   IconButton,
   Stack,
@@ -22,28 +23,24 @@ interface IProps {
   isAuth: boolean;
 }
 
-const Navbar = ({isAuth}: IProps) => {
+const Navbar = ({ isAuth }: IProps) => {
   const { isOpen, onToggle } = useDisclosure();
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (
-    <Box boxShadow="lg" position="fixed" w="100%" top="0" zIndex="10">
-      <Flex
-        bg={useColorModeValue("white", "gray.800")}
-        color={useColorModeValue("gray.600", "white")}
+    <Box boxShadow="lg" position="sticky" w="100%" top="0" zIndex="10">
+      <Container
+        display="flex"
+        maxW="6xl"
         minH={"60px"}
         py={{ base: 2 }}
-        px={{ base: 4 }}
         borderBottom={1}
         borderStyle={"solid"}
+        alignItems="center"
+        justifyContent="space-between"
         borderColor={useColorModeValue("gray.200", "gray.900")}
-        align={"center"}
       >
-        <Flex
-          flex={{ base: 1, md: "auto" }}
-          ml={{ base: -2 }}
-          display={{ base: "flex", md: "none" }}
-        >
+        <Flex display={{ base: "flex", md: "none" }}>
           <IconButton
             onClick={onToggle}
             icon={
@@ -53,40 +50,38 @@ const Navbar = ({isAuth}: IProps) => {
             aria-label={"Toggle Navigation"}
           />
         </Flex>
-        <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
+        <Flex
+          alignItems="center"
+          justifyContent={useBreakpointValue({
+            base: "center",
+            md: "space-between",
+          })}
+        >
           <Link to="/">
             <Text
+              display="flex"
               textAlign={useBreakpointValue({ base: "center", md: "left" })}
               color={useColorModeValue("darkPurple.500", "white")}
-              fontFamily={"heading"}
               fontWeight="bold"
-              fontSize="2xl"
-              height={"100%"}
-              display="flex"
-              alignItems="center"
+              fontSize="4xl"
               ml={{ base: 0, md: 6 }}
-              cursor="pointer"
             >
-              CineCircle
+              Cine Circle
             </Text>
           </Link>
 
-          <Flex display={{ base: "none", md: "flex" }} width={"100%"}>
-            <DesktopNav />
-          </Flex>
-        </Flex>
 
+        </Flex>
+        <Flex display={{ base: "none", md: "flex" }}>
+          <DesktopNav />
+        </Flex>
         <Stack
-          flex={{ base: 1, md: 0 }}
+          flex={{ base: 0, md: 0 }}
           justify={"flex-end"}
           direction={"row"}
           spacing={5}
         >
-          {isAuth ? (
-            <UserMenu />
-          ): (
-            <LoginButtons />
-          )}
+          {isAuth ? <UserMenu /> : <LoginButtons />}
           <Button
             alignItems={"center"}
             onClick={toggleColorMode}
@@ -94,17 +89,10 @@ const Navbar = ({isAuth}: IProps) => {
             variant="ghost"
             _hover={{ bg: "darkPurple.700", color: "white" }}
           >
-            {colorMode === "light" ? (
-              <MoonIcon />
-            ) : (
-              <SunIcon
-                color={"white"}
-               
-              />
-            )}
+            {colorMode === "light" ? <MoonIcon /> : <SunIcon color={"white"} />}
           </Button>
         </Stack>
-      </Flex>
+      </Container>
 
       <Collapse in={isOpen} animateOpacity>
         <MobileNav />

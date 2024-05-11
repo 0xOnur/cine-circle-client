@@ -1,29 +1,44 @@
-import { Box, Button, Text, VStack, Heading } from '@chakra-ui/react';
+import { Box, Button, Text, Heading } from "@chakra-ui/react";
 
 function NotFoundPage() {
-
   return (
     <Box
       display="flex"
+      flexDirection="column"
       alignItems="center"
       justifyContent="center"
       height="100vh"
       p={4}
     >
-      <VStack spacing={4} textAlign="center">
-        <Heading as="h1" size="2xl" color="gray.600">
-          404 - Not Found
-        </Heading>
-        <Text fontSize="xl">
-          This page does not exist
-        </Text>
-        <Button
-          colorScheme="blue"
-          onClick={() => window.location.href = '/'}
-        >
-          Go Home
-        </Button>
-      </VStack>
+      <Heading
+        display="inline-block"
+        as="h2"
+        size="2xl"
+        bgGradient="linear(to-r, darkPurple.400, darkPurple.600)"
+        backgroundClip="text"
+      >
+        404
+      </Heading>
+      <Text fontSize="18px" mt={3} mb={2}>
+        Page Not Found
+      </Text>
+      <Text color={"gray.500"} mb={6}>
+        The page you&apos;re looking for does not seem to exist
+      </Text>
+
+      <Button
+        colorScheme="darkPurple"
+        bgGradient="linear(to-r, darkPurple.400, darkPurple.500, darkPurple.600)"
+        _hover={{
+          bgGradient:
+            "linear(to-r, darkPurple.500, darkPurple.600, darkPurple.700)",
+        }}
+        color="white"
+        variant="solid"
+        onClick={() => (window.location.href = "/")}
+      >
+        Go to Home
+      </Button>
     </Box>
   );
 }

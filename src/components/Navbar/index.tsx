@@ -28,18 +28,24 @@ const Navbar = ({ isAuth }: IProps) => {
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (
-    <Box boxShadow="lg" position="sticky" w="100%" top="0" zIndex="10">
+    <Box
+      boxShadow="lg"
+      position="sticky"
+      w="100%"
+      top="0"
+      zIndex="10"
+      borderBottom={1}
+      borderStyle={"solid"}
+      bg={useColorModeValue("white", "gray.800")}
+      borderColor={useColorModeValue("gray.200", "gray.900")}
+    >
       <Container
         display="flex"
         maxW="6xl"
         minH={"60px"}
         py={{ base: 2 }}
-        borderBottom={1}
-        borderStyle={"solid"}
         alignItems="center"
         justifyContent="space-between"
-        borderColor={useColorModeValue("gray.200", "gray.900")}
-        bg={useColorModeValue("white", "gray.800")}
       >
         <Flex display={{ base: "flex", md: "none" }}>
           <IconButton
@@ -67,11 +73,9 @@ const Navbar = ({ isAuth }: IProps) => {
               fontSize="4xl"
               ml={{ base: 0, md: 6 }}
             >
-              Cine Circle
+              CineCircle
             </Text>
           </Link>
-
-
         </Flex>
         <Flex display={{ base: "none", md: "flex" }}>
           <DesktopNav />

@@ -32,7 +32,12 @@ const UserMenu = () => {
   };
 
   return (
-    <Menu>
+    <Menu
+      placement="bottom-end"
+      isLazy
+      lazyBehavior="unmount"
+      autoSelect={false}
+    >
       <MenuButton
         as={Button}
         rounded={"full"}
@@ -43,9 +48,7 @@ const UserMenu = () => {
         <Avatar
           size={"sm"}
           src={
-            reduxUser?.avatar
-              ? reduxUser?.avatar
-              : "https://bit.ly/broken-link"
+            reduxUser?.avatar ? reduxUser?.avatar : "https://bit.ly/broken-link"
           }
         />
       </MenuButton>

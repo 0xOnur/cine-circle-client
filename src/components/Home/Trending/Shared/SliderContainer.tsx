@@ -1,5 +1,6 @@
-import { Box, Flex, Heading, HStack, Spacer } from "@chakra-ui/react";
+import { Box, Flex, HStack, Spacer } from "@chakra-ui/react";
 import SwtichButton from "./SwtichButton";
+import SectionTitle from "@components/Shared/SectionTitle";
 
 type SliderContainerProps = {
   sectionTitle?: string;
@@ -17,13 +18,7 @@ const SliderContainer = ({
   setTime_window,
 }: SliderContainerProps) => {
   return (
-    <Box
-      // not allow scrolling x
-      overflowX="hidden"
-      overflowY="auto"
-      height="100%"
-      width="100%"
-    >
+    <Box overflowX="hidden" overflowY="auto" height="100%" width="100%">
       {sectionTitle && (
         <Flex
           rowGap={5}
@@ -35,14 +30,7 @@ const SliderContainer = ({
             sm: "row",
           }}
         >
-          <Heading
-            textTransform="uppercase"
-            letterSpacing={3}
-            fontSize={{ base: "md", sm: "lg" }}
-            fontWeight="500"
-          >
-            {sectionTitle}
-          </Heading>
+          <SectionTitle sectionTitle={sectionTitle} />
 
           {time_window && setTime_window && (
             <SwtichButton

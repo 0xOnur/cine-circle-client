@@ -4,6 +4,7 @@ import Navbar from "@components/Navbar";
 import { Container, Flex } from "@chakra-ui/react";
 import HeroSection from "@components/Home/Hero";
 import TrendingSection from "@components/Home/Trending";
+import LeadboardSection from "@components/Home/Leadboard";
 
 const HomeLayout = () => {
   const reduxIsAuth = useSelector((state: RootState) => state.isAuth);
@@ -13,13 +14,9 @@ const HomeLayout = () => {
       <Navbar isAuth={reduxIsAuth} />
 
       <HeroSection isAuth={reduxIsAuth} />
-      <Container
-        maxW="6xl"
-        //max with can not over screen width
-        px={{ base: 6, md: 10 }}
-        py={14}
-      >
+      <Container maxW="6xl" px={{ base: 6, md: 10 }} py={14}>
         <TrendingSection />
+        <LeadboardSection />
       </Container>
     </Flex>
   );

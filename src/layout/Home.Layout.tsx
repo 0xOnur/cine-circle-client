@@ -5,6 +5,7 @@ import { Container, Flex } from "@chakra-ui/react";
 import HeroSection from "@components/Home/Hero";
 import TrendingSection from "@components/Home/Trending";
 import LeadboardSection from "@components/Home/Leadboard";
+import Footer from "@components/Footer";
 
 const HomeLayout = () => {
   const reduxIsAuth = useSelector((state: RootState) => state.isAuth);
@@ -17,6 +18,7 @@ const HomeLayout = () => {
       <Container maxW="6xl" px={{ base: 6, md: 10 }} py={14}>
         <TrendingSection />
         <LeadboardSection />
+        <Footer />
       </Container>
     </Flex>
   );

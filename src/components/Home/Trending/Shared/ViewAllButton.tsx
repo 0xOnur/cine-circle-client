@@ -1,4 +1,4 @@
-import { Box, Button, Link, Spacer, useColorModeValue } from "@chakra-ui/react";
+import { Box, Button, Link, Spacer } from "@chakra-ui/react";
 
 interface IProps {
   media_type: string;

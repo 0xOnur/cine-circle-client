@@ -4,8 +4,7 @@ import TVShowSlider from "./TV";
 
 const TrendingSection = () => {
   return (
-    <Grid
-      rowGap={8} mb={8} w="full" >
+    <Grid rowGap={8} w="full">
       <MovieSlider />
       <TVShowSlider />
     </Grid>

@@ -1,9 +1,10 @@
-import { Box, Flex, HStack, Spacer } from "@chakra-ui/react";
+import { Box, Flex, HStack } from "@chakra-ui/react";
 import SwtichButton from "./SwtichButton";
 import SectionTitle from "@components/Shared/SectionTitle";
 
 type SliderContainerProps = {
   sectionTitle?: string;
+  sectionHref?: string;
   children?: React.ReactNode;
   footer?: React.ReactNode;
   time_window?: "day" | "week";
@@ -12,6 +13,7 @@ type SliderContainerProps = {
 
 const SliderContainer = ({
   sectionTitle,
+  sectionHref,
   children,
   footer,
   time_window,
@@ -30,7 +32,7 @@ const SliderContainer = ({
             sm: "row",
           }}
         >
-          <SectionTitle sectionTitle={sectionTitle} />
+          <SectionTitle sectionTitle={sectionTitle} sectionHref={sectionHref} />
 
           {time_window && setTime_window && (
             <SwtichButton
@@ -54,10 +56,8 @@ const SliderContainer = ({
         </Flex>
       </Flex>
 
-      <Spacer height={4} />
-
       {footer ? (
-        <HStack paddingX={{ base: 8, sm: 0 }} spacing={4}>
+        <HStack justify="end" spacing={4}>
           {footer}
         </HStack>
       ) : null}

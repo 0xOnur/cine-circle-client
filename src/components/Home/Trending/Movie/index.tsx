@@ -4,6 +4,7 @@ import ErrorStatus from "../Shared/Status/ErrorStatus";
 import SliderContainer from "../Shared/SliderContainer";
 import { Fragment, useState } from "react";
 import PosterCard from "../Shared/Poster";
+import ViewAllButton from "../Shared/ViewAllButton";
 
 const MovieSlider = () => {
   const [time_window, setTime_window] = useState<"day" | "week">("day");
@@ -30,8 +31,12 @@ const MovieSlider = () => {
       {status === "success" && (
         <SliderContainer
           sectionTitle="Popular Movies"
+          sectionHref={`/movies/trending/${time_window}`}
           time_window={time_window}
           setTime_window={setTime_window}
+          footer={
+            <ViewAllButton media_type="movies" time_window={time_window} />
+          }
         >
           {movies?.map((movie, index) => (
             <PosterCard

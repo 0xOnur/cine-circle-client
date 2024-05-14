@@ -2,8 +2,10 @@ import useGetMovieDetails from "hooks/TanStack/Query/useGetMovieDetails";
 import PendingStatus from "@components/Shared/Status/PendingStatus";
 import ErrorStatus from "@components/Shared/Status/ErrorStatus";
 import MovieDetailMeta from "./MovieDetailMeta";
-import { Box, Container, Grid } from "@chakra-ui/react";
+import { Container, Grid } from "@chakra-ui/react";
 import { Fragment } from "react";
+import BackdropImage from "@components/Shared/DetailsPage/BackdropImage";
+import Title from "routes/Title";
 
 interface IProps {
   movieId: string | undefined;
@@ -23,24 +25,10 @@ const MovieDetailsPage = ({ movieId }: IProps) => {
 
       {status === "success" && data && (
         <Fragment>
-          <Box
-            width="100%"
-            height={{
-              base: "100vh",
-              md: "100%",
-            }}
-            position="absolute"
-            filter="brightness(0.35)"
-            bgImg={
-              data.backdrop_path
-                ? `url(https://image.tmdb.org/t/p/w1280${data.backdrop_path})`
-                : undefined
-            }
-            zIndex={-1}
-            bgSize="cover"
-            bgPosition="center"
-          ></Box>
+          <Title title={data.title} />
           <Container maxW={"8xl"} px={{ base: 6, md: 10 }} pt={14}>
+            <BackdropImage backdrop_path={data.backdrop_path} />
+
             <Grid paddingX={8} gridGap={[8, 16]}>
               <Grid rowGap={8} flexBasis={["100%"]}>
                 <MovieDetailMeta data={data} />

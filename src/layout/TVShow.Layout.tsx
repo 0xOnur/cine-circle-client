@@ -10,7 +10,7 @@ const TVShowLayout = () => {
   const showId = useParams().showId;
 
   return (
-    <Flex direction="column" position="relative">
+    <Flex direction="column">
       <Navbar isAuth={reduxIsAuth} />
       <TVShowDetailsPage showId={showId} />
     </Flex>

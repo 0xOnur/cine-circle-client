@@ -8,6 +8,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import PosterImage from "./Poster/PosterImage";
+import OverviewText from "./DetailsPage/OverviewText";
 
 type DetailData = {
   name: string;
@@ -80,18 +81,9 @@ const DetailMeta = ({ data, extras }: IProps) => {
         ) : null}
 
         {data.overview && (
-          <Text
-            textAlign={{
-              base: "center",
-              md: "justify",
-            }}
-            textDecor="inherit"
-            fontSize="md"
-            letterSpacing={1}
-            lineHeight={1.8}
-          >
-            {data.overview}
-          </Text>
+          <OverviewText
+            overview={data.overview}
+          />
         )}
       </Grid>
     </Box>

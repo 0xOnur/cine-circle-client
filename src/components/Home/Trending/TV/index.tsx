@@ -1,10 +1,10 @@
 import useGetTrendingShows from "hooks/TanStack/Query/useGetTrandingShows";
-import PendingStatus from "../Shared/Status/PendingStatus";
-import ErrorStatus from "../Shared/Status/ErrorStatus";
-import SliderContainer from "../Shared/SliderContainer";
+import PendingStatus from "../../../Shared/Status/PendingStatus";
+import ErrorStatus from "../../../Shared/Status/ErrorStatus";
+import SliderContainer from "../../../Shared/SliderContainer";
 import { Fragment, useState } from "react";
-import PosterCard from "../Shared/Poster";
-import ViewAllButton from "../Shared/ViewAllButton";
+import PosterCard from "../../../Shared/Poster";
+import ViewAllButton from "../../../Shared/ViewAllButton";
 
 const TVShowSlider = () => {
   const [time_window, setTime_window] = useState<"day" | "week">("day");

@@ -26,7 +26,7 @@ const PosterCard = ({
 
   const pathMap: Record<MediaType, string> = {
     movie: "/movie",
-    tv: "/tv/show",
+    tv: "/tv-show",
     person: "/person",
   };
 

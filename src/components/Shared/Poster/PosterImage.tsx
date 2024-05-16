@@ -19,7 +19,8 @@ const PosterImage = ({ src, layout, ...props }: PosterImageProps) => {
     <Image
       _groupHover={{ opacity: 0.5 }}
       borderRadius={24}
-      src={src ? `${IMAGE_URL}${src}` : `/Movie Night-bro.svg`}
+      src={src && `${IMAGE_URL}${src}`}
+      fallbackSrc="https://via.placeholder.com/150"
       style={{
         filter: `drop-shadow(0 0 0.75rem ${
           colorMode === "light" ? "gray" : "black"

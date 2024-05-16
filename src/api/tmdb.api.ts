@@ -52,3 +52,19 @@ export const getTVShowDetails = async (tvShowId: string) => {
     return Promise.reject(error);
   }
 };
+
+// Get Credits
+export const getCredits = async (
+  mediaType: "movie" | "tv",
+  mediaId: string
+) => {
+  try {
+    const response = await tmdbInstance.get(`/${mediaType}/${mediaId}/credits`);
+    return response.data;
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      return Promise.reject(error.response?.data);
+    }
+    return Promise.reject(error);
+  }
+};

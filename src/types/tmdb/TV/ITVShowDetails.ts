@@ -1,5 +1,6 @@
 import { ITVShow } from "./ITVShow";
-import { Genre, Company, Person, Network, Season } from "../Types";
+import { Genre, Company, Network, Season } from "../Types";
+import { Person } from "../Person/Types";
 
 export interface ITvShowDetails extends ITVShow {
   created_by: Person[];

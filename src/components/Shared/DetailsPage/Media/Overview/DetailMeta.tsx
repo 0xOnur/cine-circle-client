@@ -7,8 +7,8 @@ import {
   Heading,
   Text,
 } from "@chakra-ui/react";
-import PosterImage from "./Poster/PosterImage";
-import OverviewText from "./DetailsPage/OverviewText";
+import PosterImage from "../../../Poster/PosterImage";
+import OverviewText from "./OverviewText";
 
 type DetailData = {
   name: string;

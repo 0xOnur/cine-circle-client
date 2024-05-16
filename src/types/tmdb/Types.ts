@@ -1,5 +1,4 @@
-import { IMovie } from "./Movie/IMovie";
-import { ITVShow } from "./TV/ITVShow";
+import { Person } from "./Person/Types";
 
 export type Collection = {
   id: number;
@@ -29,15 +28,6 @@ export type Language = {
   name: string;
 };
 
-export type Person = {
-  id: number;
-  name: string;
-  profile_path: string;
-  adult: boolean;
-  popularity: number;
-  known_for: Array<IMovie | ITVShow>;
-};
-
 export type Network = {
   id: number;
   name: string;
@@ -49,6 +39,23 @@ export type Season = {
   poster_path: string;
   season_number: number;
   air_date: Date;
+};
+
+type CreditCast = Person & {
+  cast_id: number;
+  character: string;
+  order: number;
+};
+
+type CreditCrew = Person & {
+  department: string;
+  job: string;
+};
+
+export type MovieCreditsResponse = {
+  id: number;
+  cast: Array<CreditCast>;
+  crew: Array<CreditCrew>;
 };
 
 export type MediaType = "movie" | "tv" | "person";

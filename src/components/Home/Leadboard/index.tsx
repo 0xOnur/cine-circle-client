@@ -1,4 +1,4 @@
-import SectionTitle from "@components/Shared/SectionTitle";
+import SectionTitle from "@components/Home/Trending/SectionTitle";
 import LeadboardTable from "./Table";
 import { Flex } from "@chakra-ui/react";
 import { useState } from "react";

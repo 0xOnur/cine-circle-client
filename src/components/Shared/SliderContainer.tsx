@@ -1,6 +1,6 @@
 import { Box, Flex, HStack } from "@chakra-ui/react";
-import SwtichButton from "./SwtichButton";
-import SectionTitle from "@components/Shared/SectionTitle";
+import SwtichButton from "../Home/Trending/SwtichButton";
+import SectionTitle from "@components/Home/Trending/SectionTitle";
 
 type SliderContainerProps = {
   sectionTitle?: string;

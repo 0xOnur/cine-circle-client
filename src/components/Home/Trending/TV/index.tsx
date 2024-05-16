@@ -1,11 +1,10 @@
 import useGetTrendingShows from "hooks/TanStack/Query/useGetTrandingShows";
-import PendingStatus from "../../../Shared/Status/PendingStatus";
-import ErrorStatus from "../../../Shared/Status/ErrorStatus";
-import SliderContainer from "../../../Shared/SliderContainer";
+import PendingStatus from "@components/Shared/Status/PendingStatus";
+import ErrorStatus from "@components/Shared/Status/ErrorStatus";
+import SliderContainer from "@components/Shared/SliderContainer";
+import PosterCard from "@components/Shared/Poster";
+import SeeMore from "@components/Home/Trending/SeeMore";
 import { Fragment, useState } from "react";
-import PosterCard from "../../../Shared/Poster";
-import ViewAllButton from "../../../Shared/ViewAllButton";
-
 const TVShowSlider = () => {
   const [time_window, setTime_window] = useState<"day" | "week">("day");
 
@@ -35,7 +34,7 @@ const TVShowSlider = () => {
           time_window={time_window}
           setTime_window={setTime_window}
           footer={
-            <ViewAllButton media_type="tv-shows" time_window={time_window} />
+            <SeeMore media_type="tv-shows" time_window={time_window} />
           }
         >
           {shows?.map((show, index) => (

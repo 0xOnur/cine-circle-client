@@ -7,6 +7,15 @@ interface IProps {
 const BackdropImage = ({ backdrop_path }: IProps) => {
   return (
     <Box
+      _before={{
+        content: '""',
+        position: "absolute",
+        width: "100%",
+        height: "full",
+        bgGradient:"linear(to-t, black, transparent)",
+        zIndex: 1,
+      }}
+      
       left={0}
       top={0}
       position="absolute"

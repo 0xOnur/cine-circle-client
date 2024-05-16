@@ -1,4 +1,5 @@
-import { Flex } from "@chakra-ui/react";
+import { Container, Flex } from "@chakra-ui/react";
+import Footer from "@components/Footer";
 import MovieDetailsPage from "@components/Movie/Details";
 import Navbar from "@components/Navbar";
 import { RootState } from "@redux/config/store";
@@ -13,6 +14,9 @@ const MovieLayout = () => {
     <Flex direction="column">
       <Navbar isAuth={reduxIsAuth} />
       <MovieDetailsPage movieId={movieId} />
+      <Container maxW="8xl" px={{ base: 6, md: 10 }} py={14}>
+        <Footer />
+      </Container>
     </Flex>
   );
 };

@@ -15,7 +15,7 @@ const HomeLayout = () => {
       <Navbar isAuth={reduxIsAuth} />
 
       <HeroSection isAuth={reduxIsAuth} />
-      <Container maxW="6xl" px={{ base: 6, md: 10 }} py={14}>
+      <Container maxW="8xl" px={{ base: 6, md: 10 }} py={14}>
         <TrendingSection />
         <LeadboardSection />
         <Footer />

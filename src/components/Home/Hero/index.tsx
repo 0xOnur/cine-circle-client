@@ -18,7 +18,7 @@ const HeroSection = ({ isAuth }: IProps) => {
   const fillColor = useColorModeValue("#FFFFFF", "#1A202C");
   return (
     <Fragment>
-      <Container maxW="6xl" px={{ base: 6, md: 10 }} py={14}>
+      <Container maxW="8xl" px={{ base: 6, md: 10 }} py={14}>
         <Stack direction="column" spacing={10} justifyContent="center">
           <HeroText />
           <SearchBar />

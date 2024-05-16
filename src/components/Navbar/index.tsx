@@ -41,7 +41,7 @@ const Navbar = ({ isAuth }: IProps) => {
     >
       <Container
         display="flex"
-        maxW="6xl"
+        maxW="8xl"
         minH={"60px"}
         py={{ base: 2 }}
         alignItems="center"

@@ -68,9 +68,12 @@ const PosterCard = ({
             <PosterImage src={imageUrl} layout={layout} />
           </Box>
         )}
-        <PosterLabel label={name ?? ""} />
 
-        {secondText && <SecondText isLastItem={isLastItem} secondText={secondText} />}
+        {name && <PosterLabel isLastItem={isLastItem} label={name ?? ""} />}
+
+        {secondText && (
+          <SecondText isLastItem={isLastItem} secondText={secondText} />
+        )}
       </MotionBox>
     </Link>
   );

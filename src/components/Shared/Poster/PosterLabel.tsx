@@ -1,12 +1,14 @@
 import { Text } from "@chakra-ui/react";
 
 type PosterLabelProps = {
+  isLastItem?: boolean;
   label: string;
 };
 
-const PosterLabel = ({ label }: PosterLabelProps) => {
+const PosterLabel = ({ isLastItem, label }: PosterLabelProps) => {
   return (
     <Text
+      ml={isLastItem ? -2 : 0}
       textTransform="uppercase"
       fontSize="xs"
       letterSpacing={2}

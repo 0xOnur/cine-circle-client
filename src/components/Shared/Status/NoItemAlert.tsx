@@ -1,10 +1,15 @@
 import { Alert, AlertIcon, Flex, Text } from "@chakra-ui/react";
 import SectionTitle from "@components/Home/Trending/SectionTitle";
 
-const NoItemAlert = () => {
+interface IProps {
+  sectionTitle: string;
+  text: string;
+}
+
+const NoItemAlert = ({ sectionTitle, text }: IProps) => {
   return (
     <Flex width="fit-content" gap={5} direction="column">
-      <SectionTitle sectionTitle="Cast" />
+      <SectionTitle sectionTitle={sectionTitle} />
       <Alert colorScheme="darkPurple" status="info">
         <AlertIcon />
         <Text
@@ -12,7 +17,7 @@ const NoItemAlert = () => {
           textAlign="center"
           fontWeight="500"
         >
-          There are no cast members for this movie.
+          {text}
         </Text>
       </Alert>
     </Flex>

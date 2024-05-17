@@ -1,4 +1,4 @@
-import { Box, Button, Link, Spacer } from "@chakra-ui/react";
+import { Box, Button, Link } from "@chakra-ui/react";
 
 interface IProps {
     href: string;
@@ -22,8 +22,6 @@ const FullCastCrewButton = ({ href }: IProps) => {
           Full Cast & Crew
         </Button>
       </Link>
-
-      <Spacer height="50px" width="100%" />
     </Box>
   );
 };

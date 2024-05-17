@@ -6,6 +6,7 @@ import { Fragment } from "react";
 import Title from "@routes/Title";
 import TVShowOverview from "./TVShowOverview";
 import CastSlider from "@components/Shared/DetailsPage/Media/CastSlider";
+import SeasonSlider from "./Seasons";
 
 interface IProps {
   showId: string | undefined;
@@ -27,8 +28,9 @@ const TVShowDetailsPage = ({ showId }: IProps) => {
         <Flex direction="column">
           <Title title={data.name} />
           <TVShowOverview data={data} />
-          <Container>
+          <Container display="flex" flexDirection={"column"} gap="50px">
             <CastSlider mediaId={showId!} mediaType="tv" />
+            <SeasonSlider data={data} />
           </Container>
         </Flex>
       )}

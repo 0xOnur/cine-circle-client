@@ -3,12 +3,12 @@ import PosterImage from "./PosterImage";
 import PosterLabel from "./PosterLabel";
 import { motion } from "framer-motion";
 import { MediaType } from "types/tmdb/Types";
-import CharacterLabel from "./CharacterLabel";
+import SecondText from "./SecondText";
 
 type PosterCardProps = {
   id: number;
   name?: string;
-  character?: string;
+  secondText?: string;
   imageUrl?: string;
   mediaType: MediaType;
   layout: "flex" | "grid";
@@ -18,7 +18,7 @@ type PosterCardProps = {
 const PosterCard = ({
   id,
   name,
-  character,
+  secondText,
   imageUrl,
   mediaType,
   layout,
@@ -31,11 +31,12 @@ const PosterCard = ({
     movie: "/movie",
     tv: "/tv-show",
     person: "/person",
+    season: "/season",
   };
 
   return (
     <Link
-      display="flex"
+      display="grid"
       minW="fit-content"
       role="group"
       transform="none"
@@ -71,7 +72,7 @@ const PosterCard = ({
         )}
         <PosterLabel label={name ?? ""} />
 
-        {character && <CharacterLabel character={character} />}
+        {secondText && <SecondText isLastItem={isLastItem} secondText={secondText} />}
       </MotionBox>
     </Link>
   );

@@ -6,7 +6,7 @@ import SliderContainer from "@components/Shared/SliderContainer";
 import PosterCard from "@components/Shared/Poster";
 import { Flex } from "@chakra-ui/react";
 import FullCastCrewButton from "./FullCastCrewButton";
-import NoItemAlert from "./NoItemAlert";
+import NoItemAlert from "@components/Shared/Status/NoItemAlert";
 
 interface IProps {
   mediaId: string;
@@ -20,7 +20,6 @@ const CastSlider = ({ mediaId, mediaType }: IProps) => {
   });
 
   const castItems = data?.cast.slice(0, 10);
-  console.log(castItems);
 
   return (
     <Fragment>
@@ -46,7 +45,7 @@ const CastSlider = ({ mediaId, mediaType }: IProps) => {
                   key={cast.id}
                   id={cast.id}
                   name={cast.name}
-                  character={cast.character}
+                  secondText={cast.character}
                   imageUrl={cast.profile_path}
                   mediaType="person"
                   layout="flex"
@@ -56,7 +55,12 @@ const CastSlider = ({ mediaId, mediaType }: IProps) => {
             </SliderContainer>
           )}
 
-          {castItems?.length === 0 && <NoItemAlert />}
+          {castItems?.length === 0 && (
+            <NoItemAlert
+              sectionTitle="Cast"
+              text="There are no cast members for this movie."
+            />
+          )}
         </Flex>
       )}
     </Fragment>

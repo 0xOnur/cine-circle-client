@@ -1,10 +1,11 @@
 import { Flex, Text } from "@chakra-ui/react";
 
 interface IProps {
-  character: string;
+  secondText: string;
+  isLastItem?: boolean;
 }
 
-const CharacterLabel = ({ character }: IProps) => {
+const SecondText = ({ secondText, isLastItem }: IProps) => {
   return (
     <Flex
       justifyContent="center"
@@ -20,12 +21,13 @@ const CharacterLabel = ({ character }: IProps) => {
       minH="40px"
       px={2}
       opacity={0.8}
+      mr={isLastItem ? 6 : 0}
     >
       <Text fontSize="sm" fontWeight="semibold">
-        {character}
+        {secondText}
       </Text>
     </Flex>
   );
 };
 
-export default CharacterLabel;
+export default SecondText;

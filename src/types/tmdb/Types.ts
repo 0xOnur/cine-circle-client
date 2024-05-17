@@ -35,9 +35,11 @@ export type Network = {
 
 export type Season = {
   id: number;
+  name: string;
   episode_count: number;
   poster_path: string;
   season_number: number;
+  vote_average: number;
   air_date: Date;
 };
 
@@ -58,4 +60,4 @@ export type MovieCreditsResponse = {
   crew: Array<CreditCrew>;
 };
 
-export type MediaType = "movie" | "tv" | "person";
+export type MediaType = "movie" | "tv" | "person" | "season";

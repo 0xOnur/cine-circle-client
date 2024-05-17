@@ -27,7 +27,7 @@ const TVShowDetailsPage = ({ showId }: IProps) => {
         <Flex direction="column">
           <Title title={data.name} />
           <TVShowOverview data={data} />
-          <Container maxW={"8xl"} px={{ base: 6, md: 10 }} pt={14} pb={14}>
+          <Container>
             <CastSlider mediaId={showId!} mediaType="tv" />
           </Container>
         </Flex>

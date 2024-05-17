@@ -10,7 +10,7 @@ interface IProps {
 const MovieOverview = ({ data }: IProps) => {
   return (
     <Box position="relative">
-      <Container maxW={"8xl"} px={{ base: 14, md: 10 }} pt={14} pb={14}>
+      <Container>
         <BackdropImage backdrop_path={data.backdrop_path} />
 
         <Grid gridGap={[8, 16]}>

@@ -27,7 +27,7 @@ const MovieDetailsPage = ({ movieId }: IProps) => {
         <Flex direction="column">
           <Title title={data.title} />
           <MovieOverview data={data} />
-          <Container maxW="8xl" px={{ base: 6, md: 10 }} py={14}>
+          <Container>
             <CastSlider mediaId={movieId!} mediaType="movie" />
           </Container>
         </Flex>

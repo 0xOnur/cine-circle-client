@@ -1,11 +1,22 @@
-import { extendTheme, type ThemeConfig } from "@chakra-ui/react";
+import { defineStyleConfig, extendTheme, type ThemeConfig } from "@chakra-ui/react";
+
+const Container = defineStyleConfig({
+  baseStyle: {
+    maxW: "8xl",
+    px: { base: 6, md: 10 },
+    py: 14,
+  },
+});
 
 const config: ThemeConfig = {
   initialColorMode: "system",
   useSystemColorMode: true,
 };
 
-const theme = extendTheme({ 
+const theme = extendTheme({
+  components: {
+    Container,
+  },
   config,
   colors: {
     darkPurple: {

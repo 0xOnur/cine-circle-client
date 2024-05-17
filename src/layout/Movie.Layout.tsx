@@ -14,7 +14,7 @@ const MovieLayout = () => {
     <Flex direction="column">
       <Navbar isAuth={reduxIsAuth} />
       <MovieDetailsPage movieId={movieId} />
-      <Container maxW="8xl" px={{ base: 6, md: 10 }} py={14}>
+      <Container>
         <Footer />
       </Container>
     </Flex>

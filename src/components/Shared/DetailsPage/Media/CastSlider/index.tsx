@@ -32,7 +32,7 @@ const CastSlider = ({ mediaId, mediaType }: IProps) => {
         <Flex direction="column">
           {castItems.length > 0 && (
             <SliderContainer
-              sectionTitle="Cast"
+              sectionTitle="Top Cast"
               sectionHref={`/media/${mediaType}/${mediaId}/credits`}
               footer={
                 <FullCastCrewButton
@@ -57,7 +57,7 @@ const CastSlider = ({ mediaId, mediaType }: IProps) => {
 
           {castItems?.length === 0 && (
             <NoItemAlert
-              sectionTitle="Cast"
+              sectionTitle="Top Cast"
               text="There are no cast members for this movie."
             />
           )}

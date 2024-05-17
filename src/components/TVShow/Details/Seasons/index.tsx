@@ -23,7 +23,10 @@ const SeasonSlider = ({ data }: IProps) => {
       )}
 
       {seasons.length > 0 && (
-        <SliderContainer sectionTitle={`Seasons (${data.number_of_seasons})`}>
+        <SliderContainer
+          sectionTitle={`Seasons (${data.number_of_seasons})`}
+          sectionHref={`/tv-show/${data.id}/seasons`}
+        >
           {seasons.map((season, index) => (
             <PosterCard
               key={season.id}

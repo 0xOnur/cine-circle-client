@@ -19,11 +19,13 @@ const SecondText = ({ secondText, isLastItem }: IProps) => {
       borderBottomRadius={24}
       maxHeight="70px"
       minH="40px"
-      px={2}
+      px={3}
+      py={2}
       opacity={0.8}
+      mb={1}
       mr={isLastItem ? 6 : 0}
     >
-      <Text fontSize="sm" fontWeight="semibold">
+      <Text fontSize="small" fontWeight="semibold">
         {secondText}
       </Text>
     </Flex>

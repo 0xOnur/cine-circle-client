@@ -25,7 +25,6 @@ const PosterCard = ({
   isLastItem,
 }: PosterCardProps) => {
   const MotionBox = motion(Box);
-  const handleClick = () => {};
 
   const pathMap: Record<MediaType, string> = {
     movie: "/movie",
@@ -45,7 +44,6 @@ const PosterCard = ({
     >
       <MotionBox
         as="a"
-        onClick={handleClick}
         position="relative"
         textAlign="center"
         whileHover={{ scale: 1.1 }}

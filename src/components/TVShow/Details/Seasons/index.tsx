@@ -31,12 +31,12 @@ const SeasonSlider = ({ data }: IProps) => {
             <PosterCard
               key={season.id}
               id={season.id}
-              name={season.name}
+              name={`${season.episode_count.toString()} Episodes`}
               imageUrl={season.poster_path}
               mediaType="season"
               layout="flex"
               isLastItem={index === seasons.length - 1}
-              secondText={`${season.episode_count.toString()} Episodes`}
+              secondText={season.name}
             />
           ))}
         </SliderContainer>

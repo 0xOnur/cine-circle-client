@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 const MovieLayout = () => {
-  const reduxIsAuth = useSelector((state: RootState) => state.isAuth);
+  const reduxIsAuth = useSelector((state: RootState) => state.user.isAuth);
   const movieId = useParams().movieId;
 
   return (

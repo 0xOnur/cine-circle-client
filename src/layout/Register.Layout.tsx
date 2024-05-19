@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 
 const RegisterLayout = () => {
-  const isAuth = useSelector((state: RootState) => state.isAuth);
+  const isAuth = useSelector((state: RootState) => state.user.isAuth);
   return isAuth ? (
     <Navigate to="/" />
   ) : (

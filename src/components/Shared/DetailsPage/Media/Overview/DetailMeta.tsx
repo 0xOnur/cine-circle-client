@@ -7,10 +7,14 @@ import {
   Heading,
   Text,
 } from "@chakra-ui/react";
-import PosterImage from "../../../Poster/PosterImage";
+import PosterImage from "@components/Shared/Poster/PosterImage";
 import OverviewText from "./OverviewText";
+import ListButton from "./Buttons/ListButton";
+import WatchlistButton from "./Buttons/WatchlistButton";
 
 type DetailData = {
+  tmdbID: number;
+  mediaType: "tv" | "movie";
   name: string;
   overview?: string;
   status: string;
@@ -67,7 +71,9 @@ const DetailMeta = ({ data, extras }: IProps) => {
         </Text>
 
         <Flex gridColumnGap={2} alignItems="center">
-          <Badge variant="outline" color="gray.300">{data.status}</Badge>
+          <Badge variant="outline" color="gray.300">
+            {data.status}
+          </Badge>
 
           <Text textTransform="uppercase" letterSpacing={1} fontSize="xs">
             {new Date(data.releasedDate).getFullYear()}
@@ -80,11 +86,12 @@ const DetailMeta = ({ data, extras }: IProps) => {
           </Flex>
         ) : null}
 
-        {data.overview && (
-          <OverviewText
-            overview={data.overview}
-          />
-        )}
+        <Flex alignItems="center" gap={5}>
+          <ListButton />
+          <WatchlistButton tmdbID={data.tmdbID} mediaType={data.mediaType} />
+        </Flex>
+
+        {data.overview && <OverviewText overview={data.overview} />}
       </Grid>
     </Box>
   );

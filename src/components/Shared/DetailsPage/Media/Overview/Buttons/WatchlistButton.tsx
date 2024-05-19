@@ -1,0 +1,81 @@
+import { Icon, IconButton, Tooltip, useToast } from "@chakra-ui/react";
+import { AppDispatch, RootState } from "@redux/config/store";
+import { useDispatch, useSelector } from "react-redux";
+import { FaBookmark, FaRegBookmark } from "react-icons/fa6";
+import { addToWatchlist, removeFromWatchlist } from "@api/user.api";
+
+interface IProps {
+  tmdbID: number;
+  mediaType: "tv" | "movie";
+}
+
+const WatchlistButton = ({ tmdbID, mediaType }: IProps) => {
+  const isAuth = useSelector((state: RootState) => state.user.isAuth);
+  const watchlist = useSelector((state: RootState) => state.watchlist);
+  const dispatch = useDispatch<AppDispatch>();
+  const toast = useToast();
+
+  const isAdded = watchlist.data?.items.some(
+    (item) => Number(item.tmdbID) === tmdbID
+  );
+
+  const successToast = (message: string) =>
+    toast({
+      title: message,
+      status: "success",
+    });
+
+  const errorToast = (message: string) =>
+    toast({
+      title: message,
+      status: "error",
+    });
+
+  const handleWatchlist = () => {
+    const media = {
+      tmdbID,
+      mediaType,
+    };
+    if (isAdded) {
+      dispatch(removeFromWatchlist(media)).then((res) => {
+        res.meta.requestStatus === "fulfilled"
+          ? successToast("Removed from watchlist")
+          : errorToast("Failed to remove from watchlist");
+      });
+    } else {
+      dispatch(addToWatchlist(media)).then((res) => {
+        res.meta.requestStatus === "fulfilled"
+          ? successToast("Added to watchlist")
+          : errorToast("Failed to add to watchlist");
+      });
+    }
+  };
+
+  return (
+    <Tooltip
+      label={
+        isAuth
+          ? isAdded
+            ? "Remove from Watchlist"
+            : "Add to Watchlist"
+          : "Login to add to Watchlist"
+      }
+      aria-label="Add to Watchlist"
+    >
+      <IconButton
+        onClick={handleWatchlist}
+        disabled={!isAuth}
+        isRound={true}
+        aria-label="Add to Watchlist"
+        bgColor="darkPurple.700"
+        color="white"
+        _hover={{
+          bg: "darkPurple.400",
+        }}
+        icon={<Icon as={isAdded ? FaBookmark : FaRegBookmark} />}
+      />
+    </Tooltip>
+  );
+};
+
+export default WatchlistButton;

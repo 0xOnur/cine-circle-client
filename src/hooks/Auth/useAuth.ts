@@ -10,8 +10,8 @@ export const useAuth = () => {
   const reduxUser = useSelector((state: RootState) => state);
   const dispatch: AppDispatch = useDispatch();
 
-  const accessToken = reduxUser.accessToken;
-  const refreshToken = reduxUser.refreshToken;
+  const accessToken = reduxUser.user.accessToken;
+  const refreshToken = reduxUser.user.refreshToken;
 
   useEffect(() => {
     if (accessToken && refreshToken) {

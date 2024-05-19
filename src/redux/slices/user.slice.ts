@@ -1,5 +1,6 @@
 import { SerializedError, createSlice } from "@reduxjs/toolkit";
-import * as userApi from "../../api/user.api";
+import * as userApi from "@api/user.api"
+import { AppDispatch } from "@redux/config/store";
 
 interface errorPayload extends SerializedError {
   message: string;
@@ -31,7 +32,7 @@ export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    logoutUser: (state) => {
+    logout: (state) => {
       Object.assign(state, initialState);
     },
   },
@@ -44,8 +45,8 @@ export const userSlice = createSlice({
       .addCase(userApi.createUser.fulfilled, (state, action) => {
         state.isPending = false;
         state.user = action.payload.user;
-        state.accessToken = action.payload.accessToken;
-        state.refreshToken = action.payload.refreshToken;
+        state.accessToken = action.payload.tokens.accessToken;
+        state.refreshToken = action.payload.tokens.refreshToken;
         state.isAuth = true;
       })
       .addCase(userApi.createUser.rejected, (state, action) => {
@@ -69,7 +70,9 @@ export const userSlice = createSlice({
       .addCase(userApi.loginUser.rejected, (state, action) => {
         state.isPending = false;
         state.error = {
-          message: (action.payload as errorPayload)?.message || "Login failed due to server error",
+          message:
+            (action.payload as errorPayload)?.message ||
+            "Login failed due to server error",
         };
       });
     // Get new accessToken
@@ -87,11 +90,30 @@ export const userSlice = createSlice({
           message: action.error?.message || "An unexpected error occurred",
         };
       });
+    // Update local redux user
+    builder
+      .addCase(userApi.updateReduxUser.pending, (state) => {
+        state.isPending = true;
+      })
+      .addCase(userApi.updateReduxUser.fulfilled, (state, action) => {
+        state.isPending = false;
+        state.user = action.payload;
+      })
+      .addCase(userApi.updateReduxUser.rejected, (state, action) => {
+        state.isPending = false;
+        state.error = {
+          message: action.error?.message || "An unexpected error occurred",
+        };
+      });
   },
 });
 
-const {actions, reducer} = userSlice;
+const { reducer } = userSlice;
 
-export const {logoutUser} = actions;
+// Thunk action to handle logout and clear watchlist
+export const logoutUser = () => (dispatch: AppDispatch) => {
+  dispatch({ type: "user/logout" });
+  dispatch({ type: "watchlist/clearWatchlist" });
+};
 
 export default reducer;

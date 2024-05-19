@@ -19,6 +19,8 @@ const MovieOverview = ({ data }: IProps) => {
           <Grid rowGap={8} flexBasis={["100%"]}>
             <DetailMeta
               data={{
+                tmdbID: data.id,
+                mediaType: "movie",
                 name: data.title,
                 tagline: data.tagline,
                 status: data.status,

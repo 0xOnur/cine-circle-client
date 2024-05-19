@@ -1,13 +1,12 @@
 interface IWatchlistItem {
-    type: "tv" | "movie";
-    tmdbID: string;
-    dateAdded: Date;
+  mediaType: "tv" | "movie";
+  tmdbID: number;
+  dateAdded: Date;
 }
 
 interface IUser {
   _id: string;
   username: string;
-  watchlist: IWatchlistItem[];
   lists: IList[];
   role: ["user", "admin"];
   email: string;

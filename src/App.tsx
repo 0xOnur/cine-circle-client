@@ -8,7 +8,7 @@ import theme from "theme";
 import useNetworkChecker from "hooks/Auth/useNetworkChecker";
 
 function App() {
-  const reduxIsAuth = useSelector((state: RootState) => state.isAuth);
+  const reduxIsAuth = useSelector((state: RootState) => state.user.isAuth);
   const [isAuth, setAuth] = useState(reduxIsAuth);
 
   useEffect(() => {
@@ -16,7 +16,7 @@ function App() {
   }, [reduxIsAuth]);
 
   useAuth();
-  useNetworkChecker()
+  useNetworkChecker();
 
   return (
     <ChakraProvider

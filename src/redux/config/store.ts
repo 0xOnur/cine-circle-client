@@ -1,19 +1,30 @@
-import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
-import storage from "redux-persist/lib/storage";
+import {
+  configureStore,
+  ThunkAction,
+  Action,
+  combineReducers,
+} from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 import userReducer from "@redux/slices/user.slice";
+import watchlistReducer from "@redux/slices/watchlist.slice";
 
 const persistConfig = {
-  key: "user",
-  storage: storage,
-  whitelist: ["user", "accessToken", "refreshToken", "isAuth"],
-  blacklist: ["error", "isPending"],
+  key: "root",
+  storage,
+  whitelist: ["user", "watchlist"], // Persisted reducers
+  blacklist: ["error", "isPending"], // Non-persisted reducers
 };
 
-const rootReducer = persistReducer(persistConfig, userReducer)
+const rootReducer = combineReducers({
+  user: userReducer,
+  watchlist: watchlistReducer,
+});
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
-  reducer: rootReducer,
+  reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,

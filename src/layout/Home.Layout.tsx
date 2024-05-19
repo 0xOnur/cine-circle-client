@@ -8,7 +8,7 @@ import LeadboardSection from "@components/Home/Leadboard";
 import Footer from "@components/Footer";
 
 const HomeLayout = () => {
-  const reduxIsAuth = useSelector((state: RootState) => state.isAuth);
+  const reduxIsAuth = useSelector((state: RootState) => state.user.isAuth);
 
   return (
     <Flex direction="column">

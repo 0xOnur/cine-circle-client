@@ -16,7 +16,7 @@ axiosInstance.interceptors.request.use(
     const store = await import("@redux/config/store").then(
       (module) => module.default
     );
-    const state = store.getState();
+    const state = store.getState().user;
     const { accessToken, refreshToken } = state;
 
     // Add accessToken to request header
@@ -41,14 +41,13 @@ axiosInstance.interceptors.response.use(
     return response;
   },
   async (error) => {
-
     if (error.message === "Network Error") {
-      const event = new CustomEvent('network-error', {
+      const event = new CustomEvent("network-error", {
         detail: {
           title: "Network Error",
           description: "Please check your internet connection",
-          status: "error"
-        }
+          status: "error",
+        },
       });
       window.dispatchEvent(event);
     }
@@ -57,7 +56,7 @@ axiosInstance.interceptors.response.use(
       (module) => module.default
     );
     const dispatch = store.dispatch;
-    const isAuth = store.getState().isAuth;
+    const isAuth = store.getState().user.isAuth;
 
     const originalRequest = error.config;
 

@@ -19,7 +19,7 @@ import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const isPending = useSelector((state: RootState) => state.isPending);
+  const isPending = useSelector((state: RootState) => state.user.isPending);
   const navigate = useNavigate();
   const toast = useToast();
 

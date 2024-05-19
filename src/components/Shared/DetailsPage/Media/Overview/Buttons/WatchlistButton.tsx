@@ -2,7 +2,7 @@ import { IconButton, Tooltip, useToast } from "@chakra-ui/react";
 import { AppDispatch, RootState } from "@redux/config/store";
 import { useDispatch, useSelector } from "react-redux";
 import { FaBookmark, FaRegBookmark } from "react-icons/fa6";
-import { addToWatchlist, removeFromWatchlist } from "@api/user.api";
+import { addToWatchlist, removeFromWatchlist } from "@api/watchlist.api";
 
 interface IProps {
   tmdbID: number;
@@ -36,7 +36,7 @@ const WatchlistButton = ({ tmdbID, mediaType }: IProps) => {
       tmdbID,
       mediaType,
     };
-    if (!isAdded) {
+    if (isAdded) {
       dispatch(removeFromWatchlist(media)).then((res) => {
         res.meta.requestStatus === "fulfilled"
           ? successToast("Removed from watchlist")

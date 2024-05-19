@@ -1,9 +1,7 @@
 import { IconButton, Tooltip } from "@chakra-ui/react";
 import { RootState } from "@redux/config/store";
 import { useSelector } from "react-redux";
-import {
-  FaList
- } from "react-icons/fa";
+import { FaList } from "react-icons/fa";
 
 const ListButton = () => {
   const isAuth = useSelector((state: RootState) => state.user.isAuth);
@@ -14,7 +12,10 @@ const ListButton = () => {
       aria-label="Add to list"
     >
       <IconButton
-        disabled={!isAuth}
+        isDisabled={!isAuth}
+        _disabled={{
+          opacity: 1,
+        }}
         isRound={true}
         aria-label="Add to list"
         bgColor="darkPurple.700"

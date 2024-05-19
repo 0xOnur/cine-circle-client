@@ -1,4 +1,4 @@
-import { Icon, IconButton, Tooltip, useToast } from "@chakra-ui/react";
+import { IconButton, Tooltip, useToast } from "@chakra-ui/react";
 import { AppDispatch, RootState } from "@redux/config/store";
 import { useDispatch, useSelector } from "react-redux";
 import { FaBookmark, FaRegBookmark } from "react-icons/fa6";
@@ -36,17 +36,17 @@ const WatchlistButton = ({ tmdbID, mediaType }: IProps) => {
       tmdbID,
       mediaType,
     };
-    if (isAdded) {
+    if (!isAdded) {
       dispatch(removeFromWatchlist(media)).then((res) => {
         res.meta.requestStatus === "fulfilled"
           ? successToast("Removed from watchlist")
-          : errorToast("Failed to remove from watchlist");
+          : errorToast(watchlist.error || "Failed to remove from watchlist");
       });
     } else {
       dispatch(addToWatchlist(media)).then((res) => {
         res.meta.requestStatus === "fulfilled"
           ? successToast("Added to watchlist")
-          : errorToast("Failed to add to watchlist");
+          : errorToast(watchlist.error || "Failed to add to watchlist");
       });
     }
   };
@@ -64,7 +64,10 @@ const WatchlistButton = ({ tmdbID, mediaType }: IProps) => {
     >
       <IconButton
         onClick={handleWatchlist}
-        disabled={!isAuth}
+        isDisabled={!isAuth}
+        _disabled={{
+          opacity: 1,
+        }}
         isRound={true}
         aria-label="Add to Watchlist"
         bgColor="darkPurple.700"
@@ -72,7 +75,7 @@ const WatchlistButton = ({ tmdbID, mediaType }: IProps) => {
         _hover={{
           bg: "darkPurple.400",
         }}
-        icon={<Icon as={isAdded ? FaBookmark : FaRegBookmark} />}
+        icon={isAdded ? <FaBookmark fill="#FFB800" /> : <FaRegBookmark />}
       />
     </Tooltip>
   );

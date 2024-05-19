@@ -1,5 +1,9 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction, SerializedError } from "@reduxjs/toolkit";
 import * as userApi from "@api/user.api";
+
+interface errorPayload extends SerializedError {
+  message: string;
+}
 
 interface WatchlistState {
   data: IWatchlist | null;
@@ -34,8 +38,19 @@ export const watchlistSlice = createSlice({
     builder.addCase(userApi.addToWatchlist.fulfilled, (state, action) => {
       state.data = action.payload;
     });
+    builder.addCase(userApi.addToWatchlist.rejected, (state, action) => {
+      state.error =
+        (action.payload as errorPayload)?.message ||
+        "An unexpected error occurred";
+    });
+
     builder.addCase(userApi.removeFromWatchlist.fulfilled, (state, action) => {
       state.data = action.payload;
+    });
+    builder.addCase(userApi.removeFromWatchlist.rejected, (state, action) => {
+      state.error =
+        (action.payload as errorPayload)?.message ||
+        "An unexpected error occurred";
     });
   },
 });

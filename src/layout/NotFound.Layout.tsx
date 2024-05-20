@@ -14,7 +14,7 @@ function NotFoundPage() {
         display="inline-block"
         as="h2"
         size="2xl"
-        bgGradient="linear(to-r, darkPurple.400, darkPurple.600)"
+        bgGradient="linear(to-r, darkPurple.500, darkPurple.600)"
         backgroundClip="text"
       >
         404
@@ -28,7 +28,7 @@ function NotFoundPage() {
 
       <Button
         colorScheme="darkPurple"
-        bgGradient="linear(to-r, darkPurple.400, darkPurple.500, darkPurple.600)"
+        bgGradient="linear(to-r, darkPurple.500, darkPurple.500, darkPurple.600)"
         _hover={{
           bgGradient:
             "linear(to-r, darkPurple.500, darkPurple.600, darkPurple.700)",

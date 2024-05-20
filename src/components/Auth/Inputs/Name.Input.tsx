@@ -10,12 +10,7 @@ const NameInput = ({ name, onChange }: IProps) => {
     <FormControl id="firstName" isRequired>
       <FormLabel>First Name</FormLabel>
       <Input
-        _focus={{
-          border: "2px solid",
-          borderColor: "darkPurple.500",
-          boxShadow: "none",
-          outline: "none",
-        }}
+        
         type="text"
         minLength={3}
         maxLength={20}

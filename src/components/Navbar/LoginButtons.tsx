@@ -1,5 +1,4 @@
-import { Button } from "@chakra-ui/react";
-import React from "react";
+import { Button, useColorModeValue } from "@chakra-ui/react";
 
 const LoginButtons = () => {
   return (
@@ -11,6 +10,7 @@ const LoginButtons = () => {
         as={"a"}
         href={"/login"}
         variant={"link"}
+        color={useColorModeValue("darkPurple.700", "white")}
       >
         Log In
       </Button>
@@ -21,7 +21,11 @@ const LoginButtons = () => {
         fontSize={"sm"}
         fontWeight={600}
         href={"/sign-up"}
-        _hover={{ bg: "darkPurple.700", color: "white" }}
+        bgColor="darkPurple.700"
+        color={"white"}
+        _hover={{
+          bg: "darkPurple.500",
+        }}
       >
         Sign Up
       </Button>

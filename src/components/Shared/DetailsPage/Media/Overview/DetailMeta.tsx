@@ -87,7 +87,7 @@ const DetailMeta = ({ data, extras }: IProps) => {
         ) : null}
 
         <Flex alignItems="center" gap={5}>
-          <ListButton />
+          <ListButton tmdbID={data.tmdbID} mediaType={data.mediaType} />
           <WatchlistButton tmdbID={data.tmdbID} mediaType={data.mediaType} />
         </Flex>
 

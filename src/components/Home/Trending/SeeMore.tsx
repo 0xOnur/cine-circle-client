@@ -19,7 +19,7 @@ const SeeMore = ({ media_type, time_window }: IProps) => {
           py={5}
           fontWeight="bold"
           fontSize={{ base: "sm", sm: "md" }}
-          bg="darkPurple.400"
+          bg="darkPurple.500"
         >
           See more
         </Button>

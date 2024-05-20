@@ -15,7 +15,7 @@ const SearchBar = () => {
       <form>
         <HStack spacing="2" w="full" alignItems="flex-start" py="2">
           <FormControl>
-            <InputGroup size="lg" variant="outline">
+            <InputGroup size="lg" >
               <Input
                 type="text"
                 borderRadius="xl"
@@ -36,6 +36,11 @@ const SearchBar = () => {
           </FormControl>
 
           <IconButton
+            color="white"
+            bgColor="darkPurple.700"
+            _hover={{
+              bg: "darkPurple.500",
+            }}
             icon={<SearchIcon />}
             type="submit"
             aria-label="Search"

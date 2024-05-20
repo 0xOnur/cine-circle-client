@@ -21,6 +21,27 @@ const Tooltip = defineStyleConfig({
   },
 });
 
+const InputStyle = defineStyleConfig({
+  variants: {
+    outline: {
+      _focus: {
+        border: "2px solid",
+        borderColor: "darkPurple.500",
+        boxShadow: "none",
+        outline: "none",
+      },
+      field: {
+        _focus: {
+          border: "2px solid",
+          borderColor: "darkPurple.500",
+          boxShadow: "none",
+          outline: "none",
+        },
+      },
+    },
+  },
+});
+
 const config: ThemeConfig = {
   initialColorMode: "system",
   useSystemColorMode: true,
@@ -30,6 +51,8 @@ const theme = extendTheme({
   components: {
     Container,
     Tooltip,
+    Input: InputStyle,
+    Textarea: InputStyle,
   },
   config,
   colors: {

@@ -61,6 +61,8 @@ const WatchlistButton = ({ tmdbID, mediaType }: IProps) => {
           : "Login to add to Watchlist"
       }
       aria-label="Add to Watchlist"
+      hasArrow
+      bg="darkPurple.700"
     >
       <IconButton
         onClick={handleWatchlist}
@@ -73,7 +75,7 @@ const WatchlistButton = ({ tmdbID, mediaType }: IProps) => {
         bgColor="darkPurple.700"
         color="white"
         _hover={{
-          bg: "darkPurple.400",
+          bg: "darkPurple.500",
         }}
         icon={isAdded ? <FaBookmark fill="#FFB800" /> : <FaRegBookmark />}
       />

@@ -17,7 +17,7 @@ const FullCastCrewButton = ({ href }: IProps) => {
           py={5}
           fontWeight="bold"
           fontSize={{ base: "sm", sm: "md" }}
-          bg="darkPurple.400"
+          bg="darkPurple.500"
         >
           Full Cast & Crew
         </Button>

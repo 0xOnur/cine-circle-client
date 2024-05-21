@@ -1,10 +1,8 @@
 import {
-  Button,
   Modal,
   ModalBody,
   ModalCloseButton,
   ModalContent,
-  ModalFooter,
   ModalHeader,
   ModalOverlay,
   Box,
@@ -15,6 +13,7 @@ import { useSelector } from "react-redux";
 import LoadingSpinner from "@components/LoadingSpinner";
 import ErrorStatus from "@components/Shared/Status/ErrorStatus";
 import CreateList from "@components/Shared/DetailsPage/Media/Overview/Buttons/CreateList";
+import Lists from "./Lists";
 
 interface IModalListProps {
   tmdbID: number;
@@ -29,80 +28,15 @@ const ModalList = ({ tmdbID, mediaType, isOpen, onClose }: IModalListProps) => {
     username: username!,
   });
 
-  // const addToList = useMutation((listId: string) => {
-  //   return axiosInstance.post(`/lists/${listId}/media`, { tmdbID, mediaType });
-  // }, {
-  //   onSuccess: () => {
-  //     toast({
-  //       title: "Success",
-  //       description: "Movie added to the list.",
-  //       status: "success",
-  //       duration: 5000,
-  //       isClosable: true,
-  //     });
-  //     onClose();
-  //   },
-  //   onError: () => {
-  //     toast({
-  //       title: "Error",
-  //       description: "Failed to add movie to the list.",
-  //       status: "error",
-  //       duration: 5000,
-  //       isClosable: true,
-  //     });
-  //   },
-  // });
-
-  // const createList = useMutation((listName: string) => {
-  //   return axiosInstance.post(`/lists`, { listName, listType: mediaType, userId: username });
-  // }, {
-  //   onSuccess: () => {
-  //     toast({
-  //       title: "Success",
-  //       description: "List created.",
-  //       status: "success",
-  //       duration: 5000,
-  //       isClosable: true,
-  //     });
-  //     queryClient.invalidateQueries("userLists");
-  //     setNewListName("");
-  //   },
-  //   onError: () => {
-  //     toast({
-  //       title: "Error",
-  //       description: "Failed to create list.",
-  //       status: "error",
-  //       duration: 5000,
-  //       isClosable: true,
-  //     });
-  //   },
-  // });
-
-  // const handleAddToList = (listId: string) => {
-  //   addToList.mutate(listId);
-  // };
-
-  // const handleCreateList = () => {
-  //   if (newListName.trim()) {
-  //     createList.mutate(newListName.trim());
-  //   } else {
-  //     toast({
-  //       title: "Error",
-  //       description: "List name cannot be empty.",
-  //       status: "error",
-  //       duration: 5000,
-  //       isClosable: true,
-  //     });
-  //   }
-  // };
+  const filteredLists = data?.filter((list) => list.listType === mediaType);
 
   return (
     <Modal
-      colorScheme="darkPurple"
       isCentered
       isOpen={isOpen}
       onClose={onClose}
       size="lg"
+      motionPreset="scale"
     >
       <ModalOverlay
         bg="none"
@@ -111,10 +45,12 @@ const ModalList = ({ tmdbID, mediaType, isOpen, onClose }: IModalListProps) => {
         backdropBlur="2px"
       />
       <ModalContent>
-        <ModalHeader>Add to List</ModalHeader>
+        <ModalHeader>
+          {mediaType === "tv" ? "Your TV Lists" : "Your Movie Lists"}
+        </ModalHeader>
         <ModalCloseButton />
 
-        <ModalBody>
+        <ModalBody py={5}>
           {status === "pending" || isRefetching ? (
             <Box
               display="flex"
@@ -126,25 +62,23 @@ const ModalList = ({ tmdbID, mediaType, isOpen, onClose }: IModalListProps) => {
             </Box>
           ) : status === "error" ? (
             <ErrorStatus refetch={refetch} isRefetching={isRefetching} />
-          ) : data?.length === 0 ? (
-            <CreateList headerText="You don't have any lists. Create a new one:" />
+          ) : filteredLists?.length === 0 ? (
+            <CreateList
+              defaultMediaType={mediaType}
+              headerText={
+                mediaType === "tv"
+                  ? "Create a new TV List"
+                  : "Create a new Movie List"
+              }
+            />
           ) : (
-            <Box>will be updated..</Box>
+            <Lists
+              lists={filteredLists!}
+              tmdbID={tmdbID}
+              mediaType={mediaType}
+            />
           )}
         </ModalBody>
-        <ModalFooter>
-          <Button
-            colorScheme="darkPurple"
-            color="white"
-            bg={"darkPurple.700"}
-            _hover={{
-              bg: "darkPurple.500",
-            }}
-            onClick={onClose}
-          >
-            Close
-          </Button>
-        </ModalFooter>
       </ModalContent>
     </Modal>
   );

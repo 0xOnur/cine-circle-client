@@ -1,9 +1,3 @@
-interface IWatchlistItem {
-  mediaType: "tv" | "movie";
-  tmdbID: number;
-  dateAdded: Date;
-}
-
 interface IUser {
   _id: string;
   username: string;

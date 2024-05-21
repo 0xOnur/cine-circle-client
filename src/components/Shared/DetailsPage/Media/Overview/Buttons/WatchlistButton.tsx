@@ -15,8 +15,8 @@ const WatchlistButton = ({ tmdbID, mediaType }: IProps) => {
   const dispatch = useDispatch<AppDispatch>();
   const toast = useToast();
 
-  const isAdded = watchlist.data?.items.some(
-    (item) => Number(item.tmdbID) === tmdbID
+  const isAdded = watchlist.data?.medias.some(
+    (media) => Number(media.tmdbID) === tmdbID
   );
 
   const successToast = (message: string) =>

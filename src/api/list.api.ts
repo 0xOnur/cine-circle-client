@@ -5,7 +5,7 @@ import axiosInstance from "./axiosinstance";
 export const getUserLists = async (username: string) => {
   try {
     const response = await axiosInstance.get(
-      `/user/get-lists?username=${username}`
+      `list/get-lists?username=${username}`
     );
     return response.data;
   } catch (error: unknown) {
@@ -19,14 +19,51 @@ export const getUserLists = async (username: string) => {
 // Create list
 export const createList = async (
   listName: string,
-  listType: string,
+  listType: "movie" | "tv",
   description: string
 ) => {
   try {
     const response = await axiosInstance.post(
-      `/user/create-list?listName=${listName}&listType=${listType}`,
+      `list/create-list?listName=${listName}&listType=${listType}`,
       { description }
     );
+    return response.data;
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      return Promise.reject(error.response?.data);
+    }
+    return Promise.reject(error);
+  }
+};
+
+// Add media to list
+export const addMediaToList = async (
+  listId: string,
+  tmdbID: number,
+  mediaType: "movie" | "tv"
+) => {
+  try {
+    const response = await axiosInstance.put(
+      `list/add-to-list?listId=${listId}&tmdbID=${tmdbID}`,
+      { mediaType }
+    );
+
+    return response.data;
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      return Promise.reject(error.response?.data);
+    }
+    return Promise.reject(error);
+  }
+};
+
+// Remove media from list
+export const removeMediaFromList = async (listId: string, tmdbID: number) => {
+  try {
+    const response = await axiosInstance.delete(
+      `list/remove-from-list?listId=${listId}&tmdbID=${tmdbID}`
+    );
+
     return response.data;
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {

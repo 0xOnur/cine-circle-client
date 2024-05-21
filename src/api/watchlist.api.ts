@@ -3,7 +3,7 @@ import axiosInstance from "./axiosinstance";
 
 // Get user watchlist
 export const getUserWatchlist = createAsyncThunk(
-  "user/getWatchlist",
+  "watchlist/getWatchlist",
   async (username: string, thunkAPI) => {
     try {
       const response = await axiosInstance.get(
@@ -22,7 +22,7 @@ export const addToWatchlist = createAsyncThunk(
   async (media: { tmdbID: number; mediaType: string }, thunkAPI) => {
     try {
       const response = await axiosInstance.post(
-        `/user/add-watchlist?tmdbID=${media.tmdbID}&mediaType=${media.mediaType}`
+        `/watchlist/add-watchlist?tmdbID=${media.tmdbID}&mediaType=${media.mediaType}`
       );
       return response.data;
     } catch (error: any) {
@@ -37,7 +37,7 @@ export const removeFromWatchlist = createAsyncThunk(
   async (media: { tmdbID: number; mediaType: string }, thunkAPI) => {
     try {
       const response = await axiosInstance.delete(
-        `/user/remove-watchlist?tmdbID=${media.tmdbID}&mediaType=${media.mediaType}`
+        `/watchlist/remove-watchlist?tmdbID=${media.tmdbID}&mediaType=${media.mediaType}`
       );
       return response.data;
     } catch (error: any) {

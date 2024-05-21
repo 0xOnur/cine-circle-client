@@ -17,7 +17,7 @@ export const useCreateList = ({ listName, listType, description }: IProps) => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["userLists"] });
       toast({
-        title: "List created",
+        title: "Success",
         description: "List created successfully",
         status: "success",
       });

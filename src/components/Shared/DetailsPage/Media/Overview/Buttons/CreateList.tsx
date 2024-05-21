@@ -11,20 +11,21 @@ import {
 import { useCreateList } from "hooks/TanStack/Mutation/useCreateList.mutation";
 
 interface IProps {
-  headerText: string;
+  headerText?: string;
+  defaultMediaType?: "tv" | "movie";
 }
 
-const CreateList = ({ headerText }: IProps) => {
+const CreateList = ({ headerText, defaultMediaType }: IProps) => {
   const [newList, setNewList] = useState({
     listName: "",
     description: "",
-    type: "tv" as "tv" | "movie",
+    listType: defaultMediaType || "tv",
   });
 
   const { mutate } = useCreateList({
     listName: newList.listName,
     description: newList.description,
-    listType: newList.type,
+    listType: newList.listType,
   });
 
   return (
@@ -34,7 +35,19 @@ const CreateList = ({ headerText }: IProps) => {
         mutate();
       }}
     >
-      <Text mb={4}>{headerText}</Text>
+      {headerText && (
+        <Text
+          textAlign="center"
+          fontWeight="600"
+          letterSpacing={1.5}
+          textTransform="uppercase"
+          fontSize="lg"
+          opacity={0.8}
+          mb={4}
+        >
+          {headerText}
+        </Text>
+      )}
 
       <FormControl isRequired>
         <FormLabel>List Name</FormLabel>
@@ -51,13 +64,16 @@ const CreateList = ({ headerText }: IProps) => {
         <FormLabel mt={4}>List Type</FormLabel>
 
         <Select
-          value={newList.type}
+          value={newList.listType}
           onChange={(e) =>
-            setNewList({ ...newList, type: e.target.value as "tv" | "movie" })
+            setNewList({
+              ...newList,
+              listType: e.target.value as "tv" | "movie",
+            })
           }
         >
-          <option value="movie">Movie</option>
           <option value="tv">TV</option>
+          <option value="movie">Movie</option>
         </Select>
       </FormControl>
 
@@ -69,7 +85,7 @@ const CreateList = ({ headerText }: IProps) => {
           resize="vertical"
           maxH={200}
           minLength={3}
-          maxLength={2500}
+          maxLength={1000}
           placeholder="Enter list description"
           value={newList.description}
           onChange={(e) =>
@@ -83,11 +99,10 @@ const CreateList = ({ headerText }: IProps) => {
         mt={4}
         color="white"
         colorScheme="darkPurple"
-        bgColor="darkPurple.700"
+        bgColor="darkPurple.500"
         _hover={{
-          bg: "darkPurple.500",
+          bg: "darkPurple.600",
         }}
-        // onClick={handleCreateList}
       >
         Create List
       </Button>

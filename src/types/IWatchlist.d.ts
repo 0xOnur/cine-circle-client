@@ -1,6 +1,6 @@
 interface IWatchlist {
   userId: string;
-  items: IWatchlistItem[];
+  medias: IMedia[];
   createdAt: Date;
   updatedAt: Date;
 }

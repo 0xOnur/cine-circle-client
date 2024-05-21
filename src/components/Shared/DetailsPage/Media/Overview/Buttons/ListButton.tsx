@@ -42,8 +42,8 @@ const ListButton = ({ tmdbID, mediaType }: IProps) => {
           }}
           isRound={true}
           aria-label="Add to list"
-          bgColor="darkPurple.700"
           color="white"
+          bgColor="darkPurple.700"
           _hover={{
             bg: "darkPurple.500",
           }}

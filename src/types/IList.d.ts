@@ -1,14 +1,10 @@
-interface IMediaItem {
-  type: "tv" | "movie";
-  tmdbID: string;
-  dateAdded: Date;
-}
-
 interface IList {
+  _id: string;
   userId: string;
   listName: string;
   description?: string;
-  media: IMediaItem[];
+  listType: "tv" | "movie";
+  medias: IMedia[];
   createdAt: Date;
   updatedAt: Date;
 }

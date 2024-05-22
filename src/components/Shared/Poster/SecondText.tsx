@@ -22,7 +22,6 @@ const SecondText = ({ secondText, isLastItem }: IProps) => {
       px={3}
       py={2}
       opacity={0.8}
-      mb={1}
       mr={isLastItem ? 6 : 0}
     >
       <Text fontSize="small" fontWeight="semibold">

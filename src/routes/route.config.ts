@@ -32,6 +32,12 @@ export const routeConfig: IRouteConfig[] = [
     private: false,
   },
   {
+    path: "/search",
+    component: React.lazy(() => import("@layout/Search.Layout")),
+    title: "Search",
+    private: false,
+  },
+  {
     path: "/*",
     component: React.lazy(() => import("@layout/NotFound.Layout")),
     title: "Not Found",

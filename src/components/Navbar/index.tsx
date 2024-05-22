@@ -71,7 +71,6 @@ const Navbar = ({ isAuth }: IProps) => {
               color={useColorModeValue("darkPurple.500", "white")}
               fontWeight="bold"
               fontSize="4xl"
-              ml={{ base: 0, md: 6 }}
             >
               CineCircle
             </Text>

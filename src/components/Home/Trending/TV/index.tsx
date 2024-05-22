@@ -1,4 +1,4 @@
-import useGetTrendingShows from "hooks/TanStack/Query/useGetTrandingShows";
+import useGetTrendingShows from "hooks/TanStack/Query/Trend/useGetTrandingShows";
 import PendingStatus from "@components/Shared/Status/PendingStatus";
 import ErrorStatus from "@components/Shared/Status/ErrorStatus";
 import SliderContainer from "@components/Shared/SliderContainer";

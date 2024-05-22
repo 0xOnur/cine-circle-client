@@ -17,7 +17,7 @@ type DetailData = {
   mediaType: "tv" | "movie";
   name: string;
   overview?: string;
-  status: string;
+  status?: string;
   tagline?: string;
   releasedDate: Date | string;
   posterPath?: string;

@@ -61,7 +61,7 @@ const PosterCard = ({
           </AspectRatio>
         ) : (
           <Box
-            as="button"
+            height={"100%"}
             borderRadius={24}
             _groupHover={{ backgroundColor: "black" }}
           >

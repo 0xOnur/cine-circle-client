@@ -1,4 +1,4 @@
-import useGetTrendingMovies from "hooks/TanStack/Query/useGetTrendingMovies";
+import useGetTrendingMovies from "hooks/TanStack/Query/Trend/useGetTrendingMovies";
 import PendingStatus from "@components/Shared/Status/PendingStatus";
 import ErrorStatus from "@components/Shared/Status/ErrorStatus";
 import SliderContainer from "@components/Shared/SliderContainer";

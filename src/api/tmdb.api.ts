@@ -68,3 +68,61 @@ export const getCredits = async (
     return Promise.reject(error);
   }
 };
+
+// Search Multi
+export const searchMulti = async (query: string) => {
+  try {
+    const response = await tmdbInstance.get(`/search/multi?query=${query}`);
+    return response.data;
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      return Promise.reject(error.response?.data);
+    }
+    return Promise.reject(error);
+  }
+};
+
+// Search Movies
+export const searchMovies = async (query: string, page: number) => {
+  try {
+    const response = await tmdbInstance.get(
+      `/search/movie?query=${query}&page=${page}`
+    );
+    return response.data;
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      return Promise.reject(error.response?.data);
+    }
+    return Promise.reject(error);
+  }
+};
+
+// Search TV Shows
+export const searchTVShows = async (query: string, page: number) => {
+  try {
+    const response = await tmdbInstance.get(
+      `/search/tv?query=${query}&page=${page}`
+    );
+    return response.data;
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      return Promise.reject(error.response?.data);
+    }
+    return Promise.reject(error);
+  }
+};
+
+// Search People
+export const searchPeople = async (query: string, page: number) => {
+  try {
+    const response = await tmdbInstance.get(
+      `/search/person?query=${query}&page=${page}`
+    );
+    return response.data;
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      return Promise.reject(error.response?.data);
+    }
+    return Promise.reject(error);
+  }
+};

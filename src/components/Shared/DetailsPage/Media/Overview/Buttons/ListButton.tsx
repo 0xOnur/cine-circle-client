@@ -33,7 +33,8 @@ const ListButton = ({ tmdbID, mediaType }: IProps) => {
         closeOnScroll
       >
         <IconButton
-          onClick={() => {
+          onClick={(e) => {
+            e.preventDefault();
             onOpen();
           }}
           isDisabled={!isAuth}

@@ -1,9 +1,9 @@
 import { ITVShow } from "./ITVShow";
 import { Genre, Company, Network, Season } from "../Types";
-import { Person } from "../Person/Types";
+import { IPerson } from "../Person/IPerson";
 
 export interface ITvShowDetails extends ITVShow {
-  created_by: Person[];
+  created_by: IPerson[];
   episode_run_time: number[];
   genres: Genre[];
   homepage: string;

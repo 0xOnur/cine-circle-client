@@ -31,7 +31,8 @@ const WatchlistButton = ({ tmdbID, mediaType }: IProps) => {
       status: "error",
     });
 
-  const handleWatchlist = () => {
+  const handleWatchlist = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     const media = {
       tmdbID,
       mediaType,

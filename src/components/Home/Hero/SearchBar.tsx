@@ -8,28 +8,38 @@ import {
   Stack,
   useColorModeValue,
 } from "@chakra-ui/react";
+import { useState } from "react";
 
-const SearchBar = () => {
+interface IProps {
+  query?: string | null;
+}
+
+const SearchBar = ({ query }: IProps) => {
+  const [searchQuery, setSearchQuery] = useState<string>(query ? query : "");
+
   return (
-    <Stack spacing={{ base: 5, md: 10 }} flexWrap="wrap">
-      <form>
+    <Stack spacing={{ base: 5, md: 10 }} flexWrap="wrap" w="full">
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          window.location.href = `/search?query=${searchQuery}`;
+        }}
+      >
         <HStack spacing="2" w="full" alignItems="flex-start" py="2">
-          <FormControl>
-            <InputGroup size="lg" >
+          <FormControl isRequired>
+            <InputGroup size="lg">
               <Input
                 type="text"
+                minLength={3}
                 borderRadius="xl"
                 colorScheme="darkPurple"
                 placeholder="Search Movies, TV Shows..."
-                _focus={{
-                  border: "2px solid",
-                  borderColor: "darkPurple.500",
-                  boxShadow: "none",
-                  outline: "none",
-                }}
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
                 _placeholder={{
-                  color: useColorModeValue("gray.500", "gray.300"),
+                  color: useColorModeValue("gray.600", "gray.300"),
                   letterSpacing: "wide",
+                  fontWeight: "500",
                 }}
               />
             </InputGroup>
@@ -37,9 +47,9 @@ const SearchBar = () => {
 
           <IconButton
             color="white"
-            bgColor="darkPurple.700"
+            bgColor="darkPurple.500"
             _hover={{
-              bg: "darkPurple.500",
+              bg: "darkPurple.600",
             }}
             icon={<SearchIcon />}
             type="submit"

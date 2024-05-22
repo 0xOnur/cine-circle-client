@@ -1,4 +1,4 @@
-import { Person } from "./Person/Types";
+import { IPerson } from "./Person/IPerson";
 
 export type Collection = {
   id: number;
@@ -43,13 +43,13 @@ export type Season = {
   air_date: Date;
 };
 
-type CreditCast = Person & {
+type CreditCast = IPerson & {
   cast_id: number;
   character: string;
   order: number;
 };
 
-type CreditCrew = Person & {
+type CreditCrew = IPerson & {
   department: string;
   job: string;
 };

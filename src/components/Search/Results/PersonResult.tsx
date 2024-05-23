@@ -51,12 +51,15 @@ const PersonResult = ({ personQuery, query }: IProps) => {
                 />
               ))}
             </SimpleGrid>
-            <Pagination
-              page={personQuery.data?.page}
-              total_pages={personQuery.data?.total_pages}
-              query={query}
-              media_type="person"
-            />
+
+            {personQuery.data.total_results > 20 && (
+              <Pagination
+                page={personQuery.data?.page}
+                total_pages={personQuery.data?.total_pages}
+                query={query}
+                media_type="person"
+              />
+            )}
           </Fragment>
         )}
     </Flex>

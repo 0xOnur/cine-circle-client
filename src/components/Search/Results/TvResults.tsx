@@ -42,12 +42,14 @@ const TvResults = ({ tvQuery, query }: IProps) => {
             ))}
           </SimpleGrid>
 
-          <Pagination
-            page={tvQuery.data?.page}
-            total_pages={tvQuery.data?.total_pages}
-            query={query}
-            media_type="tv"
-          />
+          {tvQuery.data.total_results > 20 && (
+            <Pagination
+              page={tvQuery.data?.page}
+              total_pages={tvQuery.data?.total_pages}
+              query={query}
+              media_type="tv"
+            />
+          )}
         </Fragment>
       )}
     </Flex>

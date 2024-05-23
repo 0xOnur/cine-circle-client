@@ -44,7 +44,7 @@ const SearchResults = ({ query, multiData, media_type }: IProps) => {
 
       {multiData.results.length > 0 && (
         <Grid
-          gap={4}
+          gap={8}
           templateColumns={{
             base: "1fr",
             md: "auto 1fr",
@@ -59,10 +59,12 @@ const SearchResults = ({ query, multiData, media_type }: IProps) => {
             }}
           />
 
-          {media_type === "movie" && <MovieResults movieQuery={movieQuery} />}
-          {media_type === "tv" && <TvResults tvQuery={tvQuery} />}
+          {media_type === "movie" && (
+            <MovieResults movieQuery={movieQuery} query={query} />
+          )}
+          {media_type === "tv" && <TvResults tvQuery={tvQuery} query={query} />}
           {media_type === "person" && (
-            <PersonResult personQuery={personQuery} />
+            <PersonResult personQuery={personQuery} query={query} />
           )}
         </Grid>
       )}

@@ -36,7 +36,14 @@ const ItemCard = ({
   imageWidth,
 }: IProps) => {
   return (
-    <Link href={href} _hover={{ textDecoration: "none" }} isExternal>
+    <Link
+      href={href}
+      _hover={{
+        textDecoration: "none",
+        transform: "scale(1.02)",
+      }}
+      isExternal
+    >
       <Card
         w={"full"}
         direction={direction || { base: "column", sm: "row" }}
@@ -54,11 +61,16 @@ const ItemCard = ({
 
         <Stack overflow={"hidden"}>
           <CardBody>
-            <Heading size="md" textOverflow="ellipsis">
-              {title}
-            </Heading>
+            <Heading size="md">{title}</Heading>
 
-            {overview && <Text py="2">{overview?.slice(0, 500)}...</Text>}
+            {overview && (
+              <Text py="2">
+                {overview.length > 200
+                  ? `${overview.slice(0, 200)}...`
+                  : overview}
+              </Text>
+            )}
+            {!overview && <Text py="2">No overview available</Text>}
           </CardBody>
 
           {!hideFooter && media_type && (

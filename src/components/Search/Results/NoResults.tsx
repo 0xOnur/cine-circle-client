@@ -13,7 +13,6 @@ const NoResults = () => {
       alignItems="center"
       justifyContent="center"
       textAlign="center"
-      py={8}
     >
       <Alert
         colorScheme="darkPurple"

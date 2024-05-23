@@ -41,12 +41,14 @@ const MovieResults = ({ movieQuery, query }: IProps) => {
               ))}
             </SimpleGrid>
 
-            <Pagination
-              page={movieQuery.data?.page}
-              total_pages={movieQuery.data?.total_pages}
-              query={query}
-              media_type="movie"
-            />
+            {movieQuery.data.total_results > 20 && (
+              <Pagination
+                page={movieQuery.data?.page}
+                total_pages={movieQuery.data?.total_pages}
+                query={query}
+                media_type="movie"
+              />
+            )}
           </Fragment>
         )}
     </Flex>

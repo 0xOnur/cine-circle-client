@@ -13,7 +13,7 @@ const SearchPage = () => {
   const navigate = useNavigate();
 
   const query = searchParams.get("query");
-  let media_type = (searchParams.get("media_type") as MediaType) || "movie";
+  let media_type = searchParams.get("media_type") as MediaType;
 
   useEffect(() => {
     if (!query) {
@@ -25,7 +25,6 @@ const SearchPage = () => {
     if (!validMediaTypes.includes(media_type)) {
       const newSearchParams = new URLSearchParams({
         query,
-        media_type: validMediaTypes.includes(media_type) ? media_type : "movie",
       });
       navigate(`/search?${newSearchParams.toString()}`, { replace: true });
     }

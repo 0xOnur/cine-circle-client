@@ -6,10 +6,11 @@ import {
   VStack,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { MediaType } from "types/tmdb/Types";
 
 interface IProps {
+  media_type: MediaType;
   query: string;
   resultCounts: {
     movie: number;
@@ -18,11 +19,7 @@ interface IProps {
   };
 }
 
-const FilterResults = ({ query, resultCounts }: IProps) => {
-  const [searchParams] = useSearchParams();
-
-  const media_type = searchParams.get("media_type") || ("movie" as MediaType);
-
+const FilterResults = ({ media_type, query, resultCounts }: IProps) => {
   const navigate = useNavigate();
 
   return (

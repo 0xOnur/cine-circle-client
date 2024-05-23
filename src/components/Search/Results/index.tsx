@@ -23,51 +23,54 @@ const SearchResults = ({ query, multiData, media_type }: IProps) => {
 
   const page = parseInt(searchParams.get("page") || "1");
 
-  const movieQuery = useSearchMovie({
-    query: query,
-    page: page,
-  });
+  const movieQuery = useSearchMovie({ query, page });
+  const tvQuery = useSearchTv({ query, page });
+  const personQuery = useSearchPerson({ query, page });
 
-  const tvQuery = useSearchTv({
-    query: query,
-    page: page,
-  });
+  const moviesCount = movieQuery.data?.total_results || 0;
+  const tvCount = tvQuery.data?.total_results || 0;
+  const personCount = personQuery.data?.total_results || 0;
 
-  const personQuery = useSearchPerson({
-    query: query,
-    page: page,
-  });
+  const determineMediaType = (): MediaType => {
+    if (moviesCount === 0 && tvCount === 0 && personCount > 0) return "person";
+    if (moviesCount === 0 && tvCount > 0 && personCount === 0) return "tv";
+    if (moviesCount > 0 && tvCount === 0 && personCount === 0) return "movie";
+    return media_type || "movie";
+  };
+
+  const activeMediaType = media_type || determineMediaType();
+
+  if (!multiData || multiData.results.length === 0) return <NoResults />;
 
   return (
     <Fragment>
-      {(!multiData || multiData.results.length === 0) && <NoResults />}
-
-      {multiData.results.length > 0 && (
-        <Grid
-          gap={8}
-          templateColumns={{
-            base: "1fr",
-            md: "auto 1fr",
+      <Grid
+        gap={8}
+        templateColumns={{
+          base: "1fr",
+          md: "auto 1fr",
+        }}
+      >
+        <FilterResults
+          media_type={activeMediaType}
+          query={query}
+          resultCounts={{
+            movie: moviesCount,
+            tv: tvCount,
+            person: personCount,
           }}
-        >
-          <FilterResults
-            query={query}
-            resultCounts={{
-              movie: movieQuery.data?.total_results || 0,
-              tv: tvQuery.data?.total_results || 0,
-              person: personQuery.data?.total_results || 0,
-            }}
-          />
+        />
 
-          {media_type === "movie" && (
-            <MovieResults movieQuery={movieQuery} query={query} />
-          )}
-          {media_type === "tv" && <TvResults tvQuery={tvQuery} query={query} />}
-          {media_type === "person" && (
-            <PersonResult personQuery={personQuery} query={query} />
-          )}
-        </Grid>
-      )}
+        {activeMediaType === "movie" && (
+          <MovieResults movieQuery={movieQuery} query={query} />
+        )}
+        {activeMediaType === "tv" && (
+          <TvResults tvQuery={tvQuery} query={query} />
+        )}
+        {activeMediaType === "person" && (
+          <PersonResult personQuery={personQuery} query={query} />
+        )}
+      </Grid>
     </Fragment>
   );
 };

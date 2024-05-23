@@ -70,7 +70,6 @@ const ItemCard = ({
                   : overview}
               </Text>
             )}
-            {!overview && <Text py="2">No overview available</Text>}
           </CardBody>
 
           {!hideFooter && media_type && (

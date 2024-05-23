@@ -1,5 +1,3 @@
-import { IPerson } from "./Person/IPerson";
-
 export type Collection = {
   id: number;
   backdrop_path: string;
@@ -41,23 +39,6 @@ export type Season = {
   season_number: number;
   vote_average: number;
   air_date: Date;
-};
-
-type CreditCast = IPerson & {
-  cast_id: number;
-  character: string;
-  order: number;
-};
-
-type CreditCrew = IPerson & {
-  department: string;
-  job: string;
-};
-
-export type MovieCreditsResponse = {
-  id: number;
-  cast: Array<CreditCast>;
-  crew: Array<CreditCrew>;
 };
 
 export type MediaType = "movie" | "tv" | "person" | "season";

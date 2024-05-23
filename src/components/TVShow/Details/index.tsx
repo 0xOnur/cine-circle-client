@@ -1,12 +1,13 @@
-import useGetShowDetails from "hooks/TanStack/Query/useGetTVShowDetails";
+import useGetShowDetails from "hooks/TanStack/Query/TV/useGetTVShowDetails";
 import PendingStatus from "@components/Shared/Status/PendingStatus";
 import ErrorStatus from "@components/Shared/Status/ErrorStatus";
 import { Container, Flex } from "@chakra-ui/react";
 import { Fragment } from "react";
 import Title from "@routes/Title";
-import TVShowOverview from "./TVShowOverview";
+import TVShowOverview from "./Overview/TVShowOverview";
 import CastSlider from "@components/Shared/DetailsPage/Media/CastSlider";
 import SeasonSlider from "./Seasons";
+import MediaMovies from "@components/Shared/DetailsPage/Media/Videos";
 
 interface IProps {
   showId: string | undefined;
@@ -31,6 +32,7 @@ const TVShowDetailsPage = ({ showId }: IProps) => {
           <Container display="flex" flexDirection={"column"} gap="50px">
             <CastSlider mediaId={showId!} mediaType="tv" />
             <SeasonSlider data={data} />
+            <MediaMovies mediaType="tv" tmdbID={showId!} />
           </Container>
         </Flex>
       )}

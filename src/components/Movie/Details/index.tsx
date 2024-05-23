@@ -1,4 +1,4 @@
-import useGetMovieDetails from "hooks/TanStack/Query/useGetMovieDetails";
+import useGetMovieDetails from "hooks/TanStack/Query/Movie/useGetMovieDetails";
 import PendingStatus from "@components/Shared/Status/PendingStatus";
 import ErrorStatus from "@components/Shared/Status/ErrorStatus";
 import { Container, Flex } from "@chakra-ui/react";
@@ -6,6 +6,7 @@ import { Fragment } from "react";
 import MovieOverview from "./Overview/MovieOverview";
 import Title from "@routes/Title";
 import CastSlider from "@components/Shared/DetailsPage/Media/CastSlider";
+import MediaMovies from "@components/Shared/DetailsPage/Media/Videos";
 
 interface IProps {
   movieId: string | undefined;
@@ -27,8 +28,9 @@ const MovieDetailsPage = ({ movieId }: IProps) => {
         <Flex direction="column">
           <Title title={data.title} />
           <MovieOverview data={data} />
-          <Container>
+          <Container display="flex" flexDirection={"column"} gap="50px">
             <CastSlider mediaId={movieId!} mediaType="movie" />
+            <MediaMovies mediaType="movie" tmdbID={movieId!} />
           </Container>
         </Flex>
       )}

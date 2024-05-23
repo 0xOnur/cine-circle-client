@@ -126,3 +126,19 @@ export const searchPeople = async (query: string, page: number) => {
     return Promise.reject(error);
   }
 };
+
+// Get Media Videos
+export const getMediaVideos = async (
+  mediaType: "movie" | "tv",
+  mediaId: string
+) => {
+  try {
+    const response = await tmdbInstance.get(`/${mediaType}/${mediaId}/videos`);
+    return response.data;
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      return Promise.reject(error.response?.data);
+    }
+    return Promise.reject(error);
+  }
+};

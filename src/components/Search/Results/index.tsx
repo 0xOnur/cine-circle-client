@@ -23,9 +23,6 @@ const SearchResults = ({ query, multiData, media_type }: IProps) => {
 
   const page = parseInt(searchParams.get("page") || "1");
 
-  console.log(page);
-  
-
   const movieQuery = useSearchMovie({
     query: query,
     page: page,

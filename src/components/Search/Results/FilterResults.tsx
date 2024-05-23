@@ -2,12 +2,12 @@ import {
   Box,
   Button,
   Heading,
-  Link,
   Text,
   VStack,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { MediaType } from "types/tmdb/Types";
 
 interface IProps {
   query: string;
@@ -19,19 +19,24 @@ interface IProps {
 }
 
 const FilterResults = ({ query, resultCounts }: IProps) => {
+  const [searchParams] = useSearchParams();
+
+  const media_type = searchParams.get("media_type") || ("movie" as MediaType);
+
   const navigate = useNavigate();
 
   return (
     <Box
-      w={250}
+      minW={200}
       h="fit-content"
       rounded="md"
       shadow="md"
       border="1px"
       borderColor={useColorModeValue("gray.200", "whiteAlpha.100")}
       borderRadius="lg"
+      overflow={"hidden"}
     >
-      <VStack align="stretch">
+      <VStack align="stretch" gap={0}>
         <Heading
           size="md"
           p={4}
@@ -42,15 +47,14 @@ const FilterResults = ({ query, resultCounts }: IProps) => {
           Filter
         </Heading>
 
-        <Box display="flex" flexDirection="column" gap={3}>
+        <Box display="flex" flexDirection="column">
           <Button
             as="button"
             display="flex"
             alignItems="center"
             justifyContent="space-between"
-            variant="ghost"
             rounded={0}
-            colorScheme="darkPurple"
+            variant={media_type === "movie" ? "solid" : "ghost"}
             onClick={() => navigate(`?query=${query}&media_type=movie`)}
           >
             <Text fontSize="md" fontWeight="medium">
@@ -65,9 +69,8 @@ const FilterResults = ({ query, resultCounts }: IProps) => {
             display="flex"
             alignItems="center"
             justifyContent="space-between"
-            variant="ghost"
             rounded={0}
-            colorScheme="darkPurple"
+            variant={media_type === "tv" ? "solid" : "ghost"}
             onClick={() => navigate(`?query=${query}&media_type=tv`)}
           >
             <Text fontSize="md" fontWeight="medium">
@@ -82,9 +85,8 @@ const FilterResults = ({ query, resultCounts }: IProps) => {
             display="flex"
             alignItems="center"
             justifyContent="space-between"
-            variant="ghost"
             rounded={0}
-            colorScheme="darkPurple"
+            variant={media_type === "person" ? "solid" : "ghost"}
             onClick={() => navigate(`?query=${query}&media_type=person`)}
           >
             <Text fontSize="md" fontWeight="medium">

@@ -18,6 +18,7 @@ const TvResults = ({ tvQuery }: IProps) => {
             title={show.name}
             overview={show.overview}
             poster_path={show.poster_path}
+            media_type="tv"
           />
         ))}
       </Grid>

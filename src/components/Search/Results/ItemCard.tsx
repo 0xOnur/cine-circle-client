@@ -1,9 +1,8 @@
-import React from "react";
-
 import {
   Card,
   CardBody,
   CardFooter,
+  Grid,
   Heading,
   Image,
   Link,
@@ -16,40 +15,59 @@ import WatchlistButton from "@components/Shared/DetailsPage/Media/Overview/Butto
 
 interface IProps {
   tmdbID: number;
-  href: string;
-  poster_path: string;
   title: string;
   overview?: string;
+  media_type?: "tv" | "movie";
+  poster_path: string;
+  href?: string;
+  hideFooter?: boolean;
+  direction?: "row" | "column";
+  imageWidth?: string;
 }
 
-const ItemCard = ({ tmdbID, href, title, overview, poster_path }: IProps) => {
+const ItemCard = ({
+  tmdbID,
+  media_type,
+  href,
+  title,
+  overview,
+  poster_path,
+  hideFooter,
+  direction,
+  imageWidth,
+}: IProps) => {
   return (
     <Link href={href} _hover={{ textDecoration: "none" }} isExternal>
       <Card
-        direction={{ base: "column", sm: "row" }}
+        w={"full"}
+        direction={direction || { base: "column", sm: "row" }}
         overflow="hidden"
         variant="outline"
         rounded={24}
       >
         <Image
+          w={imageWidth || { base: "100%", sm: "200px" }}
           objectFit="cover"
-          maxW={{ base: "100%", sm: "200px" }}
           src={IMAGE_URL + poster_path}
           alt={title}
           fallbackSrc="https://via.placeholder.com/300x450.png?text=No+Poster"
         />
 
-        <Stack>
+        <Stack overflow={"hidden"}>
           <CardBody>
-            <Heading size="md">{title}</Heading>
+            <Heading size="md" textOverflow="ellipsis">
+              {title}
+            </Heading>
 
-            <Text py="2">{overview?.slice(0, 500)}...</Text>
+            {overview && <Text py="2">{overview?.slice(0, 500)}...</Text>}
           </CardBody>
 
-          <CardFooter gap={5} flexWrap="wrap" zIndex={2}>
-            <ListButton mediaType={"movie"} tmdbID={tmdbID} />
-            <WatchlistButton mediaType={"movie"} tmdbID={tmdbID} />
-          </CardFooter>
+          {!hideFooter && media_type && (
+            <CardFooter gap={5} flexWrap="wrap" zIndex={2}>
+              <ListButton mediaType={media_type} tmdbID={tmdbID} />
+              <WatchlistButton mediaType={media_type} tmdbID={tmdbID} />
+            </CardFooter>
+          )}
         </Stack>
       </Card>
     </Link>

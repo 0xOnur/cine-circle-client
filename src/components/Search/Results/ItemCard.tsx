@@ -2,7 +2,6 @@ import {
   Card,
   CardBody,
   CardFooter,
-  Grid,
   Heading,
   Image,
   Link,

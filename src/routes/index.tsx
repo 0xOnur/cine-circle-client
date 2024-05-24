@@ -2,7 +2,7 @@ import React, { Suspense } from 'react';
 import { Routes, Route, Navigate } from "react-router-dom";
 import { routeConfig } from "./route.config";
 import LoadingSpinner from '@components/LoadingSpinner';
-import {Helmet} from "react-helmet";
+import Title from './Title';
 
 interface IProps {
   isAuth: boolean;
@@ -18,7 +18,7 @@ const AppRoutes = ({ isAuth }: IProps) => {
           path={route.path}
           element={
             <Suspense fallback={<LoadingSpinner />}>
-              <Helmet><title>{route.title}</title></Helmet>
+              <Title title={route.title} />
               {route.private ? (isAuth ? ( <route.component />) : <Navigate to="/login" />) : <route.component />}
             </Suspense>
           }

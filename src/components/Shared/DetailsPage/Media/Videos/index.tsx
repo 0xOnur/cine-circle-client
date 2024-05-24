@@ -7,7 +7,7 @@ interface IProps {
   tmdbID: string;
 }
 
-const MediaMovies = ({ mediaType, tmdbID }: IProps) => {
+const MediaVideos = ({ mediaType, tmdbID }: IProps) => {
   const { data } = useGetMediaVideos({
     mediaType: mediaType,
     tmdbID: tmdbID,
@@ -19,17 +19,19 @@ const MediaMovies = ({ mediaType, tmdbID }: IProps) => {
   console.log("🚀 ~ MovieVideos ~ movieTrailers:", movieTrailers);
 
   if (!movieTrailers || movieTrailers.length === 0) {
-    return <div>No Trailer</div>;
+    return null;
   }
 
   return (
-    <SliderContainer sectionTitle="Movie Trailers">
+    <SliderContainer sectionTitle="Trailers">
       {movieTrailers.map((item) => (
         <Box
           key={item.key}
           borderWidth="1px"
           borderRadius="lg"
           overflow="hidden"
+          boxShadow="lg"
+          maxW={["100%", "100%", "300px", "300px"]}
         >
           <iframe
             title={item.name}
@@ -37,12 +39,13 @@ const MediaMovies = ({ mediaType, tmdbID }: IProps) => {
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
           />
-
-          <Text p={4}>{item.name}</Text>
+          <Text p={4}>
+            {item.name.length > 50 ? item.name.slice(0, 50) + "..." : item.name}
+          </Text>
         </Box>
       ))}
     </SliderContainer>
   );
 };
 
-export default MediaMovies;
+export default MediaVideos;

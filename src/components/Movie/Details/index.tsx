@@ -6,7 +6,7 @@ import { Fragment } from "react";
 import MovieOverview from "./Overview/MovieOverview";
 import Title from "@routes/Title";
 import CastSlider from "@components/Shared/DetailsPage/Media/CastSlider";
-import MediaMovies from "@components/Shared/DetailsPage/Media/Videos";
+import MediaVideos from "@components/Shared/DetailsPage/Media/Videos";
 
 interface IProps {
   movieId: string | undefined;
@@ -30,7 +30,7 @@ const MovieDetailsPage = ({ movieId }: IProps) => {
           <MovieOverview data={data} />
           <Container display="flex" flexDirection={"column"} gap="50px">
             <CastSlider mediaId={movieId!} mediaType="movie" />
-            <MediaMovies mediaType="movie" tmdbID={movieId!} />
+            <MediaVideos mediaType="movie" tmdbID={movieId!} />
           </Container>
         </Flex>
       )}

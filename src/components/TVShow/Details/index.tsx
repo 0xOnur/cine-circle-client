@@ -7,7 +7,7 @@ import Title from "@routes/Title";
 import TVShowOverview from "./Overview/TVShowOverview";
 import CastSlider from "@components/Shared/DetailsPage/Media/CastSlider";
 import SeasonSlider from "./Seasons";
-import MediaMovies from "@components/Shared/DetailsPage/Media/Videos";
+import MediaVideos from "@components/Shared/DetailsPage/Media/Videos";
 
 interface IProps {
   showId: string | undefined;
@@ -32,7 +32,7 @@ const TVShowDetailsPage = ({ showId }: IProps) => {
           <Container display="flex" flexDirection={"column"} gap="50px">
             <CastSlider mediaId={showId!} mediaType="tv" />
             <SeasonSlider data={data} />
-            <MediaMovies mediaType="tv" tmdbID={showId!} />
+            <MediaVideos mediaType="tv" tmdbID={showId!} />
           </Container>
         </Flex>
       )}

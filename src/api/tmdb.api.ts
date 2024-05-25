@@ -142,3 +142,59 @@ export const getMediaVideos = async (
     return Promise.reject(error);
   }
 };
+
+// Get Top Rated Movies
+export type getTopMediasType = {
+  mediaType: "movie" | "tv";
+  page: number;
+  with_genres?: string;
+  with_runtime_lte?: number;
+  vote_average_lte?: number;
+  sort_by?:
+    | "vote_average.desc"
+    | "vote_average.asc"
+    | "popularity.desc"
+    | "popularity.asc";
+  vote_count_gte?: number;
+  primary_release_date_gte?: string;
+  primary_release_date_lte?: string;
+  release_date_gte?: string;
+  release_date_lte?: string;
+  first_air_date_gte?: string;
+  first_air_date_lte?: string;
+  air_date_lte?: string;
+  air_date_gte?: string;
+  watch_region?: string;
+};
+
+export const getTopMedias = async (props: getTopMediasType) => {
+  try {
+    const response = await tmdbInstance.get(`/discover/${props.mediaType}`, {
+      params: {
+        with_genres: props.with_genres,
+        "with_runtime.lte": props.with_runtime_lte,
+        "vote_average.lte": props.vote_average_lte,
+        sort_by: props.sort_by,
+        "vote_count.gte": props.vote_count_gte,
+        "primary_release_date.gte": props.primary_release_date_gte,
+        "primary_release_date.lte": props.primary_release_date_lte,
+        "release_date.gte": props.release_date_gte,
+        "release_date.lte": props.release_date_lte,
+        "air_date.gte": props.air_date_gte,
+        "air_date.lte": props.air_date_lte,
+        "first_air_date.gte": props.first_air_date_gte,
+        "first_air_date.lte": props.first_air_date_lte,
+        with_watch_monetization_types: `"flatrate|free|ads|rent|buy"`,
+        watch_region: props.watch_region || "US",
+        language: "en-US",
+        page: props.page,
+      },
+    });
+    return response.data;
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      return Promise.reject(error.response?.data);
+    }
+    return Promise.reject(error);
+  }
+};

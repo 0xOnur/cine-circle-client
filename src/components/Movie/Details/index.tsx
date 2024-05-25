@@ -19,9 +19,16 @@ const MovieDetailsPage = ({ movieId }: IProps) => {
 
   return (
     <Fragment>
-      {status === "pending" && <PendingStatus count={6} height="50px" />}
+      {status === "pending" && (
+        <Container>
+          <PendingStatus count={6} height="50px" />
+        </Container>
+      )}
+
       {status === "error" && (
-        <ErrorStatus refetch={refetch} isRefetching={isRefetching} />
+        <Container>
+          <ErrorStatus refetch={refetch} isRefetching={isRefetching} />
+        </Container>
       )}
 
       {status === "success" && data && (

@@ -31,21 +31,34 @@ const PagButton = ({ children, active, disabled, onClick }: PagButtonProps) => {
 };
 
 interface PaginationProps {
-  query: string;
   page: number;
   total_pages: number;
+  query?: string;
   media_type?: MediaType;
 }
 
 const Pagination = ({
-  query,
   page,
   total_pages,
+  query,
   media_type,
 }: PaginationProps) => {
+  if (total_pages > 500) {
+    total_pages = 500;
+  }
+
   const navigate = useNavigate();
-  const handleNavigate = (newPage: number) =>
-    navigate(`?query=${query}&page=${newPage}&media_type=${media_type}`);
+  const handleNavigate = (newPage: number) => {
+    if (query && media_type) {
+      navigate(`?query=${query}&page=${newPage}&media_type=${media_type}`);
+    } else if (query) {
+      navigate(`?query=${query}&page=${newPage}`);
+    } else if (media_type) {
+      navigate(`?page=${newPage}&media_type=${media_type}`);
+    } else {
+      navigate(`?page=${newPage}`);
+    }
+  };
 
   const renderPageButtons = () => {
     const buttons = [];
@@ -89,8 +102,8 @@ const Pagination = ({
         </PagButton>
 
         <PagButton
-          disabled={page === total_pages}
-          onClick={() => handleNavigate(total_pages)}
+          disabled={page === total_pages || page === 500}
+          onClick={() => handleNavigate(total_pages >= 500 ? 500 : total_pages)}
         >
           <Icon as={ArrowRightIcon} boxSize={3} />
         </PagButton>

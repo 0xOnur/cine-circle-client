@@ -7,6 +7,7 @@ import {
   Link,
   Stack,
   Text,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import { IMAGE_URL } from "@components/Shared/Poster/PosterImage";
 import ListButton from "@components/Shared/DetailsPage/Media/Overview/Buttons/ListButton";
@@ -15,6 +16,7 @@ import WatchlistButton from "@components/Shared/DetailsPage/Media/Overview/Butto
 interface IProps {
   tmdbID: number;
   title: string;
+  release_date?: string;
   overview?: string;
   media_type?: "tv" | "movie";
   poster_path: string;
@@ -29,6 +31,7 @@ const ItemCard = ({
   media_type,
   href,
   title,
+  release_date,
   overview,
   poster_path,
   hideFooter,
@@ -50,6 +53,9 @@ const ItemCard = ({
         overflow="hidden"
         variant="outline"
         rounded={24}
+        _hover={{
+          bg: useColorModeValue("darkPurple.50", "gray.900"),
+        }}
       >
         <Image
           w={imageWidth || { base: "100%", sm: "200px" }}
@@ -62,6 +68,12 @@ const ItemCard = ({
         <Stack overflow={"hidden"}>
           <CardBody>
             <Heading size="md">{title}</Heading>
+
+            {release_date && (
+              <Text color="gray.500" fontSize="sm">
+                {new Date(release_date).toDateString()}
+              </Text>
+            )}
 
             {overview && (
               <Text py="2">

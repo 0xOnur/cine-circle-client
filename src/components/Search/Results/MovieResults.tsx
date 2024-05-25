@@ -34,6 +34,7 @@ const MovieResults = ({ movieQuery, query }: IProps) => {
                   tmdbID={movie.id}
                   href={`/movie/${movie.id}`}
                   title={movie.title}
+                  release_date={movie.release_date}
                   overview={movie.overview}
                   poster_path={movie.poster_path}
                   media_type="movie"

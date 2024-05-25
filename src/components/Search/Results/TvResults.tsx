@@ -35,6 +35,7 @@ const TvResults = ({ tvQuery, query }: IProps) => {
                 tmdbID={show.id}
                 href={`/tv-show/${show.id}`}
                 title={show.name}
+                release_date={show.first_air_date}
                 overview={show.overview}
                 poster_path={show.poster_path}
                 media_type="tv"

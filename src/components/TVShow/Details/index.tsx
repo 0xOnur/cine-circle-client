@@ -1,13 +1,13 @@
 import useGetShowDetails from "hooks/TanStack/Query/TV/useGetTVShowDetails";
 import PendingStatus from "@components/Shared/Status/PendingStatus";
 import ErrorStatus from "@components/Shared/Status/ErrorStatus";
-import { Container, Flex } from "@chakra-ui/react";
+import { Box, Container, Flex } from "@chakra-ui/react";
 import { Fragment } from "react";
 import Title from "@routes/Title";
 import TVShowOverview from "./Overview/TVShowOverview";
-import CastSlider from "@components/Shared/DetailsPage/Media/CastSlider";
+import CastSlider from "@components/Shared/MediaDetailsPage/CastSlider";
 import SeasonSlider from "./Seasons";
-import MediaVideos from "@components/Shared/DetailsPage/Media/Videos";
+import MediaAchievements from "@components/Shared/MediaDetailsPage/Achievements";
 
 interface IProps {
   showId: string | undefined;
@@ -36,10 +36,26 @@ const TVShowDetailsPage = ({ showId }: IProps) => {
         <Flex direction="column">
           <Title title={data.name} />
           <TVShowOverview data={data} />
-          <Container display="flex" flexDirection={"column"} gap="50px">
-            <CastSlider mediaId={showId!} mediaType="tv" />
-            <SeasonSlider data={data} />
-            <MediaVideos mediaType="tv" tmdbID={showId!} />
+          <Container
+            display="flex"
+            flexDirection={{
+              base: "column",
+              md: "column",
+              lg: "row",
+            }}
+            rowGap={8}
+            columnGap="50px"
+            justifyContent={"space-between"}
+          >
+            <Box w="full" display="flex" gap={8} flexDirection="column">
+              <CastSlider
+                mediaId={data.id}
+                castData={data.credits?.cast}
+                mediaType="tv"
+              />
+              <SeasonSlider data={data} />
+            </Box>
+            <MediaAchievements media={data} />
           </Container>
         </Flex>
       )}

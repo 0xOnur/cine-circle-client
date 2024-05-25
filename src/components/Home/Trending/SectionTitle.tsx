@@ -4,9 +4,16 @@ import { Fragment } from "react/jsx-runtime";
 interface IProps {
   sectionTitle: string;
   sectionHref?: string;
+  color?: string;
+  fontSize?: string;
 }
 
-const SectionTitle = ({ sectionTitle, sectionHref }: IProps) => {
+const SectionTitle = ({
+  sectionTitle,
+  sectionHref,
+  color,
+  fontSize,
+}: IProps) => {
   return (
     <Fragment>
       {sectionHref ? (
@@ -28,8 +35,9 @@ const SectionTitle = ({ sectionTitle, sectionHref }: IProps) => {
         <Heading
           textTransform="uppercase"
           letterSpacing={3}
-          fontSize={{ base: "md", sm: "lg" }}
+          fontSize={fontSize ? fontSize : { base: "md", sm: "lg" }}
           fontWeight="500"
+          color={color && color}
         >
           {sectionTitle}
         </Heading>

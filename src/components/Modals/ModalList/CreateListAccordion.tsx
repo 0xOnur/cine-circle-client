@@ -7,7 +7,7 @@ import {
   Box,
   Text,
 } from "@chakra-ui/react";
-import CreateList from "@components/Shared/DetailsPage/Media/Overview/Buttons/CreateList";
+import CreateList from "@components/Shared/MediaDetailsPage/Overview/Buttons/CreateList";
 
 interface IProps {
   mediaType: "tv" | "movie";

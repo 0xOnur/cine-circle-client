@@ -10,8 +10,8 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { IMAGE_URL } from "@components/Shared/Poster/PosterImage";
-import ListButton from "@components/Shared/DetailsPage/Media/Overview/Buttons/ListButton";
-import WatchlistButton from "@components/Shared/DetailsPage/Media/Overview/Buttons/WatchlistButton";
+import ListButton from "@components/Shared/MediaDetailsPage/Overview/Buttons/ListButton";
+import WatchlistButton from "@components/Shared/MediaDetailsPage/Overview/Buttons/WatchlistButton";
 
 interface IProps {
   tmdbID: number;

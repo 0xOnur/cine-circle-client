@@ -30,7 +30,9 @@ export const getTrendingTVShows = async (time_window: "day" | "week") => {
 // Movie Details
 export const getMovieDetails = async (movieId: string) => {
   try {
-    const response = await tmdbInstance.get(`/movie/${movieId}`);
+    const response = await tmdbInstance.get(`/movie/${movieId}`, {
+      params: { append_to_response: "videos,images,credits" },
+    });
     return response.data;
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
@@ -43,23 +45,9 @@ export const getMovieDetails = async (movieId: string) => {
 // TV Show Details
 export const getTVShowDetails = async (tvShowId: string) => {
   try {
-    const response = await tmdbInstance.get(`/tv/${tvShowId}`);
-    return response.data;
-  } catch (error: unknown) {
-    if (axios.isAxiosError(error)) {
-      return Promise.reject(error.response?.data);
-    }
-    return Promise.reject(error);
-  }
-};
-
-// Get Credits
-export const getCredits = async (
-  mediaType: "movie" | "tv",
-  mediaId: string
-) => {
-  try {
-    const response = await tmdbInstance.get(`/${mediaType}/${mediaId}/credits`);
+    const response = await tmdbInstance.get(`/tv/${tvShowId}`, {
+      params: { append_to_response: "videos,images,credits" },
+    });
     return response.data;
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
@@ -118,22 +106,6 @@ export const searchPeople = async (query: string, page: number) => {
     const response = await tmdbInstance.get(
       `/search/person?query=${query}&page=${page}`
     );
-    return response.data;
-  } catch (error: unknown) {
-    if (axios.isAxiosError(error)) {
-      return Promise.reject(error.response?.data);
-    }
-    return Promise.reject(error);
-  }
-};
-
-// Get Media Videos
-export const getMediaVideos = async (
-  mediaType: "movie" | "tv",
-  mediaId: string
-) => {
-  try {
-    const response = await tmdbInstance.get(`/${mediaType}/${mediaId}/videos`);
     return response.data;
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {

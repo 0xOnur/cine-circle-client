@@ -12,7 +12,7 @@ import useGetUserLists from "hooks/TanStack/Query/useGetUserLists";
 import { useSelector } from "react-redux";
 import LoadingSpinner from "@components/LoadingSpinner";
 import ErrorStatus from "@components/Shared/Status/ErrorStatus";
-import CreateList from "@components/Shared/DetailsPage/Media/Overview/Buttons/CreateList";
+import CreateList from "@components/Shared/MediaDetailsPage/Overview/Buttons/CreateList";
 import Lists from "./Lists";
 
 interface IModalListProps {

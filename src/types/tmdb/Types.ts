@@ -1,3 +1,5 @@
+import { IPerson } from "./Person/IPerson";
+
 export type Collection = {
   id: number;
   backdrop_path: string;
@@ -42,3 +44,35 @@ export type Season = {
 };
 
 export type MediaType = "movie" | "tv" | "person" | "season";
+
+export type CreditCast = IPerson & {
+  cast_id: number;
+  character: string;
+  order: number;
+};
+
+type CreditCrew = IPerson & {
+  department: string;
+  job: string;
+};
+
+export interface ICredits {
+  cast: Array<CreditCast>;
+  crew: Array<CreditCrew>;
+}
+
+export interface IVideo {
+  id: string;
+  iso_639_1: string;
+  iso_3166_1: string;
+  key: string;
+  name: string;
+  site: string;
+  size: number;
+  type: string;
+  published_at: string;
+}
+
+export interface IVideos {
+  results: Array<IVideo>;
+}

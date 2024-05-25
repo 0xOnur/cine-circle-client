@@ -5,8 +5,8 @@ import { Container, Flex } from "@chakra-ui/react";
 import { Fragment } from "react";
 import MovieOverview from "./Overview/MovieOverview";
 import Title from "@routes/Title";
-import CastSlider from "@components/Shared/DetailsPage/Media/CastSlider";
-import MediaVideos from "@components/Shared/DetailsPage/Media/Videos";
+import MediaAchievements from "@components/Shared/MediaDetailsPage/Achievements";
+import CastSlider from "@components/Shared/MediaDetailsPage/CastSlider";
 
 interface IProps {
   movieId: string | undefined;
@@ -35,9 +35,23 @@ const MovieDetailsPage = ({ movieId }: IProps) => {
         <Flex direction="column">
           <Title title={data.title} />
           <MovieOverview data={data} />
-          <Container display="flex" flexDirection={"column"} gap="50px">
-            <CastSlider mediaId={movieId!} mediaType="movie" />
-            <MediaVideos mediaType="movie" tmdbID={movieId!} />
+          <Container
+            display="flex"
+            flexDirection={{
+              base: "column",
+              md: "column",
+              lg: "row",
+            }}
+            rowGap={8}
+            columnGap="50px"
+            justifyContent={"space-between"}
+          >
+            <CastSlider
+              mediaId={data.id}
+              castData={data.credits?.cast}
+              mediaType="movie"
+            />
+            <MediaAchievements media={data} />
           </Container>
         </Flex>
       )}

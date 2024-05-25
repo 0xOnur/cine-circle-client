@@ -1,5 +1,5 @@
-import BackdropImage from "@components/Shared/DetailsPage/Media/Overview/BackdropImage";
-import DetailMeta from "@components/Shared/DetailsPage/Media/Overview/DetailMeta";
+import BackdropImage from "@components/Shared/MediaDetailsPage/Overview/BackdropImage";
+import DetailMeta from "@components/Shared/MediaDetailsPage/Overview/DetailMeta";
 import { Badge, Box, Container, Flex, Grid, Link } from "@chakra-ui/react";
 import { ITvShowDetails } from "types/tmdb/TV/ITVShowDetails";
 

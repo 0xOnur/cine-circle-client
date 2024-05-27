@@ -35,7 +35,7 @@ const MovieSlider = () => {
           time_window={time_window}
           setTime_window={setTime_window}
           footer={
-            <SeeMore media_type="movies" time_window={time_window} />
+            <SeeMore media_type="movies" />
           }
         >
           {movies?.map((movie, index) => (

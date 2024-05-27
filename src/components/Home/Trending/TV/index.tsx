@@ -34,7 +34,7 @@ const TVShowSlider = () => {
           time_window={time_window}
           setTime_window={setTime_window}
           footer={
-            <SeeMore media_type="tv-shows" time_window={time_window} />
+            <SeeMore media_type="tv-shows" />
           }
         >
           {shows?.map((show, index) => (

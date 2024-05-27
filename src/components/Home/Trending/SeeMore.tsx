@@ -2,13 +2,12 @@ import { Box, Button, Link, Spacer } from "@chakra-ui/react";
 
 interface IProps {
   media_type: string;
-  time_window: string;
 }
 
-const SeeMore = ({ media_type, time_window }: IProps) => {
+const SeeMore = ({ media_type }: IProps) => {
   return (
     <Box pt={3}>
-      <Link href={`/${media_type}/trending/${time_window}`}>
+      <Link href={`/${media_type}/popular/`}>
         <Button
           colorScheme="darkPurple"
           color="white"

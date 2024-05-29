@@ -1,24 +1,21 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axiosInstance from "./axiosinstance";
 
-// Get user watchlist
-export const getUserWatchlist = createAsyncThunk(
-  "watchlist/getWatchlist",
-  async (username: string, thunkAPI) => {
-    try {
-      const response = await axiosInstance.get(
-        `/user/get-watchlist?username=${username}`
-      );
-      return response.data;
-    } catch (error: any) {
-      return thunkAPI.rejectWithValue(error.response.data);
-    }
+// Get User Watchlist
+export const getWatchlist = async (username: string) => {
+  try {
+    const response = await axiosInstance.get(
+      `/watchlist/get-watchlist?username=${username}`
+    );
+    return response.data;
+  } catch (error: any) {
+    return Promise.reject(error.response.data);
   }
-);
+};
 
 // Add media to watchlist
 export const addToWatchlist = createAsyncThunk(
-  "user/addToWatchlist",
+  "watchlist/addToWatchlist",
   async (media: { tmdbID: number; mediaType: string }, thunkAPI) => {
     try {
       const response = await axiosInstance.post(
@@ -33,7 +30,7 @@ export const addToWatchlist = createAsyncThunk(
 
 // Remove media from watchlist
 export const removeFromWatchlist = createAsyncThunk(
-  "user/removeFromWatchlist",
+  "watchlist/removeFromWatchlist",
   async (media: { tmdbID: number; mediaType: string }, thunkAPI) => {
     try {
       const response = await axiosInstance.delete(

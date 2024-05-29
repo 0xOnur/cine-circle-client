@@ -4,7 +4,7 @@ import NoResults from "@components/Search/Results/NoResults";
 import Pagination from "@components/Search/Results/Pagination";
 import ErrorStatus from "@components/Shared/Status/ErrorStatus";
 import PendingStatus from "@components/Shared/Status/PendingStatus";
-import useTopMedia from "hooks/TanStack/Query/useGetTopMedia";
+import useTopMedia from "hooks/TanStack/Query/Other/useGetTopMedia";
 import { useSearchParams } from "react-router-dom";
 import { ITVShow } from "types/tmdb/TV/ITVShow";
 

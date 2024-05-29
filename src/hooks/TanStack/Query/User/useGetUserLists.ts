@@ -9,7 +9,7 @@ const useGetUserLists = ({ username }: IProps) => {
   const { data, status, refetch, isRefetching } = useQuery<IList[]>({
     queryKey: ["userLists", username],
     queryFn: () => getUserLists(username),
-    refetchOnWindowFocus: true,
+    refetchOnWindowFocus: false,
   });
 
   return { data, status, refetch, isRefetching };

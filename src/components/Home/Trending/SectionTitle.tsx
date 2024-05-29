@@ -18,6 +18,7 @@ const SectionTitle = ({
     <Fragment>
       {sectionHref ? (
         <Link
+          w="fit-content"
           href={sectionHref ? sectionHref : "#"}
           _hover={{ textDecoration: "none" }}
           _focus={{ outline: "none" }}

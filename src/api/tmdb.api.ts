@@ -1,6 +1,23 @@
 import axios from "axios";
 import tmdbInstance from "./tmdb.instance";
 
+// Get Media Posters
+export const getMediaPosters = async (
+  mediaType: "movie" | "tv",
+  mediaId: string
+) => {
+  try {
+    const response = await tmdbInstance.get(`/${mediaType}/${mediaId}`);
+    const { poster_path, backdrop_path } = response.data;
+    return { poster_path, backdrop_path };
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      return Promise.reject(error.response?.data);
+    }
+    return Promise.reject(error);
+  }
+};
+
 //  Trending Movies
 export const getTrendingMovies = async (time_window: "day" | "week") => {
   try {

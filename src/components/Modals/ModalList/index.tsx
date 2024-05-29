@@ -8,7 +8,7 @@ import {
   Box,
 } from "@chakra-ui/react";
 import { RootState } from "@redux/config/store";
-import useGetUserLists from "hooks/TanStack/Query/useGetUserLists";
+import useGetUserLists from "hooks/TanStack/Query/User/useGetUserLists";
 import { useSelector } from "react-redux";
 import LoadingSpinner from "@components/LoadingSpinner";
 import ErrorStatus from "@components/Shared/Status/ErrorStatus";

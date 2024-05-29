@@ -2,14 +2,14 @@ import { Alert, AlertIcon, Flex, Text } from "@chakra-ui/react";
 import SectionTitle from "@components/Home/Trending/SectionTitle";
 
 interface IProps {
-  sectionTitle: string;
+  sectionTitle?: string;
   text: string;
 }
 
 const NoItemAlert = ({ sectionTitle, text }: IProps) => {
   return (
     <Flex width="fit-content" gap={5} direction="column">
-      <SectionTitle sectionTitle={sectionTitle} />
+      {sectionTitle && <SectionTitle sectionTitle={sectionTitle} />}
       <Alert colorScheme="darkPurple" status="info">
         <AlertIcon />
         <Text

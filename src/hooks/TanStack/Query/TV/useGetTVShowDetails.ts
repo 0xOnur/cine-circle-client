@@ -8,7 +8,7 @@ interface IProps {
 
 const useGetShowDetails = ({ showId }: IProps) => {
   const { data, status, refetch, isRefetching } = useQuery<ITvShowDetails>({
-    queryKey: ["movieDetails", showId],
+    queryKey: ["showDetails", showId],
     queryFn: () => getTVShowDetails(showId),
     refetchOnWindowFocus: false,
   });

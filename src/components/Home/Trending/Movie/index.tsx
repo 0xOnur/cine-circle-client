@@ -3,7 +3,7 @@ import PendingStatus from "@components/Shared/Status/PendingStatus";
 import ErrorStatus from "@components/Shared/Status/ErrorStatus";
 import SliderContainer from "@components/Shared/SliderContainer";
 import PosterCard from "@components/Shared/Poster";
-import SeeMore from "@components/Home/Trending/SeeMore";
+import SeeMore from "@components/Shared/Others/SeeMore";
 import { Fragment, useState } from "react";
 
 const MovieSlider = () => {
@@ -35,7 +35,7 @@ const MovieSlider = () => {
           time_window={time_window}
           setTime_window={setTime_window}
           footer={
-            <SeeMore media_type="movies" />
+            <SeeMore href={`/movies/popular`} />
           }
         >
           {movies?.map((movie, index) => (

@@ -4,7 +4,7 @@ import { Box, Flex, SimpleGrid, Text } from "@chakra-ui/react";
 import ItemCard from "@components/Search/Results/ItemCard";
 import { IMovie } from "types/tmdb/Movie/IMovie";
 import Pagination from "@components/Search/Results/Pagination";
-import useTopMedia from "hooks/TanStack/Query/useGetTopMedia";
+import useTopMedia from "hooks/TanStack/Query/Other/useGetTopMedia";
 import PendingStatus from "@components/Shared/Status/PendingStatus";
 import { ITVShow } from "types/tmdb/TV/ITVShow";
 import { useSearchParams } from "react-router-dom";

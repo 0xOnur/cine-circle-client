@@ -1,6 +1,7 @@
 import axiosInstance from "./axiosinstance";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { setWatchlist } from "@redux/slices/watchlist.slice";
+import axios from "axios";
 
 // Login user
 export const loginUser = createAsyncThunk(
@@ -67,3 +68,18 @@ export const updateReduxUser = createAsyncThunk(
     }
   }
 );
+
+// Get User Info
+export const getUserInfo = async (username: string) => {
+  try {
+    const response = await axiosInstance.get(
+      `/user/get-user?username=${username}`
+    );
+    return response.data;
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      return Promise.reject(error.response?.data);
+    }
+    return Promise.reject(error);
+  }
+};

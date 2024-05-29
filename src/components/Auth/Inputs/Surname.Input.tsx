@@ -10,7 +10,6 @@ const SurnameInput = ({ lastName, onChange }: IProps) => {
     <FormControl id="lastName" isRequired>
       <FormLabel>Last Name</FormLabel>
       <Input
-        
         type="text"
         minLength={3}
         maxLength={20}

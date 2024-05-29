@@ -83,3 +83,20 @@ export const getUserInfo = async (username: string) => {
     return Promise.reject(error);
   }
 };
+
+// Edit Profile
+export const editProfile = async (formData: FormData) => {
+  try {
+    const response = await axiosInstance.post("/user/edit-profile", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    return response.data;
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      return Promise.reject(error.response?.data);
+    }
+    return Promise.reject(error);
+  }
+};

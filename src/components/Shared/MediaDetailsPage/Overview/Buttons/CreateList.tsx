@@ -8,7 +8,7 @@ import {
   Text,
   Textarea,
 } from "@chakra-ui/react";
-import { useCreateList } from "hooks/TanStack/Mutation/useCreateList.mutation";
+import { useCreateList } from "hooks/TanStack/Mutation/List/useCreateList.mutation";
 
 interface IProps {
   headerText?: string;

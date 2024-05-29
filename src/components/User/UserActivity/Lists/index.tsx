@@ -55,10 +55,10 @@ const UserLists = ({ username }: IProps) => {
             <ListCard username={username} list={list} />
           </Fragment>
         ))}
-          </Flex>
-          <Flex w="full" justify="flex-end">
-              <SeeMore href={`/user/${username}/lists`} />
-          </Flex>
+      </Flex>
+      <Flex w="full" justify="flex-end">
+        <SeeMore href={`/user/${username}/lists`} />
+      </Flex>
     </Flex>
   );
 };

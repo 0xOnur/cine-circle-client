@@ -10,7 +10,6 @@ const EmailInput = ({ email, onChange }: IProps) => {
     <FormControl id="email" isRequired>
       <FormLabel>Email address</FormLabel>
       <Input
-        
         type="email"
         value={email}
         onChange={onChange}

@@ -2,7 +2,7 @@ import { Box, Link, useColorModeValue } from "@chakra-ui/react";
 import CreateListAccordion from "./CreateListAccordion";
 import { SettingsIcon } from "@chakra-ui/icons";
 import Listitem from "./List.item";
-import { useListMutation } from "hooks/TanStack/Mutation/useList.mutation";
+import { useListMutation } from "hooks/TanStack/Mutation/List/useList.mutation";
 
 interface IProps {
   lists: IList[];
@@ -12,7 +12,6 @@ interface IProps {
 
 const Lists = ({ lists, tmdbID, mediaType }: IProps) => {
   const { addListMutation, removeListMutation } = useListMutation({
-    listId: "",
     tmdbID,
     mediaType,
   });

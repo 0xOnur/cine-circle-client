@@ -10,7 +10,6 @@ const NameInput = ({ name, onChange }: IProps) => {
     <FormControl id="firstName" isRequired>
       <FormLabel>First Name</FormLabel>
       <Input
-        
         type="text"
         minLength={3}
         maxLength={20}

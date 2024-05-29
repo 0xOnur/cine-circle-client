@@ -3,12 +3,11 @@ import { addMediaToList, removeMediaFromList } from "@api/list.api";
 import { useToast } from "@chakra-ui/react";
 
 interface IProps {
-  listId: string;
   tmdbID: number;
   mediaType: "movie" | "tv";
 }
 
-export const useListMutation = ({ listId, tmdbID, mediaType }: IProps) => {
+export const useListMutation = ({ tmdbID, mediaType }: IProps) => {
   const queryClient = useQueryClient();
   const toast = useToast();
 

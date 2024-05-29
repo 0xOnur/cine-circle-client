@@ -20,12 +20,13 @@ import { AppDispatch, RootState } from "@redux/config/store";
 import { useDispatch, useSelector } from "react-redux";
 import { createUser } from "@api/user.api";
 import { useNavigate } from "react-router-dom";
-
+import AboutInput from "../Inputs/About.Input";
+import LocationInput from "../Inputs/Location.Input";
 
 const SignUpPage = () => {
   const dispatch = useDispatch<AppDispatch>();
   const isPending = useSelector((state: RootState) => state.user.isPending);
-  const navigate = useNavigate();  
+  const navigate = useNavigate();
   const toast = useToast();
 
   const [userData, setUserData] = useState({
@@ -33,7 +34,9 @@ const SignUpPage = () => {
     name: "",
     surname: "",
     email: "",
+    about: "",
     password: "",
+    location: "",
   });
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -111,10 +114,24 @@ const SignUpPage = () => {
                 }
               />
 
+              <LocationInput
+                location={userData.location}
+                onChange={(e) =>
+                  setUserData({ ...userData, location: e.target.value })
+                }
+              />
+
               <PasswordInput
                 password={userData.password}
                 onChange={(e) =>
                   setUserData({ ...userData, password: e.target.value })
+                }
+              />
+
+              <AboutInput
+                about={userData.about}
+                onChange={(e) =>
+                  setUserData({ ...userData, about: e.target.value })
                 }
               />
 

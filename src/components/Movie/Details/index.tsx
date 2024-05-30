@@ -51,7 +51,7 @@ const MovieDetailsPage = ({ movieId }: IProps) => {
               castData={data.credits?.cast}
               mediaType="movie"
             />
-            <MediaAchievements media={data} />
+            <MediaAchievements media={data} media_type="movie" />
           </Container>
         </Flex>
       )}

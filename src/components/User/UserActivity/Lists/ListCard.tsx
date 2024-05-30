@@ -89,7 +89,7 @@ const ListCard = ({ username, list }: IProps) => {
             cursor={"pointer"}
             w="full"
           >
-            <Text fontWeight="bold" letterSpacing={1} fontSize="lg">
+            <Text fontWeight="bold" fontSize="lg">
               View List
             </Text>
             <BsArrowUpRight />

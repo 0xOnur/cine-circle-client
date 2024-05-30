@@ -18,6 +18,7 @@ type DetailData = {
   name: string;
   overview?: string;
   status?: string;
+  runtime?: number;
   tagline?: string;
   releasedDate: Date | string;
   posterPath?: string;
@@ -75,10 +76,23 @@ const DetailMeta = ({ data, extras }: IProps) => {
             {data.status}
           </Badge>
 
-          <Text textTransform="uppercase" letterSpacing={1} fontSize="xs">
+          <Text textTransform="uppercase" letterSpacing={1} fontSize="sm">
             {new Date(data.releasedDate).getFullYear()}
           </Text>
         </Flex>
+
+        {data.runtime && (
+          <Flex
+            alignItems="center"
+            color="gray.300"
+            fontSize="sm"
+            fontWeight="500"
+          >
+            <Box as="span" color="gray.300" fontSize="sm" fontWeight="500">
+              {Math.floor(data.runtime / 60)} Hour {data.runtime % 60} minute
+            </Box>
+          </Flex>
+        )}
 
         {extras ? (
           <Flex wrap="wrap" gridGap={2}>

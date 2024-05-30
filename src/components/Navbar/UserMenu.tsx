@@ -58,7 +58,7 @@ const UserMenu = () => {
 
       <MenuList boxShadow={"xl"} rounded={"xl"} py={0} overflow={"hidden"}>
         <Flex flexDirection={"column"} maxW={"250"}>
-          <Link to={"/user/"}>
+          <Link to={`/user/${username}`}>
             <MenuItem _hover={menuItemHover} py={2}>
               <Text
                 fontWeight={"bold"}

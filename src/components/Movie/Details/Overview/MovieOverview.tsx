@@ -24,6 +24,7 @@ const MovieOverview = ({ data }: IProps) => {
                 name: data.title,
                 tagline: data.tagline,
                 status: data.status,
+                runtime: data.runtime,
                 releasedDate: data.release_date,
                 posterPath: data.poster_path,
                 overview: data.overview,

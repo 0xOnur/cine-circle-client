@@ -1,24 +1,22 @@
 import { Flex } from "@chakra-ui/react";
-import Budget from "@components/Shared/MediaDetailsPage/Others/Budget";
+import Budget from "@components/Shared/MediaDetailsPage/Achievements/Budget";
 import MediaVideos from "@components/Shared/MediaDetailsPage/Videos";
 import { Fragment } from "react/jsx-runtime";
 import { IMovieDetails } from "types/tmdb/Movie/IMovieDetails";
 import { ITvShowDetails } from "types/tmdb/TV/ITVShowDetails";
-import MediaLanguage from "../Others/Language";
+import MediaLanguage from "./Language";
 
 interface IProps {
   media: IMovieDetails | ITvShowDetails;
+  media_type: "movie" | "tv";
 }
 
-const MediaAchievements = ({ media }: IProps) => {
+const MediaAchievements = ({ media, media_type }: IProps) => {
   if (!media) return null;
-
-  const movie = media as IMovieDetails;
-  const tv = media as ITvShowDetails;
 
   return (
     <Fragment>
-      {movie.budget && movie.revenue ? (
+      {media_type === "movie" ? (
         <Flex
           direction="column"
           gap={10}
@@ -26,20 +24,22 @@ const MediaAchievements = ({ media }: IProps) => {
           minW={250}
           justifyItems={"flex-end"}
         >
-          <Budget budget={movie?.budget} revenue={movie.revenue} />
+          {"budget" in media && "revenue" in media && (
+            <Budget budget={media.budget} revenue={media.revenue} />
+          )}
           <MediaLanguage
-            original_language={movie?.original_language}
-            spoken_languages={movie?.spoken_languages}
+            original_language={media.original_language}
+            spoken_languages={media.spoken_languages}
           />
-          <MediaVideos videos={movie?.videos} />
+          <MediaVideos videos={media.videos} />
         </Flex>
       ) : (
         <Flex direction="column" gap={10}>
           <MediaLanguage
-            original_language={tv?.original_language}
-            spoken_languages={tv?.spoken_languages}
+            original_language={media.original_language}
+            spoken_languages={media.spoken_languages}
           />
-          <MediaVideos videos={tv?.videos} />
+          <MediaVideos videos={media.videos} />
         </Flex>
       )}
     </Fragment>

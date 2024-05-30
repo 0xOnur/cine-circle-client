@@ -55,7 +55,7 @@ const TVShowDetailsPage = ({ showId }: IProps) => {
               />
               <SeasonSlider data={data} />
             </Box>
-            <MediaAchievements media={data} />
+            <MediaAchievements media={data} media_type="tv" />
           </Container>
         </Flex>
       )}

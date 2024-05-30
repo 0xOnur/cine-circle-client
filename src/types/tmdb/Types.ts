@@ -31,6 +31,7 @@ export type Language = {
 export type Network = {
   id: number;
   name: string;
+  logo_path: string;
 };
 
 export type Season = {

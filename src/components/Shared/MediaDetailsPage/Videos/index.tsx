@@ -1,4 +1,4 @@
-import { Box, Button, Link } from "@chakra-ui/react";
+import { Box, Button, Link, Text } from "@chakra-ui/react";
 import SectionTitle from "@components/Home/Trending/SectionTitle";
 import { FaYoutube } from "react-icons/fa";
 import { IVideos } from "types/tmdb/Types";
@@ -19,9 +19,6 @@ const MediaVideos = ({ videos }: IProps) => {
   return (
     <Box
       display="flex"
-      maxW={300}
-      w={"full"}
-      overflow="hidden"
       flexDirection="column"
       gap={3}
     >
@@ -39,9 +36,11 @@ const MediaVideos = ({ videos }: IProps) => {
             size="sm"
             rounded="md"
             colorScheme="gray"
-            leftIcon={<FaYoutube size={20} color="red" />}
+            leftIcon={<FaYoutube size={20} color="#7000e0" />}
           >
-            {item.name.length > 30 ? item.name.slice(0, 30) + "..." : item.name}
+            <Text maxW={{ base: "full", lg: 250 }} overflow="hidden" textOverflow="ellipsis">
+              {item.name}
+            </Text>
           </Button>
         </Link>
       ))}

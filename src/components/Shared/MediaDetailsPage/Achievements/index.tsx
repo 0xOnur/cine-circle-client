@@ -5,6 +5,8 @@ import { Fragment } from "react/jsx-runtime";
 import { IMovieDetails } from "types/tmdb/Movie/IMovieDetails";
 import { ITvShowDetails } from "types/tmdb/TV/ITVShowDetails";
 import MediaLanguage from "./Language";
+import Webpage from "./Webpage";
+import NetworkDetails from "./Network";
 
 interface IProps {
   media: IMovieDetails | ITvShowDetails;
@@ -15,15 +17,9 @@ const MediaAchievements = ({ media, media_type }: IProps) => {
   if (!media) return null;
 
   return (
-    <Fragment>
+    <Flex direction="column" gap={10} minW={250} justifyItems={"flex-end"}>
       {media_type === "movie" ? (
-        <Flex
-          direction="column"
-          gap={10}
-          maxW={300}
-          minW={250}
-          justifyItems={"flex-end"}
-        >
+        <>
           {"budget" in media && "revenue" in media && (
             <Budget budget={media.budget} revenue={media.revenue} />
           )}
@@ -31,18 +27,20 @@ const MediaAchievements = ({ media, media_type }: IProps) => {
             original_language={media.original_language}
             spoken_languages={media.spoken_languages}
           />
+          {media.homepage && <Webpage url={media.homepage} />}
           <MediaVideos videos={media.videos} />
-        </Flex>
+        </>
       ) : (
-        <Flex direction="column" gap={10}>
+        <>
+          {"networks" in media && <NetworkDetails networks={media.networks} />}
           <MediaLanguage
             original_language={media.original_language}
             spoken_languages={media.spoken_languages}
           />
           <MediaVideos videos={media.videos} />
-        </Flex>
+        </>
       )}
-    </Fragment>
+    </Flex>
   );
 };
 

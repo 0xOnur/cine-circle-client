@@ -27,7 +27,7 @@ const ModalEditProfile = ({ user, isOpen, onClose }: IProps) => {
       onClose={onClose}
       size="lg"
       motionPreset="scale"
-      closeOnOverlayClick={false}
+      closeOnOverlayClick={!isChanged}
     >
       <ModalOverlay
         bg="none"

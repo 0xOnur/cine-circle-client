@@ -20,6 +20,7 @@ const UserMenu = () => {
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
   const reduxUser = useSelector((state: RootState) => state.user);
+  const username = reduxUser.user?.username || "Username";
 
   const menuItemHover = {
     bg: useColorModeValue("darkPurple.50", "gray.900"),
@@ -48,14 +49,16 @@ const UserMenu = () => {
         <Avatar
           size={"sm"}
           src={
-            reduxUser.user?.avatar ? reduxUser.user?.avatar : "https://bit.ly/broken-link"
+            reduxUser.user?.avatar
+              ? reduxUser.user?.avatar
+              : "https://bit.ly/broken-link"
           }
         />
       </MenuButton>
 
       <MenuList boxShadow={"xl"} rounded={"xl"} py={0} overflow={"hidden"}>
         <Flex flexDirection={"column"} maxW={"250"}>
-          <Link to={"/user/" + reduxUser.user?.username}>
+          <Link to={"/user/"}>
             <MenuItem _hover={menuItemHover} py={2}>
               <Text
                 fontWeight={"bold"}
@@ -64,27 +67,21 @@ const UserMenu = () => {
                 textOverflow={"ellipsis"}
                 width={"100%"}
               >
-                {reduxUser.user?.username || "Username"}
+                {username}
               </Text>
             </MenuItem>
           </Link>
           <MenuDivider />
 
-          <Link to={"/watchlists/" + reduxUser.user?.username}>
+          <Link to={`/user/${username}/watchlist`}>
             <MenuItem _hover={menuItemHover} py={2}>
               <Text fontWeight={"bold"} fontSize={"md"}>
-                Watchlists
+                Watchlist
               </Text>
             </MenuItem>
           </Link>
-          <Link to={"/favorites/" + reduxUser.user?.username}>
-            <MenuItem _hover={menuItemHover} py={2}>
-              <Text fontWeight={"bold"} fontSize={"md"}>
-                Favorites
-              </Text>
-            </MenuItem>
-          </Link>
-          <Link to={"/reviews/" + reduxUser.user?.username}>
+
+          <Link to={`/user/${username}/reviews`}>
             <MenuItem _hover={menuItemHover} py={2}>
               <Text fontWeight={"bold"} fontSize={"md"}>
                 Reviews
@@ -92,13 +89,14 @@ const UserMenu = () => {
             </MenuItem>
           </Link>
 
-          <Link to="/settings">
+          <Link to={`/user/${username}/lists`}>
             <MenuItem _hover={menuItemHover} py={2}>
               <Text fontWeight={"bold"} fontSize={"md"}>
-                Settings
+                Lists
               </Text>
             </MenuItem>
           </Link>
+
           <MenuDivider />
           <MenuItem _hover={menuItemHover} py={2} onClick={handleLogout}>
             <Text fontWeight={"bold"} fontSize={"md"}>

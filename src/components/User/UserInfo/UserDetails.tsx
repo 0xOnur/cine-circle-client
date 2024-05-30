@@ -36,7 +36,12 @@ const UserDetails = ({ user }: IProps) => {
         </Flex>
       )}
       {user.about && (
-        <Text fontSize="md" fontWeight="500" color="gray.500">
+        <Text
+          fontSize="md"
+          fontWeight="500"
+          color="gray.500"
+          whiteSpace="pre-wrap"
+        >
           {user.about}
         </Text>
       )}

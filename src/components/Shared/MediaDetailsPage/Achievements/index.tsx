@@ -1,12 +1,11 @@
-import { Flex } from "@chakra-ui/react";
+import MediaVideos from "@components/Shared/MediaDetailsPage/Achievements/MediaTrailers";
 import Budget from "@components/Shared/MediaDetailsPage/Achievements/Budget";
-import MediaVideos from "@components/Shared/MediaDetailsPage/Videos";
-import { Fragment } from "react/jsx-runtime";
 import { IMovieDetails } from "types/tmdb/Movie/IMovieDetails";
 import { ITvShowDetails } from "types/tmdb/TV/ITVShowDetails";
+import { Flex } from "@chakra-ui/react";
 import MediaLanguage from "./Language";
-import Webpage from "./Webpage";
 import NetworkDetails from "./Network";
+import Webpage from "./Webpage";
 
 interface IProps {
   media: IMovieDetails | ITvShowDetails;

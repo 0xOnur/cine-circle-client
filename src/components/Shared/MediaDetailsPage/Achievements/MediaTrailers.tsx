@@ -7,7 +7,7 @@ interface IProps {
   videos: IVideos;
 }
 
-const MediaVideos = ({ videos }: IProps) => {
+const MediaTrailers = ({ videos }: IProps) => {
   const mediaTrailers = videos?.results.filter(
     (item) => item.type === "Trailer" && item.site === "YouTube"
   );
@@ -48,4 +48,4 @@ const MediaVideos = ({ videos }: IProps) => {
   );
 };
 
-export default MediaVideos;
+export default MediaTrailers;

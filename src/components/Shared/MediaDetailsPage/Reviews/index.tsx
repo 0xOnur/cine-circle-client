@@ -1,17 +1,20 @@
-import { Flex } from "@chakra-ui/react";
+import useGetMediaReviews from "hooks/TanStack/Query/Other/useGetMediaReviews";
+import PendingStatus from "@components/Shared/Status/PendingStatus";
 import SectionTitle from "@components/Home/Trending/SectionTitle";
 import ErrorStatus from "@components/Shared/Status/ErrorStatus";
 import NoItemAlert from "@components/Shared/Status/NoItemAlert";
-import PendingStatus from "@components/Shared/Status/PendingStatus";
-import useGetUserReviews from "hooks/TanStack/Query/User/useGetUserReviews";
+import { IMovieDetails } from "types/tmdb/Movie/IMovieDetails";
+import { ITvShowDetails } from "types/tmdb/TV/ITVShowDetails";
+import { Flex } from "@chakra-ui/react";
 
 interface IProps {
-  username: string;
+  media: IMovieDetails | ITvShowDetails;
+  media_type: "movie" | "tv-show";
 }
 
-const UserReviews = ({ username }: IProps) => {
-  const { data, status, refetch, isRefetching } = useGetUserReviews({
-    username,
+const LastMediaReviews = ({ media, media_type }: IProps) => {
+  const { data, status, refetch, isRefetching } = useGetMediaReviews({
+    tmdbID: media.id.toString(),
   });
 
   if (status === "pending" || isRefetching) {
@@ -32,10 +35,10 @@ const UserReviews = ({ username }: IProps) => {
     <Flex>
       <SectionTitle
         sectionTitle="Last Reviews"
-        sectionHref={`/user/${username}/reviews`}
+        sectionHref={`/${media_type}/${media.id}/reviews`}
       />
     </Flex>
   );
 };
 
-export default UserReviews;
+export default LastMediaReviews;

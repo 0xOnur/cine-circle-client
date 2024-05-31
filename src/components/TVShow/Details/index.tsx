@@ -8,6 +8,7 @@ import TVShowOverview from "./Overview/TVShowOverview";
 import CastSlider from "@components/Shared/MediaDetailsPage/CastSlider";
 import SeasonSlider from "./Seasons";
 import MediaAchievements from "@components/Shared/MediaDetailsPage/Achievements";
+import Reviews from "@components/Shared/MediaDetailsPage/Reviews";
 
 interface IProps {
   showId: string | undefined;
@@ -36,26 +37,27 @@ const TVShowDetailsPage = ({ showId }: IProps) => {
         <Flex direction="column">
           <Title title={data.name} />
           <TVShowOverview data={data} />
-          <Container
-            display="flex"
-            flexDirection={{
-              base: "column",
-              md: "column",
-              lg: "row",
-            }}
-            rowGap={8}
-            columnGap="50px"
-            justifyContent={"space-between"}
-          >
-            <Box w="full" display="flex" gap={8} flexDirection="column">
-              <CastSlider
-                mediaId={data.id}
-                castData={data.credits?.cast}
-                mediaType="tv"
-              />
-              <SeasonSlider data={data} />
-            </Box>
-            <MediaAchievements media={data} media_type="tv" />
+          <Container display="flex" flexDirection="column" gap={8}>
+            <Flex
+              direction={{
+                base: "column",
+                lg: "row",
+              }}
+              rowGap={8}
+              columnGap="50px"
+              justifyContent={"space-between"}
+            >
+              <Box w="full" display="flex" flexDirection="column" gap={8}>
+                <CastSlider
+                  mediaId={data.id}
+                  castData={data.credits?.cast}
+                  mediaType="tv-show"
+                />
+                <SeasonSlider data={data} />
+                <Reviews media={data} media_type="tv-show" />
+              </Box>
+              <MediaAchievements media={data} media_type="tv" />
+            </Flex>
           </Container>
         </Flex>
       )}

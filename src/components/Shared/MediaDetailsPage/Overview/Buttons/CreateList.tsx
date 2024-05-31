@@ -39,7 +39,6 @@ const CreateList = ({ headerText, defaultMediaType }: IProps) => {
         <Text
           textAlign="center"
           fontWeight="600"
-          letterSpacing={1.5}
           textTransform="uppercase"
           fontSize="lg"
           opacity={0.8}

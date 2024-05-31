@@ -67,8 +67,8 @@ const ModalList = ({ tmdbID, mediaType, isOpen, onClose }: IModalListProps) => {
               defaultMediaType={mediaType}
               headerText={
                 mediaType === "tv"
-                  ? "Create a new TV List"
-                  : "Create a new Movie List"
+                  ? "Create new TV List"
+                  : "Create new Movie List"
               }
             />
           ) : (

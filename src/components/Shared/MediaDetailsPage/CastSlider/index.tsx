@@ -8,7 +8,7 @@ import { CreditCast } from "types/tmdb/Types";
 
 interface IProps {
   mediaId: number;
-  mediaType: "movie" | "tv";
+  mediaType: "movie" | "tv-show";
   castData: CreditCast[];
 }
 
@@ -26,10 +26,10 @@ const CastSlider = ({ mediaId, mediaType, castData }: IProps) => {
           {castItems.length > 0 && (
             <SliderContainer
               sectionTitle="Top Cast"
-              sectionHref={`/media/${mediaType}/${mediaId}/credits`}
+              sectionHref={`/${mediaType}/${mediaId}/credits`}
               footer={
                 <FullCastCrewButton
-                  href={`/media/${mediaType}/${mediaId}/credits`}
+                  href={`/${mediaType}/${mediaId}/credits`}
                 />
               }
             >

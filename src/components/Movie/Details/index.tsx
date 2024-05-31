@@ -1,12 +1,13 @@
+import MediaAchievements from "@components/Shared/MediaDetailsPage/Achievements";
 import useGetMovieDetails from "hooks/TanStack/Query/Movie/useGetMovieDetails";
+import CastSlider from "@components/Shared/MediaDetailsPage/CastSlider";
 import PendingStatus from "@components/Shared/Status/PendingStatus";
+import Reviews from "@components/Shared/MediaDetailsPage/Reviews";
 import ErrorStatus from "@components/Shared/Status/ErrorStatus";
-import { Container, Flex } from "@chakra-ui/react";
-import { Fragment } from "react";
+import { Box, Container, Flex } from "@chakra-ui/react";
 import MovieOverview from "./Overview/MovieOverview";
 import Title from "@routes/Title";
-import MediaAchievements from "@components/Shared/MediaDetailsPage/Achievements";
-import CastSlider from "@components/Shared/MediaDetailsPage/CastSlider";
+import { Fragment } from "react";
 
 interface IProps {
   movieId: string | undefined;
@@ -35,23 +36,26 @@ const MovieDetailsPage = ({ movieId }: IProps) => {
         <Flex direction="column">
           <Title title={data.title} />
           <MovieOverview data={data} />
-          <Container
-            display="flex"
-            flexDirection={{
-              base: "column",
-              md: "column",
-              lg: "row",
-            }}
-            rowGap={8}
-            columnGap="50px"
-            justifyContent={"space-between"}
-          >
-            <CastSlider
-              mediaId={data.id}
-              castData={data.credits?.cast}
-              mediaType="movie"
-            />
-            <MediaAchievements media={data} media_type="movie" />
+          <Container display="flex" flexDirection="column" gap={8}>
+            <Flex
+              direction={{
+                base: "column",
+                lg: "row",
+              }}
+              rowGap={8}
+              columnGap="50px"
+              justifyContent={"space-between"}
+            >
+              <Box w="full" display="flex" flexDirection="column" gap={8}>
+                <CastSlider
+                  mediaId={data.id}
+                  castData={data.credits?.cast}
+                  mediaType="movie"
+                />
+                <Reviews media={data} media_type="movie" />
+              </Box>
+              <MediaAchievements media={data} media_type="movie" />
+            </Flex>
           </Container>
         </Flex>
       )}

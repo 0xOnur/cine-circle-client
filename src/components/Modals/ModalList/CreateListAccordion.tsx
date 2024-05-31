@@ -25,7 +25,7 @@ const CreateListAccordion = ({ mediaType }: IProps) => {
             _hover={{ bg: "darkPurple.600" }}
           >
             <Box as="span" flex="1" textAlign="left">
-              <Text letterSpacing={1}>
+              <Text fontWeight="600">
                 Create New {mediaType === "tv" ? "TV Show" : "Movie"} List
               </Text>
             </Box>

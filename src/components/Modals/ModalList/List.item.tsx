@@ -1,5 +1,5 @@
 import { AddIcon, MinusIcon } from "@chakra-ui/icons";
-import { Box, Button, Grid, Text } from "@chakra-ui/react";
+import { Box, Button, Grid, Heading, Text } from "@chakra-ui/react";
 
 interface ListitemProps {
   tmdbID: number;
@@ -14,8 +14,6 @@ const Listitem = ({
   handleAddList,
   handleRemoveList,
 }: ListitemProps) => {
-  const mediaLength = list.medias?.length;
-
   const isAdded = list.medias
     ? list.medias.some((media) => media.tmdbID === String(tmdbID))
     : false;
@@ -30,28 +28,32 @@ const Listitem = ({
       alignItems="center"
     >
       <Box>
-        <Text
-          noOfLines={1}
-          fontWeight="bold"
-          fontSize="md"
-          letterSpacing={1}
-          textAlign="center"
-          textTransform="capitalize"
-          mb={2}
-        >
+        <Heading mb={2} fontSize={"xl"}>
           {list.listName}
-        </Text>
-        <Text fontWeight={500}>
-          {mediaLength} {mediaLength > 1 ? "items" : "item"}
+        </Heading>
+
+        <Box
+          bg="darkPurple.700"
+          color={"white"}
+          display={"inline-block"}
+          px={2}
+          py={1}
+          mb={2}
+          rounded="md"
+        >
+          <Text fontSize={"xs"} fontWeight="medium" textTransform={"uppercase"}>
+            {list.listType}
+          </Text>
+        </Box>
+
+        <Text color={"gray.500"} fontWeight="medium">
+          {list.medias.length} {list.medias.length > 1 ? "items" : "item"}
         </Text>
 
-        <Text fontWeight={500}>
-          {list.listType === "movie" ? "Movie" : "TV Show"} List
-        </Text>
-        <Text fontSize="sm" color="gray.500">
+        <Text fontSize="sm" color="gray.500" fontWeight="medium">
           Created: {new Date(list.createdAt).toLocaleDateString()}
         </Text>
-        <Text fontSize="sm" color="gray.500">
+        <Text fontSize="sm" color="gray.500" fontWeight="medium">
           Last update: {new Date(list.updatedAt).toLocaleDateString()}
         </Text>
       </Box>

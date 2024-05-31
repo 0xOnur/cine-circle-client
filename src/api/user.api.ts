@@ -9,7 +9,7 @@ export const loginUser = createAsyncThunk(
   async (user: { email: string; password: string }, thunkAPI) => {
     try {
       const response = await axiosInstance.post("/user/login", user);
-      thunkAPI.dispatch(setWatchlist(response.data.watchlist));
+      thunkAPI.dispatch(setWatchlist(response.data?.watchlist));
       return response.data;
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -32,7 +32,7 @@ export const createUser = createAsyncThunk(
   ) => {
     try {
       const response = await axiosInstance.post("/user/register", userData);
-      thunkAPI.dispatch(setWatchlist(response.data.watchlist));
+      thunkAPI.dispatch(setWatchlist(response.data?.watchlist));
       return response.data;
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.response.data);

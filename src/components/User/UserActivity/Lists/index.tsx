@@ -1,12 +1,11 @@
-import { Flex } from "@chakra-ui/react";
 import ErrorStatus from "@components/Shared/Status/ErrorStatus";
 import PendingStatus from "@components/Shared/Status/PendingStatus";
 import useGetUserLists from "hooks/TanStack/Query/User/useGetUserLists";
 import SectionTitle from "@components/Home/Trending/SectionTitle";
-import React, { Fragment } from "react";
-import ListCard from "./ListCard";
 import NoItemAlert from "@components/Shared/Status/NoItemAlert";
 import SeeMore from "@components/Shared/Others/SeeMore";
+import { Flex, Grid } from "@chakra-ui/react";
+import ListCard from "./ListCard";
 
 interface IProps {
   username: string;
@@ -25,9 +24,9 @@ const UserLists = ({ username }: IProps) => {
     return <ErrorStatus refetch={refetch} isRefetching={isRefetching} />;
   }
 
-  const lastFiveLists = data.slice(0, 5);
+  const lastFourLists = data.slice(0, 4);
 
-  if (!lastFiveLists || lastFiveLists.length === 0) {
+  if (!lastFourLists || lastFourLists.length === 0) {
     return <NoItemAlert sectionTitle="Lists" text="No lists found" />;
   }
 
@@ -39,23 +38,28 @@ const UserLists = ({ username }: IProps) => {
         justify={{ base: "center", sm: "flex-start" }}
       >
         <SectionTitle
-          sectionTitle={`Last created lists (${lastFiveLists.length})`}
+          sectionTitle={`Last created lists (${lastFourLists.length})`}
           color="gray.500"
           sectionHref={`/user/${username}/lists`}
         />
       </Flex>
-      <Flex
-        w="full"
-        align="center"
-        direction={{ base: "column", sm: "row" }}
+      <Grid
         gap={5}
+        minW={0}
+        minH={0}
+        w="fit-content"
+        templateColumns={{
+          base: "repeat(1, 1fr)",
+          sm: "repeat(2, 1fr)",
+          lg: "repeat(3, 1fr)",
+        }}
       >
-        {lastFiveLists.map((list) => (
-          <Fragment key={list._id}>
+        {lastFourLists.map((list) => (
+          <Flex minW={0} key={list._id}>
             <ListCard username={username} list={list} />
-          </Fragment>
+          </Flex>
         ))}
-      </Flex>
+      </Grid>
       <Flex w="full" justify="flex-end">
         <SeeMore href={`/user/${username}/lists`} />
       </Flex>

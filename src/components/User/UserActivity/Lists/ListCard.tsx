@@ -36,8 +36,8 @@ const ListCard = ({ username, list }: IProps) => {
   const lastMedia = list.medias[list.medias.length - 1];
 
   const { backdropUrl } = useGetMediaPoster({
-    mediaType: lastMedia.mediaType,
-    tmdbID: lastMedia.tmdbID,
+    mediaType: lastMedia?.mediaType,
+    tmdbID: lastMedia?.tmdbID,
   });
 
   return (
@@ -55,8 +55,8 @@ const ListCard = ({ username, list }: IProps) => {
           objectFit="cover"
           h="full"
           w="full"
-          fallbackSrc="https://via.placeholder.com/300"
           alt={"Blog Image"}
+          fallbackSrc="https://res.cloudinary.com/dwcw9iftp/image/upload/v1717107358/CineCircle/List/empy_list_image_m1xl0e.jpg"
         />
       </Box>
       <Box p={4}>

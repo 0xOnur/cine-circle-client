@@ -13,6 +13,7 @@ import ListButton from "./Buttons/ListButton";
 import WatchlistButton from "./Buttons/WatchlistButton";
 import RateButton from "./Buttons/RateButton";
 import useGetMediaRatings from "hooks/TanStack/Query/Rating/useGetMediaRatings";
+import { FaStar } from "react-icons/fa";
 
 type DetailData = {
   tmdbID: number;
@@ -32,12 +33,11 @@ interface IProps {
 }
 
 const DetailMeta = ({ data, extras }: IProps) => {
-  const {
-    data: ratings,
-  } = useGetMediaRatings({
+  const { data: ratingsData } = useGetMediaRatings({
     tmdbID: data.tmdbID.toString(),
     mediaType: data.mediaType,
   });
+
   return (
     <Box
       color="white"
@@ -102,6 +102,21 @@ const DetailMeta = ({ data, extras }: IProps) => {
           </Flex>
         )}
 
+        {ratingsData && ratingsData.averageRating && (
+          <Flex direction={"column"} fontSize="sm" gap={2}>
+            <Flex display="flex" alignItems="center" gap={1}>
+              <FaStar size={30} fill="#FFB800" />
+              <Heading size="lg">
+                {ratingsData.averageRating.toFixed(1)} / 10
+              </Heading>
+            </Flex>
+
+            <Text fontSize="0.7rem" letterSpacing={2} textTransform="uppercase">
+              {ratingsData.ratings.length.toString()} ratings
+            </Text>
+          </Flex>
+        )}
+
         {extras ? (
           <Flex wrap="wrap" gridGap={2}>
             {extras}
@@ -111,11 +126,11 @@ const DetailMeta = ({ data, extras }: IProps) => {
         <Flex alignItems="center" gap={5}>
           <ListButton tmdbID={data.tmdbID} mediaType={data.mediaType} />
           <WatchlistButton tmdbID={data.tmdbID} mediaType={data.mediaType} />
-          {ratings && (
+          {ratingsData && (
             <RateButton
               tmdbID={data.tmdbID}
               mediaType={data.mediaType}
-              reviews={ratings}
+              reviews={ratingsData}
             />
           )}
         </Flex>

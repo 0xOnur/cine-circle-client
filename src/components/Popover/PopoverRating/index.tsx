@@ -41,7 +41,10 @@ const PopoverRating = ({ tmdbID, mediaType, myRating, trigger }: IProps) => {
   });
 
   return (
-    <Popover isLazy>
+    <Popover
+      isLazy
+      onClose={() => (myRating ? setRating(myRating.rating) : setRating(0))}
+    >
       <PopoverTrigger>{trigger}</PopoverTrigger>
       <Portal>
         <PopoverContent

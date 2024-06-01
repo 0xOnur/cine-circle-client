@@ -19,6 +19,8 @@ const ReviewButton = ({ tmdbID, mediaType, btnText, isDisabled }: IProps) => {
       )}
       <Button
         w="fit-content"
+        h="2.5rem"
+        fontWeight="bold"
         size="sm"
         variant="outline"
         rounded="md"
@@ -26,6 +28,7 @@ const ReviewButton = ({ tmdbID, mediaType, btnText, isDisabled }: IProps) => {
         leftIcon={<FaList />}
         colorScheme="darkPurple"
         isDisabled={isDisabled}
+        hidden={isDisabled}
         onClick={onOpen}
       >
         {btnText}

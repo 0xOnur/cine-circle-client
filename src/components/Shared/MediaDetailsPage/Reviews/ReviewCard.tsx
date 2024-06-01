@@ -90,7 +90,13 @@ const ReviewCard = ({ reduxUserId, review, showMediaInfo }: IProps) => {
                 {review.title}
               </Heading>
 
-              <Flex gap={4} justify="flex-end">
+              <Flex
+                gap={4}
+                mb={2}
+                justify="flex-end"
+                align="end"
+                direction={{ base: "column", md: "row" }}
+              >
                 {review.spoiler && (
                   <ShowSpoilerButton
                     isSpoiler={isSpoiler}

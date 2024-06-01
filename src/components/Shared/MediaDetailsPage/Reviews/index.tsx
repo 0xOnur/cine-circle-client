@@ -10,6 +10,7 @@ import ReviewButton from "./ReviewButton";
 import { useSelector } from "react-redux";
 import { Flex } from "@chakra-ui/react";
 import ReviewCard from "./ReviewCard";
+import SeeMore from "@components/Shared/Others/SeeMore";
 
 interface IProps {
   media: IMovieDetails | ITvShowDetails;
@@ -68,6 +69,12 @@ const MediaReviews = ({ media, media_type }: IProps) => {
             reduxUserId={reduxUser.user?._id}
           />
         ))}
+      </Flex>
+      <Flex w="full" justify="flex-end">
+        <SeeMore
+          href={`/${media_type}/${media.id}/reviews`}
+          btnText="See all reviews"
+        />
       </Flex>
 
       <ReviewButton

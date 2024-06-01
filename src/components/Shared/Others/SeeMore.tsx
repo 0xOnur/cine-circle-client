@@ -2,11 +2,12 @@ import { Box, Button, Link, Spacer } from "@chakra-ui/react";
 
 interface IProps {
   href: string;
+  btnText?: string;
 }
 
-const SeeMore = ({ href }: IProps) => {
+const SeeMore = ({ href, btnText }: IProps) => {
   return (
-    <Box pt={3}>
+    <Box>
       <Link href={href}>
         <Button
           colorScheme="darkPurple"
@@ -19,7 +20,7 @@ const SeeMore = ({ href }: IProps) => {
           fontSize={{ base: "sm", sm: "md" }}
           bg="darkPurple.500"
         >
-          See more
+          {btnText || "See more"}
         </Button>
       </Link>
 

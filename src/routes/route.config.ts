@@ -38,6 +38,12 @@ export const routeConfig: IRouteConfig[] = [
     private: false,
   },
   {
+    path: "/user/:username/reviews",
+    component: React.lazy(() => import("@layout/User/UserReview.Layout")),
+    title: "User Reviews",
+    private: false,
+  },
+  {
     path: "/movie/:movieId",
     component: React.lazy(() => import("@layout/Movies/Movie.Layout")),
     title: "Movie",

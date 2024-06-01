@@ -34,7 +34,7 @@ const Watchlist = ({ username }: IProps) => {
 
   return (
     <Flex direction="column" w="full" gap={20} align={"center"}>
-      <SectionTitle sectionTitle={`${username}'s Watchlist`} />
+      <SectionTitle sectionTitle={`${username}'s Watchlist (${data?.medias?.length})`} />
       <Grid
         w="full"
         templateColumns="repeat(auto-fit, minmax(150px, 1fr))"

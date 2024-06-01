@@ -5,9 +5,9 @@ import { useParams } from "react-router-dom";
 import { Flex } from "@chakra-ui/react";
 import UserInfo from "../UserInfo";
 import Title from "@routes/Title";
-import Lists from "./Lists";
+import Reviews from "./Reviews";
 
-const UserListsPage = () => {
+const UserReviewsPage = () => {
   const username = useParams().username;
 
   const { data, status, refetch, isRefetching } = useGetUserInfo({
@@ -24,11 +24,11 @@ const UserListsPage = () => {
 
   return (
     <Flex direction="column" w="full" align="center" gap={20} p={4}>
-      <Title title={`${data.username}'s Lists`} />
+      <Title title={`${username}'s Watchlist`} />
       <UserInfo user={data} />
-      <Lists username={username!} />
+      <Reviews username={username!} />
     </Flex>
   );
 };
 
-export default UserListsPage;
+export default UserReviewsPage;

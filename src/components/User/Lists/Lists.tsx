@@ -29,7 +29,7 @@ const Lists = ({ username }: IProps) => {
   }
 
   if (!data) {
-    return <NoItemAlert text="No watchlist found" />;
+    return <NoItemAlert text="No lists found" />;
   }
 
   return (
@@ -37,8 +37,6 @@ const Lists = ({ username }: IProps) => {
       <Flex w="full" justify="center">
         <SectionTitle
           sectionTitle={`${username}'s Lists (${data.length})`}
-          color="gray.500"
-          sectionHref={`/user/${username}/lists`}
         />
       </Flex>
       <Grid

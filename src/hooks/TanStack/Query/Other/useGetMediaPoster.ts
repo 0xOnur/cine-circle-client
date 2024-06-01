@@ -12,15 +12,11 @@ interface IResponse {
 }
 
 const useGetMediaPoster = ({ mediaType, tmdbID }: IProps) => {
-  if (!tmdbID) {
-    return { posterUrl: null, backdropUrl: null };
-  }
-
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const { data: mediaPoster } = useQuery<IResponse>({
     queryKey: ["mediaPoster", mediaType, tmdbID],
     queryFn: () => getMediaPosters(mediaType, tmdbID),
     refetchOnWindowFocus: false,
+    enabled: mediaType !== undefined && tmdbID !== undefined,
   });
 
   const posterUrl = mediaPoster

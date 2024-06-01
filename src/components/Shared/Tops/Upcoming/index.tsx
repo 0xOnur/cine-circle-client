@@ -59,7 +59,7 @@ const UpcomingPage = ({ mediaType }: IProps) => {
     <Flex direction="column" gap={12}>
       <Box>
         <Text fontSize="3xl" textTransform="uppercase" letterSpacing={3}>
-          Upcoming Movies
+          Upcoming {mediaType === "movie" ? "Movies" : "TV Shows"}
         </Text>
         <Text fontWeight="500" color="gray.500">
           {data?.total_results.toLocaleString()} total results

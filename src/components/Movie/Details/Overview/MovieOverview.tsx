@@ -50,18 +50,6 @@ const MovieOverview = ({ data }: IProps) => {
               }
             />
           </Grid>
-
-          <Grid
-            gap={8}
-            alignItems="center"
-            templateColumns={{
-              base: "minmax(0, 1fr)",
-              md: "1fr minmax(0, 2fr)",
-            }}
-            flexBasis={["100%"]}
-          >
-            {/* <MovieDetailAdditionalInfo data={data} id={movieId ?? 0} /> */}
-          </Grid>
         </Grid>
       </Container>
     </Box>

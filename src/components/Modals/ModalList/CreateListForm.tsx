@@ -15,7 +15,7 @@ interface IProps {
   defaultMediaType?: "tv" | "movie";
 }
 
-const CreateList = ({ headerText, defaultMediaType }: IProps) => {
+const CreateListForm = ({ headerText, defaultMediaType }: IProps) => {
   const [newList, setNewList] = useState({
     listName: "",
     description: "",
@@ -109,4 +109,4 @@ const CreateList = ({ headerText, defaultMediaType }: IProps) => {
   );
 };
 
-export default CreateList;
+export default CreateListForm;

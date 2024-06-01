@@ -1,8 +1,8 @@
 import MediaAchievements from "@components/Shared/MediaDetailsPage/Achievements";
 import useGetMovieDetails from "hooks/TanStack/Query/Movie/useGetMovieDetails";
 import CastSlider from "@components/Shared/MediaDetailsPage/CastSlider";
+import MediaReviews from "@components/Shared/MediaDetailsPage/Reviews";
 import PendingStatus from "@components/Shared/Status/PendingStatus";
-import Reviews from "@components/Shared/MediaDetailsPage/Reviews";
 import ErrorStatus from "@components/Shared/Status/ErrorStatus";
 import { Box, Container, Flex } from "@chakra-ui/react";
 import MovieOverview from "./Overview/MovieOverview";
@@ -52,7 +52,7 @@ const MovieDetailsPage = ({ movieId }: IProps) => {
                   castData={data.credits?.cast}
                   mediaType="movie"
                 />
-                <Reviews media={data} media_type="movie" />
+                <MediaReviews media={data} media_type="movie" />
               </Box>
               <MediaAchievements media={data} media_type="movie" />
             </Flex>

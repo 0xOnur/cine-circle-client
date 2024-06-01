@@ -7,7 +7,7 @@ import {
   Box,
   Text,
 } from "@chakra-ui/react";
-import CreateList from "@components/Shared/MediaDetailsPage/Overview/Buttons/CreateList";
+import CreateListForm from "./CreateListForm";
 
 interface IProps {
   mediaType: "tv" | "movie";
@@ -32,7 +32,7 @@ const CreateListAccordion = ({ mediaType }: IProps) => {
             <AccordionIcon />
           </AccordionButton>
           <AccordionPanel py={8}>
-            <CreateList defaultMediaType={mediaType} />
+            <CreateListForm defaultMediaType={mediaType} />
           </AccordionPanel>
         </AccordionItem>
       </Accordion>

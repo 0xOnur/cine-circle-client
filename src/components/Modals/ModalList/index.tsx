@@ -7,12 +7,12 @@ import {
   ModalOverlay,
   Box,
 } from "@chakra-ui/react";
-import { RootState } from "@redux/config/store";
+import CreateListForm from "@components/Modals/ModalList/CreateListForm";
 import useGetUserLists from "hooks/TanStack/Query/User/useGetUserLists";
-import { useSelector } from "react-redux";
-import LoadingSpinner from "@components/LoadingSpinner";
 import ErrorStatus from "@components/Shared/Status/ErrorStatus";
-import CreateList from "@components/Shared/MediaDetailsPage/Overview/Buttons/CreateList";
+import LoadingSpinner from "@components/LoadingSpinner";
+import { RootState } from "@redux/config/store";
+import { useSelector } from "react-redux";
 import Lists from "./Lists";
 
 interface IModalListProps {
@@ -63,7 +63,7 @@ const ModalList = ({ tmdbID, mediaType, isOpen, onClose }: IModalListProps) => {
           ) : status === "error" ? (
             <ErrorStatus refetch={refetch} isRefetching={isRefetching} />
           ) : filteredLists?.length === 0 ? (
-            <CreateList
+                <CreateListForm
               defaultMediaType={mediaType}
               headerText={
                 mediaType === "tv"

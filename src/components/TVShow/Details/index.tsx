@@ -8,7 +8,7 @@ import TVShowOverview from "./Overview/TVShowOverview";
 import CastSlider from "@components/Shared/MediaDetailsPage/CastSlider";
 import SeasonSlider from "./Seasons";
 import MediaAchievements from "@components/Shared/MediaDetailsPage/Achievements";
-import Reviews from "@components/Shared/MediaDetailsPage/Reviews";
+import MediaReviews from "@components/Shared/MediaDetailsPage/Reviews";
 
 interface IProps {
   showId: string | undefined;
@@ -54,7 +54,7 @@ const TVShowDetailsPage = ({ showId }: IProps) => {
                   mediaType="tv-show"
                 />
                 <SeasonSlider data={data} />
-                <Reviews media={data} media_type="tv-show" />
+                <MediaReviews media={data} media_type="tv-show" />
               </Box>
               <MediaAchievements media={data} media_type="tv" />
             </Flex>

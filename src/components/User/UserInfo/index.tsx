@@ -5,7 +5,7 @@ import EditProfileButton from "./EditProfileButton";
 
 interface IProps {
   user: IUser;
-  isEditable: boolean;
+  isEditable?: boolean;
 }
 
 const UserInfo = ({ user, isEditable }: IProps) => {

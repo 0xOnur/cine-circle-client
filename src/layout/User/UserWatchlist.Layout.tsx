@@ -1,9 +1,9 @@
+import UserWatchlistPage from "@components/User/Watchlist";
 import { Container, Flex } from "@chakra-ui/react";
-import Footer from "@components/Footer";
-import Navbar from "@components/Navbar";
-import UserPage from "@components/User";
 import { RootState } from "@redux/config/store";
 import { useSelector } from "react-redux";
+import Footer from "@components/Footer";
+import Navbar from "@components/Navbar";
 
 const UserLayout = () => {
   const reduxUser = useSelector((state: RootState) => state.user);
@@ -12,7 +12,7 @@ const UserLayout = () => {
     <Flex direction="column">
       <Navbar isAuth={reduxUser.isAuth} />
       <Container>
-        <UserPage reduxUser={reduxUser} />
+        <UserWatchlistPage />
         <Footer />
       </Container>
     </Flex>

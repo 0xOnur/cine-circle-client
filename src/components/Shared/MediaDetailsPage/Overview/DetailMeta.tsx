@@ -11,6 +11,8 @@ import PosterImage from "@components/Shared/Poster/PosterImage";
 import OverviewText from "./OverviewText";
 import ListButton from "./Buttons/ListButton";
 import WatchlistButton from "./Buttons/WatchlistButton";
+import RateButton from "./Buttons/RateButton";
+import useGetMediaRatings from "hooks/TanStack/Query/Rating/useGetMediaRatings";
 
 type DetailData = {
   tmdbID: number;
@@ -30,6 +32,12 @@ interface IProps {
 }
 
 const DetailMeta = ({ data, extras }: IProps) => {
+  const {
+    data: ratings,
+  } = useGetMediaRatings({
+    tmdbID: data.tmdbID.toString(),
+    mediaType: data.mediaType,
+  });
   return (
     <Box
       color="white"
@@ -103,6 +111,13 @@ const DetailMeta = ({ data, extras }: IProps) => {
         <Flex alignItems="center" gap={5}>
           <ListButton tmdbID={data.tmdbID} mediaType={data.mediaType} />
           <WatchlistButton tmdbID={data.tmdbID} mediaType={data.mediaType} />
+          {ratings && (
+            <RateButton
+              tmdbID={data.tmdbID}
+              mediaType={data.mediaType}
+              reviews={ratings}
+            />
+          )}
         </Flex>
 
         {data.overview && <OverviewText overview={data.overview} />}

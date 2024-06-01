@@ -29,7 +29,6 @@ const ListButton = ({ tmdbID, mediaType }: IProps) => {
         aria-label="Add to list"
         hasArrow
         bg="darkPurple.700"
-        overflow="hidden"
         closeOnScroll
       >
         <IconButton

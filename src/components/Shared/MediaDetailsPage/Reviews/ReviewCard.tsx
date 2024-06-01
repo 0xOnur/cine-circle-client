@@ -11,6 +11,7 @@ import EditReviewButton from "./EditReviewButton";
 import ShowSpoilerButton from "./ShowSpoilerButton";
 import { useState } from "react";
 import useGetMediaPoster from "hooks/TanStack/Query/Other/useGetMediaPoster";
+import DeleteReviewButton from "./DeleteReviewButton";
 
 interface IProps {
   reduxUserId?: string;
@@ -97,7 +98,10 @@ const ReviewCard = ({ reduxUserId, review, showMediaInfo }: IProps) => {
                   />
                 )}
                 {isMyReview && (
-                  <EditReviewButton tmdbID={review.tmdbID} review={review} />
+                  <>
+                    <EditReviewButton tmdbID={review.tmdbID} review={review} />
+                    <DeleteReviewButton tmdbID={review.tmdbID} />
+                  </>
                 )}
               </Flex>
             </Flex>

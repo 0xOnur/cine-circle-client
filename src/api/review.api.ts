@@ -88,3 +88,18 @@ export const updateReview = async (
     return Promise.reject(error);
   }
 };
+
+// Delete Review
+export const deleteReview = async (tmdbID: string) => {
+  try {
+    const response = await axiosInstance.delete(
+      `review/delete-review?tmdbID=${tmdbID}`
+    );
+    return response.data;
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      return Promise.reject(error.response?.data);
+    }
+    return Promise.reject(error);
+  }
+};

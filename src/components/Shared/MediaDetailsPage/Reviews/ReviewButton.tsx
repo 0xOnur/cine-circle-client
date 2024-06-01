@@ -1,6 +1,5 @@
 import { Button, useDisclosure } from "@chakra-ui/react";
-import ModalReview from "@components/Modals/ModalReview";
-import React from "react";
+import ModalReview from "@components/Modals/ModalReview/CreateAndEdit";
 import { FaList } from "react-icons/fa";
 
 interface IProps {

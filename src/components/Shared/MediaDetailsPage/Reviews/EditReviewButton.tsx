@@ -1,5 +1,5 @@
+import ModalReview from "@components/Modals/ModalReview/CreateAndEdit";
 import { Button, useDisclosure } from "@chakra-ui/react";
-import ModalReview from "@components/Modals/ModalReview";
 import { FaEdit } from "react-icons/fa";
 
 interface IProps {

@@ -1,37 +1,28 @@
-import useCreateReview from "hooks/TanStack/Mutation/Review/useCreateReview";
-import SubmitButton from "@components/Auth/Inputs/Submit.Button";
-import CommentInput from "./Inputs/Comment.Input";
-import TitleInput from "./Inputs/Title.Input";
 import { Flex } from "@chakra-ui/react";
+import useEditReview from "hooks/TanStack/Mutation/Review/useEditReview";
 import { useState } from "react";
-import SpoilerInput from "./Inputs/Spoiler.Input";
+import TitleInput from "../Inputs/Title.Input";
+import CommentInput from "../Inputs/Comment.Input";
+import SpoilerInput from "../Inputs/Spoiler.Input";
+import SubmitButton from "@components/Auth/Inputs/Submit.Button";
 
 interface IProps {
-  username: string;
-  tmdbID: string;
-  mediaType: "movie" | "tv";
+  review: IReview;
   onClose: () => void;
 }
 
-const CreateReviewForm = ({ username, tmdbID, mediaType, onClose }: IProps) => {
-  const [newReview, setNewReview] = useState({
-    username: username,
-    tmdbID: tmdbID,
-    title: `Review by ${username}`,
-    comment: "",
-    spoiler: false,
-  });
+const EditReviewForm = ({ review, onClose }: IProps) => {
+  const [newReview, setNewReview] = useState(review);
 
-  const { mutate, isPending } = useCreateReview({
-    tmdbID,
-    mediaType,
+  const { mutate, isPending } = useEditReview({
+    tmdbID: review.tmdbID,
     title: newReview.title,
     comment: newReview.comment,
     spoiler: newReview.spoiler,
     onClose,
   });
 
-  const isDisabled = !newReview.title || !newReview.comment;
+  const isDisabled = JSON.stringify(review) === JSON.stringify(newReview);
 
   return (
     <form
@@ -60,9 +51,9 @@ const CreateReviewForm = ({ username, tmdbID, mediaType, onClose }: IProps) => {
           }
         />
         <SubmitButton
-          text="Create"
+          text="Update Review"
           isLoading={isPending}
-          loadingText="Creating..."
+          loadingText="Updating..."
           isDisabled={isDisabled}
         />
       </Flex>
@@ -70,4 +61,4 @@ const CreateReviewForm = ({ username, tmdbID, mediaType, onClose }: IProps) => {
   );
 };
 
-export default CreateReviewForm;
+export default EditReviewForm;

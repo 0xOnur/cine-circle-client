@@ -1,28 +1,37 @@
-import { Flex } from "@chakra-ui/react";
-import useEditReview from "hooks/TanStack/Mutation/Review/useEditReview";
-import { useState } from "react";
-import TitleInput from "./Inputs/Title.Input";
-import CommentInput from "./Inputs/Comment.Input";
-import SpoilerInput from "./Inputs/Spoiler.Input";
+import useCreateReview from "hooks/TanStack/Mutation/Review/useCreateReview";
 import SubmitButton from "@components/Auth/Inputs/Submit.Button";
+import { Flex } from "@chakra-ui/react";
+import { useState } from "react";
+import TitleInput from "../Inputs/Title.Input";
+import CommentInput from "../Inputs/Comment.Input";
+import SpoilerInput from "../Inputs/Spoiler.Input";
 
 interface IProps {
-  review: IReview;
+  username: string;
+  tmdbID: string;
+  mediaType: "movie" | "tv";
   onClose: () => void;
 }
 
-const EditReviewForm = ({ review, onClose }: IProps) => {
-  const [newReview, setNewReview] = useState(review);
+const CreateReviewForm = ({ username, tmdbID, mediaType, onClose }: IProps) => {
+  const [newReview, setNewReview] = useState({
+    username: username,
+    tmdbID: tmdbID,
+    title: `Review by ${username}`,
+    comment: "",
+    spoiler: false,
+  });
 
-  const { mutate, isPending } = useEditReview({
-    tmdbID: review.tmdbID,
+  const { mutate, isPending } = useCreateReview({
+    tmdbID,
+    mediaType,
     title: newReview.title,
     comment: newReview.comment,
     spoiler: newReview.spoiler,
     onClose,
   });
 
-  const isDisabled = JSON.stringify(review) === JSON.stringify(newReview);
+  const isDisabled = !newReview.title || !newReview.comment;
 
   return (
     <form
@@ -51,9 +60,9 @@ const EditReviewForm = ({ review, onClose }: IProps) => {
           }
         />
         <SubmitButton
-          text="Update Review"
+          text="Create"
           isLoading={isPending}
-          loadingText="Updating..."
+          loadingText="Creating..."
           isDisabled={isDisabled}
         />
       </Flex>
@@ -61,4 +70,4 @@ const EditReviewForm = ({ review, onClose }: IProps) => {
   );
 };
 
-export default EditReviewForm;
+export default CreateReviewForm;

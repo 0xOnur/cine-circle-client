@@ -24,7 +24,7 @@ const UserReviewsPage = () => {
 
   return (
     <Flex direction="column" w="full" align="center" gap={20} p={4}>
-      <Title title={`${username}'s Watchlist`} />
+      <Title title={`${username}'s Reviews`} />
       <UserInfo user={data} />
       <Reviews username={username!} />
     </Flex>

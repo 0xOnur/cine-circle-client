@@ -52,7 +52,7 @@ export type CreditCast = IPerson & {
   order: number;
 };
 
-type CreditCrew = IPerson & {
+export type CreditCrew = IPerson & {
   department: string;
   job: string;
 };

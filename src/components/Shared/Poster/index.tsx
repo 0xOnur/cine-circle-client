@@ -37,6 +37,7 @@ const PosterCard = ({
     <Link
       display="grid"
       minW="fit-content"
+      width="fit-content"
       role="group"
       transform="none"
       href={`${pathMap[mediaType]}/${id}`}
@@ -44,6 +45,7 @@ const PosterCard = ({
     >
       <MotionBox
         as="a"
+        width="fit-content"
         position="relative"
         textAlign="center"
         whileHover={{ scale: 1.1 }}

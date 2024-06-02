@@ -31,7 +31,7 @@ const MovieSlider = () => {
       {status === "success" && (
         <SliderContainer
           sectionTitle="Popular Movies"
-          sectionHref={`/movies/trending/${time_window}`}
+          sectionHref={`/movies/popular`}
           time_window={time_window}
           setTime_window={setTime_window}
           footer={

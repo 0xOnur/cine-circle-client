@@ -30,7 +30,7 @@ const TVShowSlider = () => {
       {status === "success" && (
         <SliderContainer
           sectionTitle="Popular TV Shows"
-          sectionHref={`/tv-shows/trending/${time_window}`}
+          sectionHref={`/tv-shows/popular`}
           time_window={time_window}
           setTime_window={setTime_window}
           footer={

@@ -1,5 +1,4 @@
 import { Container, Flex } from "@chakra-ui/react";
-import Footer from "@components/Footer";
 import Navbar from "@components/Navbar";
 import TopRatedPage from "@components/Shared/Tops/TopRated";
 import { RootState } from "@redux/config/store";
@@ -12,7 +11,6 @@ const TopRatedLayout = () => {
       <Navbar isAuth={reduxIsAuth} />
       <Container>
         <TopRatedPage mediaType="movie" />
-        <Footer />
       </Container>
     </Flex>
   );

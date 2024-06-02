@@ -1,7 +1,6 @@
-import { Container, Flex } from "@chakra-ui/react";
-import Footer from "@components/Footer";
-import Navbar from "@components/Navbar";
 import PopularPage from "@components/Shared/Tops/PopularPage";
+import { Container, Flex } from "@chakra-ui/react";
+import Navbar from "@components/Navbar";
 import { RootState } from "@redux/config/store";
 import { useSelector } from "react-redux";
 
@@ -13,7 +12,6 @@ const PopularLayout = () => {
       <Navbar isAuth={reduxIsAuth} />
       <Container>
         <PopularPage mediaType="movie" />
-        <Footer />
       </Container>
     </Flex>
   );

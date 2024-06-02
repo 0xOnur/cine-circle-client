@@ -1,5 +1,4 @@
 import { Container, Flex } from "@chakra-ui/react";
-import Footer from "@components/Footer";
 import Navbar from "@components/Navbar";
 import AiringTodayPage from "@components/Shared/Tops/Airing";
 import { RootState } from "@redux/config/store";
@@ -13,7 +12,6 @@ const AiringToday = () => {
       <Navbar isAuth={reduxIsAuth} />
       <Container>
         <AiringTodayPage />
-        <Footer />
       </Container>
     </Flex>
   );

@@ -9,7 +9,7 @@ interface IProps {
 
 const TVShowOverview = ({ data }: IProps) => {
   return (
-    <Box position="relative">
+    <Box position="relative" w="full">
       <Container>
         <BackdropImage backdrop_path={data.backdrop_path} />
 

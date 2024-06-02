@@ -1,20 +1,20 @@
-import UpcomingPage from "@components/Shared/Tops/Upcoming";
-import { Container, Flex } from "@chakra-ui/react";
+import TVShowReviewsPage from "@components/TVShow/Reviews";
 import { RootState } from "@redux/config/store";
+import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Navbar from "@components/Navbar";
+import { Flex } from "@chakra-ui/react";
 
-const UpcomingLayout = () => {
+const TVShowReviewsLayout = () => {
   const reduxIsAuth = useSelector((state: RootState) => state.user.isAuth);
+  const showId = useParams().showId;
 
   return (
     <Flex direction="column">
       <Navbar isAuth={reduxIsAuth} />
-      <Container>
-        <UpcomingPage mediaType="tv" />
-      </Container>
+      <TVShowReviewsPage showId={showId} />
     </Flex>
   );
 };
 
-export default UpcomingLayout;
+export default TVShowReviewsLayout;

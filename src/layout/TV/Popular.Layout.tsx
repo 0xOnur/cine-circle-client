@@ -13,7 +13,6 @@ const PopularLayout = () => {
       <Navbar isAuth={reduxIsAuth} />
       <Container>
         <PopularPage mediaType="tv" />
-        <Footer />
       </Container>
     </Flex>
   );

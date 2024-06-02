@@ -12,7 +12,6 @@ const TopRatedLayout = () => {
       <Navbar isAuth={reduxIsAuth} />
       <Container>
         <TopRatedPage mediaType="tv" />
-        <Footer />
       </Container>
     </Flex>
   );

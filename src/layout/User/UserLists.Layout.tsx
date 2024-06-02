@@ -1,5 +1,4 @@
 import { Container, Flex } from "@chakra-ui/react";
-import Footer from "@components/Footer";
 import Navbar from "@components/Navbar";
 import UserListsPage from "@components/User/Lists";
 import { RootState } from "@redux/config/store";
@@ -13,7 +12,6 @@ const UserListsLayout = () => {
       <Navbar isAuth={reduxUser.isAuth} />
       <Container>
         <UserListsPage />
-        <Footer />
       </Container>
     </Flex>
   );

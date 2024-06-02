@@ -1,5 +1,4 @@
-import { Container, Flex } from "@chakra-ui/react";
-import Footer from "@components/Footer";
+import { Flex } from "@chakra-ui/react";
 import Navbar from "@components/Navbar";
 import TVShowDetailsPage from "@components/TVShow/Details";
 import { RootState } from "@redux/config/store";
@@ -14,9 +13,6 @@ const TVShowLayout = () => {
     <Flex direction="column">
       <Navbar isAuth={reduxIsAuth} />
       <TVShowDetailsPage showId={showId} />
-      <Container>
-        <Footer />
-      </Container>
     </Flex>
   );
 };

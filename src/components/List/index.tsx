@@ -1,24 +1,24 @@
-import useGetWatchlist from "hooks/TanStack/Query/User/useGetUserWatchlist";
 import PendingStatus from "@components/Shared/Status/PendingStatus";
 import SectionTitle from "@components/Home/Trending/SectionTitle";
-import ErrorStatus from "@components/Shared/Status/ErrorStatus";
 import NoItemAlert from "@components/Shared/Status/NoItemAlert";
+import ErrorStatus from "@components/Shared/Status/ErrorStatus";
 import MediaItems from "@components/Shared/Others/MediaItems";
+import useGetList from "hooks/TanStack/Query/List/useGetList";
 import { Flex, Grid } from "@chakra-ui/react";
+import Title from "@routes/Title";
 
 interface IProps {
-  username: string;
+  username: string | undefined;
+  listId: string | undefined;
 }
 
-const Watchlist = ({ username }: IProps) => {
-  if (!username) {
-    return <NoItemAlert text="No watchlist found" />;
+const ListDetailsPage = ({ username, listId }: IProps) => {
+  if (!listId || !username) {
+    return null;
   }
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { data, status, refetch, isRefetching } = useGetWatchlist({
-    username: username!,
-  });
+  const { data, status, refetch, isRefetching } = useGetList({ listId });
 
   if (status === "pending" || isRefetching) {
     return <PendingStatus count={5} height="50px" />;
@@ -28,15 +28,14 @@ const Watchlist = ({ username }: IProps) => {
     return <ErrorStatus refetch={refetch} isRefetching={isRefetching} />;
   }
 
-  if (!data) {
-    return <NoItemAlert text="No watchlist found" />;
+  if (data.medias.length === 0) {
+    return <NoItemAlert text="No items found" />;
   }
 
   return (
     <Flex direction="column" w="full" gap={20} align={"center"}>
-      <SectionTitle
-        sectionTitle={`${username}'s Watchlist (${data?.medias?.length})`}
-      />
+      <Title title={`${username}'s ${data.listName}`} />
+      <SectionTitle sectionTitle={`${data.listName} (${data.medias.length})`} />
       <Grid
         w="full"
         columnGap={5}
@@ -55,4 +54,4 @@ const Watchlist = ({ username }: IProps) => {
   );
 };
 
-export default Watchlist;
+export default ListDetailsPage;

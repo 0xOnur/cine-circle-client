@@ -38,6 +38,12 @@ export const routeConfig: IRouteConfig[] = [
     private: false,
   },
   {
+    path: "/user/:username/lists/:listId",
+    component: React.lazy(() => import("@layout/User/UserListDetails.Layout")),
+    title: "User List",
+    private: false,
+  },
+  {
     path: "/user/:username/reviews",
     component: React.lazy(() => import("@layout/User/UserReview.Layout")),
     title: "User Reviews",
@@ -50,9 +56,21 @@ export const routeConfig: IRouteConfig[] = [
     private: false,
   },
   {
+    path: "/movie/:movieId/reviews",
+    component: React.lazy(() => import("@layout/Movies/MovieReviews.Layout")),
+    title: "Movie Reviews",
+    private: false,
+  },
+  {
     path: "/tv-show/:showId",
     component: React.lazy(() => import("@layout/TV/TVShow.Layout")),
     title: "TV Show",
+    private: false,
+  },
+  {
+    path: "/tv-show/:showId/reviews",
+    component: React.lazy(() => import("@layout/TV/TVShowReviews.Layout")),
+    title: "TV Show Reviews",
     private: false,
   },
   {

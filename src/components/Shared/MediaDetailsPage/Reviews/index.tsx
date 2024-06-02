@@ -15,9 +15,10 @@ import SeeMore from "@components/Shared/Others/SeeMore";
 interface IProps {
   media: IMovieDetails | ITvShowDetails;
   media_type: "movie" | "tv-show";
+  showAll?: boolean;
 }
 
-const MediaReviews = ({ media, media_type }: IProps) => {
+const MediaReviews = ({ media, media_type, showAll }: IProps) => {
   const reduxUser = useSelector((state: RootState) => state.user);
 
   const { data, status, refetch, isRefetching } = useGetMediaReviews({
@@ -36,7 +37,7 @@ const MediaReviews = ({ media, media_type }: IProps) => {
     return <ErrorStatus refetch={refetch} isRefetching={isRefetching} />;
   }
 
-  const lastReviews = data.slice(0, 4);
+  const lastReviews = showAll ? data : data.slice(0, 4);
 
   if (!lastReviews || lastReviews.length === 0) {
     return (
@@ -55,13 +56,18 @@ const MediaReviews = ({ media, media_type }: IProps) => {
   }
 
   return (
-    <Flex direction="column" gap={8}>
+    <Flex
+      direction="column"
+      gap={8}
+      w="full"
+      align={showAll ? "center" : "start"}
+    >
       <SectionTitle
-        sectionTitle="Last Reviews"
-        sectionHref={`/${media_type}/${media.id}/reviews`}
+        sectionTitle={showAll ? "Reviews" : "Latest Reviews"}
+        sectionHref={showAll ? "" : `/${media_type}/${media.id}/reviews`}
       />
 
-      <Flex direction="column" gap={4}>
+      <Flex direction="column" w="full" gap={4}>
         {lastReviews.map((review: IReview) => (
           <ReviewCard
             key={review._id}
@@ -70,12 +76,15 @@ const MediaReviews = ({ media, media_type }: IProps) => {
           />
         ))}
       </Flex>
-      <Flex w="full" justify="flex-end">
-        <SeeMore
-          href={`/${media_type}/${media.id}/reviews`}
-          btnText="See all reviews"
-        />
-      </Flex>
+
+      {!showAll && (
+        <Flex w="full" justify="flex-end">
+          <SeeMore
+            href={`/${media_type}/${media.id}/reviews`}
+            btnText="See all reviews"
+          />
+        </Flex>
+      )}
 
       <ReviewButton
         tmdbID={media.id.toString()}

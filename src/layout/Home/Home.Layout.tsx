@@ -4,7 +4,6 @@ import Navbar from "@components/Navbar";
 import { Container, Flex } from "@chakra-ui/react";
 import HeroSection from "@components/Home/Hero";
 import TrendingSection from "@components/Home/Trending";
-import Footer from "@components/Footer";
 
 const HomeLayout = () => {
   const reduxIsAuth = useSelector((state: RootState) => state.user.isAuth);
@@ -16,7 +15,6 @@ const HomeLayout = () => {
       <HeroSection isAuth={reduxIsAuth} />
       <Container>
         <TrendingSection />
-        <Footer />
       </Container>
     </Flex>
   );

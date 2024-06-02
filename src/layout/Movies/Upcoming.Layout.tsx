@@ -1,5 +1,4 @@
 import { Container, Flex } from "@chakra-ui/react";
-import Footer from "@components/Footer";
 import Navbar from "@components/Navbar";
 import UpcomingPage from "@components/Shared/Tops/Upcoming";
 import { RootState } from "@redux/config/store";
@@ -13,7 +12,6 @@ const UpcomingLayout = () => {
       <Navbar isAuth={reduxIsAuth} />
       <Container>
         <UpcomingPage mediaType="movie" />
-        <Footer />
       </Container>
     </Flex>
   );

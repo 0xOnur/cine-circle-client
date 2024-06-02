@@ -16,6 +16,19 @@ export const getUserLists = async (username: string) => {
   }
 };
 
+// Get list details
+export const getList = async (listId: string) => {
+  try {
+    const response = await axiosInstance.get(`list/get-list?listId=${listId}`);
+    return response.data;
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      return Promise.reject(error.response?.data);
+    }
+    return Promise.reject(error);
+  }
+};
+
 // Create list
 export const createList = async (
   listName: string,
